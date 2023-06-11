@@ -1,0 +1,11 @@
+id: ping_postgresql
+name: "{{ 'Ping PostgreSQL' | trans }}"
+category: database
+type:
+  - postgresql
+method: ping
+i18n:
+  Ping PostgreSQL:
+    zh: 使用 Ansible 模块 postgresql 来测试 PostgreSQL 连接性
+    en: Ping PostgreSQL using ansible postgresql module
+    ja: ansible postgresql モジュールを使用して PostgreSQL に ping を送信する

@@ -1,0 +1,18 @@
+- hosts: mongdb
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: /usr/local/bin/python
+
+  tasks:
+    - name: Verify account
+      mongodb_ping:
+        login_user: "{{ account.username }}"
+        login_password: "{{ account.secret }}"
+        login_host: "{{ jms_asset.address }}"
+        login_port: "{{ jms_asset.port }}"
+        login_database: "{{ jms_asset.spec_info.db_name }}"
+        ssl: "{{ jms_asset.spec_info.use_ssl }}"
+        ssl_ca_certs: "{{ jms_asset.secret_info.ca_cert }}"
+        ssl_certfile: "{{ jms_asset.secret_info.client_key }}"
+        connection_options:
+          - tlsAllowInvalidHostnames: "{{ jms_asset.spec_info.allow_invalid_cert}}"

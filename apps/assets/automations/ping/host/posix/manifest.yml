@@ -1,0 +1,13 @@
+id: posix_ping
+name: "{{ 'Posix ping' | trans }}"
+category: host
+type:
+  - linux
+  - unix
+method: ping
+
+i18n:
+  Posix ping:
+    zh: 使用 Ansible 模块 ping 来测试可连接性
+    en: Use Ansible builtin module ping to test Posix
+    ja: Ansible 組み込みモジュール ping を使用してテストする Posix

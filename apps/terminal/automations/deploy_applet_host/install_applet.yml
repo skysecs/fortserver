@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  vars:
+    applet_name: chrome
+
+  tasks:
+    - name: Install applet
+      ansible.windows.win_powershell:
+        script: |
+          tinkerd install --name {{ applet_name }}
+      when: applet_name != 'all'

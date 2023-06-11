@@ -1,0 +1,57 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>{{ INTERFACE.login_title }}</title>
+    <link rel="shortcut icon" href="{{ INTERFACE.favicon }}" type="image/x-icon">
+    {% include '_head_css_js.html' %}
+    <link href="{% static 'css/fortserver.css' %}" rel="stylesheet">
+    {% block custom_head_css_js %} {% endblock %}
+    <style>
+        :root {
+            --primary-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+        {% include '_header_bar.html' %}
+         <div class="alert alert-info help-message alert-dismissable page-message" style="display: none">
+             <button aria-hidden="true" data-dismiss="alert" class="close hide-btn" type="button">×</button>
+             {% block help_message %}
+             {% endblock %}
+         </div>
+        {% include '_message.html' %}
+        {% block content %}{% endblock %}
+        {% include '_footer.html' %}
+    </div>
+</div>
+
+</body>
+{% include '_foot_js.html' %}
+{% block custom_foot_js %} {% endblock %}
+<script>
+function getMessagePathKey() {
+    var path = window.location.pathname;
+    var key = 'message_' + btoa(path);
+    return key
+}
+
+$(document).ready(function () {
+    var pathKey = getMessagePathKey();
+    var hidden = window.localStorage.getItem(pathKey);
+    var hasMessage = $('.page-message').text().trim().length > 5;
+    if (!hidden && hasMessage) {
+        $(".help-message").show();
+    }
+}).on('click', '.hide-btn', function () {
+    var pathKey = getMessagePathKey();
+    window.localStorage.setItem(pathKey, '1')
+})
+
+</script>
+</html>

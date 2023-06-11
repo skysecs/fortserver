@@ -1,0 +1,98 @@
+# SECURITY WARNING: keep the secret key used in production secret!
+# 加密密钥 生产环境中请修改为随机字符串，请勿外泄, 可使用命令生成
+# $ cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 49;echo
+SECRET_KEY:
+
+# SECURITY WARNING: keep the bootstrap token used in production secret!
+# 预共享Token coco和guacamole用来注册服务账号，不在使用原来的注册接受机制
+BOOTSTRAP_TOKEN:
+
+# Development env open this, when error occur display the full process track, Production disable it
+# DEBUG 模式 开启DEBUG后遇到错误时可以看到更多日志
+# DEBUG: true
+
+# DEBUG, INFO, WARNING, ERROR, CRITICAL can set. See https://docs.djangoproject.com/en/1.10/topics/logging/
+# 日志级别
+# LOG_LEVEL: DEBUG
+# LOG_DIR:
+
+# Session expiration setting, Default 1 hour, Also set expired on on browser close
+# 浏览器Session过期时间，默认 1 小时, 也可以设置浏览器关闭则过期
+# SESSION_COOKIE_AGE: 3600
+# SESSION_EXPIRE_AT_BROWSER_CLOSE: false
+
+# Database setting, Support sqlite3, mysql, postgres ....
+# 数据库设置
+# See https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+
+# SQLite setting:
+# 使用单文件sqlite数据库
+# DB_ENGINE: sqlite3
+# DB_NAME:
+# MySQL or postgres setting like:
+# 使用Mysql作为数据库
+DB_ENGINE: mysql
+DB_HOST: 127.0.0.1
+DB_PORT: 3306
+DB_USER: fortserver
+DB_PASSWORD:
+DB_NAME: fortserver
+
+# When Django start it will bind this host and port
+# ./manage.py runserver 127.0.0.1:8080
+# 运行时绑定端口
+HTTP_BIND_HOST: 0.0.0.0
+HTTP_LISTEN_PORT: 8080
+WS_LISTEN_PORT: 8070
+
+# Use Redis as broker for celery and web socket
+# Redis配置
+REDIS_HOST: 127.0.0.1
+REDIS_PORT: 6379
+# REDIS_PASSWORD:
+# REDIS_DB_CELERY: 3
+# REDIS_DB_CACHE: 4
+
+# LDAP/AD settings
+# LDAP 搜索分页数量
+# AUTH_LDAP_SEARCH_PAGED_SIZE: 1000
+#
+# 定时同步用户
+# 启用 / 禁用
+# AUTH_LDAP_SYNC_IS_PERIODIC: True
+# 同步间隔 (单位: 时) (优先）
+# AUTH_LDAP_SYNC_INTERVAL: 12
+# Crontab 表达式
+# AUTH_LDAP_SYNC_CRONTAB: * 6 * * *
+#
+# LDAP 用户登录时仅允许在用户列表中的用户执行 LDAP Server 认证
+# AUTH_LDAP_USER_LOGIN_ONLY_IN_USERS: False
+#
+# LDAP 认证时如果日志中出现以下信息将参数设置为 0 (详情参见：https://www.python-ldap.org/en/latest/faq.html)
+# In order to perform this operation a successful bind must be completed on the connection
+# AUTH_LDAP_OPTIONS_OPT_REFERRALS: -1
+
+# OTP settings
+# OTP/MFA 配置
+# OTP_VALID_WINDOW: 0
+# OTP_ISSUER_NAME: fortserver
+
+# 启用定时任务
+# PERIOD_TASK_ENABLED: True
+#
+
+# 是否开启 Luna 水印
+# SECURITY_WATERMARK_ENABLED: False
+
+# 浏览器关闭页面后，会话过期
+# SESSION_EXPIRE_AT_BROWSER_CLOSE_FORCE: False
+
+# 每次api请求，session续期
+# SESSION_SAVE_EVERY_REQUEST: True
+
+# 仅允许用户从来源处登录
+# ONLY_ALLOW_AUTH_FROM_SOURCE: False
+
+# 仅允许已存在的用户登录，不允许第三方认证后，自动创建用户
+# ONLY_ALLOW_EXIST_USER_AUTH: False
+

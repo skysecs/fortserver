@@ -1,0 +1,11 @@
+id: gather_facts_postgresql
+name: "{{ 'Gather facts for PostgreSQL' | trans }}"
+category: database
+type:
+  - postgresql
+method: gather_facts
+i18n:
+  Gather facts for PostgreSQL:
+    zh: 使用 Ansible 模块 postgresql 获取 PostgreSQL 信息
+    en: Gather facts for PostgreSQL using postgresql module
+    ja: postgresqlモジュールを使用して PostgreSQLから情報を収集する

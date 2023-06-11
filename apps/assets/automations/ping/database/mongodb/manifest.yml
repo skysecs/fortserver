@@ -1,0 +1,11 @@
+id: mongodb_ping
+name: "{{ 'Ping MongoDB' | trans }}"
+category: database
+type:
+  - mongodb
+method: ping
+i18n:
+  Ping MongoDB:
+    zh: 使用 Ansible 模块 mongodb 来测试 MongoDB 可连接性
+    en: Use ansible mongodb module to test MongoDB
+    ja: Ansible mongodbモジュールを使用してテストする MongoDB

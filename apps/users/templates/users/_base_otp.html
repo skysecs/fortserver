@@ -1,0 +1,18 @@
+{% extends '_without_nav_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block body %}
+    <article>
+        <div class="" style="text-align: center; margin-bottom: 50px">
+            <h2>
+                {% block small_title %}
+                {% endblock %}
+            </h2>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+     </article>
+{% endblock %}

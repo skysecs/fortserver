@@ -1,0 +1,12 @@
+id: gather_facts_mysql
+name: "{{ 'Gather facts from MySQL' | trans }}"
+category: database
+type:
+  - mysql
+  - mariadb
+method: gather_facts
+i18n:
+  Gather facts from MySQL:
+    zh: 使用 Ansible 模块 mysql 从 MySQL server 获取信息
+    en: Gather facts from MySQL server using mysql module
+    ja: mysqlモジュールを使用して MySQL serverから情報を収集する

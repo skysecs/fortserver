@@ -1,0 +1,13 @@
+id: change_secret_mysql
+name: "{{ 'MySQL account change secret' | trans }}"
+category: database
+type:
+  - mysql
+  - mariadb
+method: change_secret
+
+i18n:
+  MySQL account change secret:
+    zh: 使用 Ansible 模块 mysql 执行 MySQL 账号改密
+    ja: Ansible mysql モジュールを使用して MySQL アカウントのパスワード変更
+    en: Using Ansible module mysql to change MySQL account secret

@@ -1,0 +1,12 @@
+id: verify_account_mongodb
+name: "{{ 'MongoDB account verify' | trans }}"
+category: database
+type:
+  - mongodb
+method: verify_account
+
+i18n:
+  MongoDB account verify:
+    zh: 使用 Ansible 模块 mongodb 验证账号
+    ja: Ansible mongodb モジュールを使用してアカウントを検証する
+    en: Using Ansible module mongodb to verify account

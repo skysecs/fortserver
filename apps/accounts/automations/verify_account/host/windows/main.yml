@@ -1,0 +1,11 @@
+- hosts: windows
+  gather_facts: no
+  tasks:
+    - name: Refresh connection
+      ansible.builtin.meta: reset_connection
+
+    - name: Verify account
+      ansible.windows.win_ping:
+      vars:
+        ansible_user: "{{ account.username }}"
+        ansible_password: "{{ account.secret }}"

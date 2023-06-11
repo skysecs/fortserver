@@ -1,0 +1,12 @@
+id: push_account_mongodb
+name: "{{ 'MongoDB account push' | trans }}"
+category: database
+type:
+  - mongodb
+method: push_account
+
+i18n:
+  MongoDB account push:
+    zh: 使用 Ansible 模块 mongodb 执行 MongoDB 账号推送
+    ja: Ansible mongodb モジュールを使用してアカウントをプッシュする
+    en: Using Ansible module mongodb to push account

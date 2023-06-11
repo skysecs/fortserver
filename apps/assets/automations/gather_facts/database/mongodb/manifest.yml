@@ -1,0 +1,11 @@
+id: gather_facts_mongodb
+name: "{{ 'Gather facts from MongoDB' | trans }}"
+category: database
+type:
+  - mongodb
+method: gather_facts
+i18n:
+  Gather facts from MongoDB:
+    zh: 使用 Ansible 模块 mongodb 获取 mongodb 信息
+    en: Gather facts from MongoDB using mongodb module
+    ja: mongodbモジュールを使用して MongoDBから情報を収集する

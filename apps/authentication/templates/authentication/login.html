@@ -1,0 +1,356 @@
+{% load i18n %}
+{% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="{{ INTERFACE.favicon }}" type="image/x-icon">
+    <title>
+        {{ INTERFACE.login_title }}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include '_head_css_js.html' %}
+    <!-- Stylesheets -->
+    <link href="{% static 'css/login-style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/fortserver.css' %}" rel="stylesheet">
+    <script src="{% static "js/fortserver.js" %}?_=9"></script>
+
+    <style>
+        .login-content {
+        {#box-shadow: 0 5px 5px -3px rgb(0 0 0 / 15%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);#}
+        }
+
+        .login-footer {
+            height: 50px;
+            width: 1000px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .footer-item {
+            padding: 5px 20px;
+            color: gray;
+        }
+
+        .footer-item a {
+            color: gray;
+        }
+
+        .help-block {
+            margin: 0;
+            text-align: left;
+        }
+
+        form label {
+            color: #737373;
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .extra-fields-1 .form-group {
+            margin-bottom: 30px;
+            margin-top: 15px;
+        }
+
+        .extra-fields-2 .form-group {
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .extra-fields-3 .form-group {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .login-content {
+            height: 500px;
+            width: 1000px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: calc((100vh - 470px) / 3);
+        }
+
+        body {
+            background-color: #f3f3f3;
+            height: calc(100vh - (100vh - 470px) / 3);
+        }
+
+        .captcha {
+            float: right;
+        }
+
+        .right-image-box {
+            height: 100%;
+            width: 50%;
+            float: right;
+        }
+
+        .left-form-box {
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 50%;
+            border-right: 1px solid #EFF0F1;
+        }
+
+        .red-fonts {
+            color: red;
+        }
+
+        .form-group.has-error {
+            margin-bottom: 0;
+        }
+
+        .captcha-field .has-error .help-block {
+            margin-top: -8px !important;
+        }
+
+        .jms-title {
+            padding: 22px 10px 10px;
+        }
+
+        .more-login-items {
+            margin-top: 10px;
+        }
+
+        .more-login-item {
+            border-right: 1px dashed #dedede;
+            padding: 2px 5px;
+        }
+
+        .more-login-item:last-child {
+            border-right: none;
+        }
+
+        .select-con {
+            width: 35%;
+        }
+
+        .mfa-div {
+            width: 100%;
+        }
+
+        .login-page-language {
+            font-size: 12px !important;
+            margin-right: -32px !important;
+            padding-top: 12px !important;
+            padding-left: 0 !important;
+            padding-bottom: 8px !important;
+            color: #8F959E !important;
+            font-weight: 350 !important;
+            min-height: auto !important;
+        }
+
+        .right-image {
+            height: 100%;
+            width: 100%
+        }
+
+        .jms-title {
+            font-size: 21px;
+            font-weight: 400;
+            color: #151515;
+            letter-spacing: 0;
+        }
+
+        .more-methods-title {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .more-methods-title:before, .more-methods-title:after {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            content: '';
+            border: 1px dashed #e7eaec;
+            width: 35%;
+        }
+
+        .more-methods-title:before {
+            left: 0;
+        }
+
+        .more-methods-title:after {
+            right: 0;
+        }
+
+        .more-methods-title.ja:before, .more-methods-title.ja:after {
+            width: 26%;
+        }
+
+        .captcha-field .form-group {
+            margin-bottom: 5px;
+        }
+
+        .auto-login.form-group .checkbox {
+            margin: 5px 0;
+        }
+
+        .more-login {
+            margin-top: 20px;
+        }
+
+        .has-error .more-login {
+            margin-top: 0;
+        }
+
+        .welcome-message {
+            color: #646A73;
+        }
+
+        .navbar-right .dropdown-menu {
+            right: -24px !important;
+            left: auto;
+        }
+
+        .auto_login_box {
+            display: inline-block;
+        }
+
+        .auto-login input[type=checkbox] {
+            position: relative;
+            display: inline-block;
+            margin-top: 0;
+            vertical-align: middle;
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div class="login-content extra-fields-{{ extra_fields_count }}">
+    <div class="right-image-box">
+        <a href="{% if not XPACK_ENABLED %}https://github.com/fortserver/fortserver.git{% endif %}">
+            <img src="{{ INTERFACE.login_image }}" class="right-image" alt="screen-image"/>
+        </a>
+    </div>
+    <div class="left-form-box {% if not form.challenge and not form.captcha %} no-captcha-challenge {% endif %}">
+        <div style="position: relative;top: 50%;transform: translateY(-50%);">
+            <div style='padding: 15px 60px; text-align: left'>
+                <h2 style='font-weight: 400;display: inline'>
+                    {% trans 'Login' %}
+                </h2>
+                <ul class=" nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle login-page-language" data-toggle="dropdown" href="#"
+                           target="_blank">
+                            <i class="fa fa-globe fa-lg" style="margin-right: 2px"></i>
+                            <span>{{ current_lang.title }}<b class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu profile-dropdown dropdown-menu-right">
+                            {% for lang in langs %}
+                                <li>
+                                <a href="{% url 'i18n-switch' lang=lang.code %}">
+                                    <span>{{ lang.title }}</span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form col-md-10 col-md-offset-1" style='float: none; overflow: hidden'>
+                <form id="login-form" action="" method="post" role="form" novalidate="novalidate">
+                    {% csrf_token %}
+                    <div style="line-height: 17px;margin-bottom: 20px;color: #999999;">
+                    {% if form.non_field_errors %}
+                        <p class="help-block red-fonts">
+                            {{ form.non_field_errors.as_text }}
+                        </p>
+                    {% endif %}
+                    </div>
+
+                    {% bootstrap_field form.username show_label=False %}
+                    <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+                        <input type="password" class="form-control" id="password" placeholder="{% trans 'Password' %}"
+                               required>
+                        <input id="password-hidden" type="text" style="display:none"
+                               name="{{ form.password.html_name }}">
+                        {% if form.password.errors %}
+                            <p class="help-block" style="text-align: left">
+                            {{ form.password.errors.as_text }}
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% if form.challenge %}
+                        {% bootstrap_field form.challenge show_label=False %}
+                    {% elif form.mfa_type %}
+                        <div class="form-group" style="display: flex">
+                        {% include '_mfa_login_field.html' %}
+                        </div>
+                    {% elif form.captcha %}
+                        <div class="captcha-field">
+                            {% bootstrap_field form.captcha show_label=False %}
+                        </div>
+                    {% endif %}
+                    <div class="form-group auto-login" style="margin-bottom: 10px">
+                        <div class="row" style="overflow: hidden;">
+                            <div class="col-md-6" style="text-align: left">
+                                {% if form.auto_login %}
+                                    {% bootstrap_field form.auto_login form_group_class='auto_login_box' %}
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6" style="line-height: 25px">
+                                <a id="forgot_password" href="{{ forgot_password_url }}" style="float: right">
+                                    <small>{% trans 'Forgot password' %}?</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-transparent" onclick="doLogin();return false;">
+                            {% trans 'Login' %}
+                        </button>
+                    </div>
+
+                    <div class="more-login">
+                        {% if auth_methods %}
+                            <div class="more-methods-title {{ current_lang.code }}">
+                                    {% trans "More login options" %}
+                            </div>
+                            <div class="more-login-items">
+                            {% for method in auth_methods %}
+                                <a href="{{ method.url }}" class="more-login-item">
+                                    <i class="fa">
+                                        <img src="{{ method.logo }}" height="15" width="15"></i> {{ method.name }}
+                                </a>
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="text-center" style="display: inline-block;">
+                        {% endif %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+{% include '_foot_js.html' %}
+<script type="text/javascript" src="/static/js/plugins/jsencrypt/jsencrypt.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/cryptojs/crypto-js.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/buffer/buffer.min.js"></script>
+<script>
+    function doLogin() {
+        //公钥加密
+        var password = $('#password').val(); //明文密码
+        var passwordEncrypted = encryptPassword(password)
+        $('#password-hidden').val(passwordEncrypted); //返回给密码输入input
+        $('#login-form').submit(); //post提交
+    }
+</script>
+</html>
+

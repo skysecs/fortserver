@@ -1,0 +1,13 @@
+id: change_secret_posix
+name: "{{ 'Posix account change secret' | trans }}"
+category: host
+type:
+  - unix
+  - linux
+method: change_secret
+
+i18n:
+  Posix account change secret:
+    zh: 使用 Ansible 模块 user 执行账号改密 (SHA512)
+    ja: Ansible user モジュールを使用して アカウントのパスワード変更 (SHA512)
+    en: Using Ansible module user to change account secret (SHA512)

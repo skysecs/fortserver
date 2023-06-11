@@ -1,0 +1,12 @@
+id: gather_facts_windows
+name: "{{ 'Gather facts windows' | trans }}"
+version: 1
+method: gather_facts
+category: host
+type:
+  - windows
+i18n:
+  Gather facts windows:
+    zh: 使用 Ansible 指令 gather_facts 从 Windows 获取设备信息
+    en: Gather facts from Windows using gather_facts
+    ja: gather_factsを使用してWindowsから情報を収集する

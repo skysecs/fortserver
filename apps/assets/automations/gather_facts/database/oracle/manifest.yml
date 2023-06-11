@@ -1,0 +1,11 @@
+id: gather_facts_oracle
+name: "{{ 'Gather facts from Oracle' | trans }}"
+category: database
+type:
+  - oracle
+method: gather_facts
+i18n:
+  Gather facts from Oracle:
+    zh: 使用 oracledb 模块获取 Oracle 信息
+    en: Gather facts from Oracle using oracledb module
+    ja: oracledbモジュールを使用して Oracleから情報を収集する

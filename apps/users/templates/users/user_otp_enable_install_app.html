@@ -1,0 +1,38 @@
+{% extends 'users/_base_otp.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block small_title %}
+    {% trans 'Install app' %}
+{% endblock %}
+
+{% block content %}
+    <div class="verify">
+        <p style="margin: 20px auto;">
+            <strong style="color: #000000">
+                {% trans 'Download and install the MFA Authenticator application on your phone or applet of WeChat' %}
+            </strong>
+        </p>
+        <div>
+            <img src="{% static 'img/authenticator_android.png' %}" width="128" height="128" alt="">
+            <p>{% trans 'Android downloads' %}</p>
+        </div>
+
+        <div>
+            <img src="{% static 'img/authenticator_iphone.png' %}" width="128" height="128" alt="">
+            <p>{% trans 'iPhone downloads' %}</p>
+        </div>
+
+        <p style="margin: 20px auto;"><strong style="color: #000000">{% trans 'After installation, click the next step to enter the binding page (if installed, go to the next step directly).' %}</strong></p>
+    </div>
+
+    <a href="{% url 'authentication:user-otp-enable-bind' %}" class="next">{% trans 'Next' %}</a>
+
+    <script>
+        $(function(){
+            $('.change-color li:eq(1) i').css('color', '{{ INTERFACE.primary_color }}')
+        })
+    </script>
+
+{% endblock %}
+

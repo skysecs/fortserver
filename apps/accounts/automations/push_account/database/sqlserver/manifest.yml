@@ -1,0 +1,12 @@
+id: push_account_sqlserver
+name: "{{ 'SQLServer account push' | trans }}"
+category: database
+type:
+  - sqlserver
+method: push_account
+
+i18n:
+  SQLServer account push:
+    zh: 使用 Ansible 模块 mssql 执行 SQLServer 账号推送
+    ja: Ansible mssql モジュールを使用してアカウントをプッシュする
+    en: Using Ansible module mssql to push account

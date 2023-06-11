@@ -1,0 +1,12 @@
+id: verify_account_oracle
+name: "{{ 'Oracle account verify' | trans }}"
+category: database
+type:
+  - oracle
+method: verify_account
+
+i18n:
+  Oracle account verify:
+    zh: 使用 Python 模块 oracledb 验证账号
+    ja: Python モジュール oracledb を使用してアカウントを検証する
+    en: Using Python module oracledb to verify account

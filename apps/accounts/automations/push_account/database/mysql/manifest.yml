@@ -1,0 +1,13 @@
+id: push_account_mysql
+name: "{{ 'MySQL account push' | trans }}"
+category: database
+type:
+  - mysql
+  - mariadb
+method: push_account
+
+i18n:
+  MySQL account push:
+    zh: 使用 Ansible 模块 mysql 执行 MySQL 账号推送
+    ja: Ansible mysql モジュールを使用してアカウントをプッシュする
+    en: Using Ansible module mysql to push account

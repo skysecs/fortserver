@@ -1,0 +1,135 @@
+{% load i18n %}
+{% include 'authentication/_access_key_modal.html' %}
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="count-info dropdown-toggle" data-toggle="dropdown" href="#" target="_blank">
+                    <i class="fa fa-handshake-o"></i>
+                    <span class="m-r-sm text-muted welcome-message">{% trans 'Help' %} <b class="caret"></b></span>
+                </a>
+
+                <ul class="dropdown-menu animated fadeInRight m-t-xs profile-dropdown">
+                    <li>
+                        <a class="count-info"  href="http://docs.fortserver.org/" target="_blank">
+                            <i class="fa fa-file-text"></i>
+                            <span class="m-r-sm text-muted welcome-message">{% trans 'Docs' %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="count-info" href="https://market.aliyun.com/products/53690006/cmgj026011.html?spm=5176.730005.0.0.cY2io1" target="_blank">
+                            <i class="fa fa-suitcase"></i>
+                            <span class="m-r-sm text-muted welcome-message">{% trans 'Commercial support' %}</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="dropdown">
+                <a class="count-info dropdown-toggle" data-toggle="dropdown" href="#" target="_blank">
+                    <i class="fa fa-globe"></i>
+                    {% ifequal request.COOKIES.django_language 'en' %}
+                        <span class="m-r-sm text-muted welcome-message">English<b class="caret"></b></span>
+                    {% else %}
+                        <span class="m-r-sm text-muted welcome-message">中文<b class="caret"></b></span>
+                    {% endifequal %}
+                </a>
+
+                <ul class="dropdown-menu animated fadeInRight m-t-xs profile-dropdown">
+                    <li>
+                        <a id="switch_cn" href="{% url 'i18n-switch' lang='zh-hans' %}">
+                            <i class="fa fa-flag"></i>
+                            <span> 中文</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="switch_en" href="{% url 'i18n-switch' lang='en' %}">
+                            <i class="fa fa-flag-checkered"></i>
+                            <span> English</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a id="switch_ja" href="{% url 'i18n-switch' lang='ja' %}">
+                            <i class="fa fa-flag-checkered"></i>
+                            <span> 日本語</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="dropdown">
+                {% if request.user.is_authenticated %}
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span class="m-r-sm text-muted welcome-message">
+                        <img alt="image" class="img-circle" width="30" height="30" src="{{ request.user.avatar_url }}"/>
+                        <span style="font-size: 13px;font-weight: 400"> {{ request.user.name }}
+                            <b class="caret"></b>
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight m-t-xs profile-dropdown">
+                    <li><a href="{% url 'users:user-profile' %}"><i class="fa fa-cogs"> </i><span> {% trans 'Profile' %}</span></a></li>
+                    {% if request.user.can_admin_or_audit_current_org %}
+                        {% if request.COOKIES.IN_ADMIN_PAGE == 'No' %}
+                            <li><a id="switch_admin"><i class="fa fa-exchange"></i><span> {% trans 'Admin page' %}</span></a></li>
+                        {% else %}
+                            <li><a id="switch_user"><i class="fa fa-exchange"></i><span> {% trans 'User page' %}</span></a></li>
+                        {% endif %}
+                    {% endif %}
+                    <li><a href="#" data-toggle="modal" data-target="#access_key_modal" tabindex="0"><i class="fa fa-key"></i> {% trans 'API Key' %}</a></li>
+                    <li><a href="{% url 'authentication:logout' %}"><i class="fa fa-sign-out"></i> {% trans 'Logout' %}</a></li>
+                </ul>
+                {% else %}
+                <a href="{% url 'authentication:login' %}">
+                    <i class="fa fa-sign-in"></i>{% trans 'Login' %}
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-10">
+        <h2></h2>
+        <ol class="breadcrumb">
+            {% if app %}
+            <li>
+                <a>{{ app }}</a>
+            </li>
+            {% endif %}
+            {% if action %}
+            <li class="active">
+                <strong>{{ action }}</strong>
+            </li>
+            {% endif %}
+        </ol>
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+<script>
+$(document).ready(function () {
+})
+.on('click', '#switch_admin', function () {
+    var cookieName = "IN_ADMIN_PAGE";
+    setTimeout(function () {
+        delCookie(cookieName);
+        setCookie(cookieName, "Yes");
+        window.location = "/"
+    }, 100)
+})
+.on('click', '#switch_user', function () {
+    var cookieName = "IN_ADMIN_PAGE";
+    setTimeout(function () {
+        delCookie(cookieName);
+        setCookie(cookieName, "No");
+        window.location = "{% url 'assets:user-asset-list' %}"
+    }, 100);
+})
+</script>

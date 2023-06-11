@@ -1,0 +1,13 @@
+id: verify_account_posix
+name: "{{ 'Posix account verify' | trans }}"
+category: host
+type:
+  - linux
+  - unix
+method: verify_account
+
+i18n:
+  Posix account verify:
+    zh: 使用 Ansible 模块 ping 验证账号
+    ja: Ansible ping モジュールを使用してアカウントを検証する
+    en: Using Ansible module ping to verify account
