@@ -12,6 +12,9 @@ __all__ = [
     'BaseACL', 'UserBaseACL', 'UserAssetAccountBaseACL',
 ]
 
+from orgs.utils import tmp_to_root_org
+from orgs.utils import tmp_to_org
+
 
 class ActionChoices(models.TextChoices):
     reject = 'reject', _('Reject')
@@ -88,7 +91,8 @@ class UserBaseACL(BaseACL):
     @classmethod
     def get_user_acls(cls, user):
         queryset = cls.objects.all()
-        q = cls.users.get_filter_q(user)
+        with tmp_to_root_org():
+            q = cls.users.get_filter_q(user)
         queryset = queryset.filter(q)
         return queryset.filter(is_active=True).distinct()
 
@@ -97,8 +101,6 @@ class UserAssetAccountBaseACL(OrgModelMixin, UserBaseACL):
     name = models.CharField(max_length=128, verbose_name=_('Name'))
     assets = JSONManyToManyField('assets.Asset', default=dict, verbose_name=_('Assets'))
     accounts = models.JSONField(default=list, verbose_name=_("Accounts"))
-    objects = OrgManager.from_queryset(BaseACLQuerySet)()
-
     objects = OrgManager.from_queryset(BaseACLQuerySet)()
 
     class Meta(UserBaseACL.Meta):
@@ -115,7 +117,8 @@ class UserAssetAccountBaseACL(OrgModelMixin, UserBaseACL):
             queryset = queryset.filter(q)
         if asset:
             org_id = asset.org_id
-            q = cls.assets.get_filter_q(asset)
+            with tmp_to_org(org_id):
+                q = cls.assets.get_filter_q(asset)
             queryset = queryset.filter(q)
         if account and not account_username:
             account_username = account.username
