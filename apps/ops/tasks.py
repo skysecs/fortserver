@@ -64,13 +64,7 @@ def job_execution_task_activity_callback(self, execution_id, *args, **kwargs):
     activity_callback=job_execution_task_activity_callback
 )
 def run_ops_job_execution(execution_id, **kwargs):
-    with tmp_to_root_org():
-        execution = get_object_or_none(JobExecution, id=execution_id)
-
-    if not execution:
-        logger.error("Did not get the execution: {}".format(execution_id))
-        return
-
+    execution = get_object_or_none(JobExecution, id=execution_id)
     try:
         with tmp_to_org(execution.org):
             execution.start()

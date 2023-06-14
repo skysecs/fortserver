@@ -7,10 +7,6 @@ from django.conf import settings
 from .callback import DefaultCallback
 
 
-class CommandInBlackListException(Exception):
-    pass
-
-
 class AdHocRunner:
     cmd_modules_choices = ('shell', 'raw', 'command', 'script', 'win_shell')
 
@@ -32,8 +28,7 @@ class AdHocRunner:
         if self.module not in self.cmd_modules_choices:
             return
         if self.module_args and self.module_args.split()[0] in settings.SECURITY_COMMAND_BLACKLIST:
-            raise CommandInBlackListException(
-                "Command is rejected by black list: {}".format(self.module_args.split()[0]))
+            raise Exception("command not allowed: {}".format(self.module_args[0]))
 
     def run(self, verbosity=0, **kwargs):
         self.check_module()
