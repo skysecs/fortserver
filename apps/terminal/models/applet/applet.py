@@ -138,7 +138,7 @@ class Applet(JMSBaseModel):
         name = manifest['name']
         instance = cls.objects.filter(name=name).first()
         serializer = AppletSerializer(instance=instance, data=manifest)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         instance = serializer.save(builtin=builtin)
         instance.load_platform_if_need(path)
 
@@ -194,7 +194,8 @@ class Applet(JMSBaseModel):
         host = self.select_host(user)
         if not host:
             return None
-        can_concurrent = self.can_concurrent or self.type == 'web'
+        host_concurrent = str(host.deploy_options.get('RDS_fSingleSessionPerUser', 0)) == '0'
+        can_concurrent = (self.can_concurrent or self.type == 'web') and host_concurrent
 
         accounts = host.accounts.all().filter(is_active=True, privileged=False)
         private_account = accounts.filter(username='js_{}'.format(user.username)).first()
