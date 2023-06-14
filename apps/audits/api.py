@@ -79,10 +79,9 @@ class FTPLogViewSet(OrgModelViewSet):
     def download(self, request, *args, **kwargs):
         ftp_log = self.get_object()
         ftp_storage = self.get_storage()
-        local_path, url = ftp_storage.get_file_path_url()
+        local_path, url_or_err = ftp_storage.get_file_path_url()
         if local_path is None:
-            # url => error message
-            return HttpResponse(url)
+            return HttpResponse(url_or_err)
 
         file = open(default_storage.path(local_path), 'rb')
         response = FileResponse(file)
