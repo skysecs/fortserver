@@ -2,6 +2,7 @@
 #
 import os
 import tarfile
+
 from django.core.files.storage import default_storage
 from django.db.models import F
 from django.http import FileResponse
@@ -15,21 +16,22 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from common.drf.filters import BaseFilterSet
+from common.api import AsyncApiMixin
 from common.const.http import GET
+from common.drf.filters import BaseFilterSet
 from common.drf.filters import DatetimeRangeFilter
 from common.drf.renders import PassthroughRenderer
-from common.api import AsyncApiMixin
+from common.storage.replay import ReplayStorageHandler
 from common.utils import data_to_json, is_uuid
 from common.utils import get_logger, get_object_or_none
-from common.storage.replay import ReplayStorageHandler
-from rbac.permissions import RBACPermission
 from orgs.mixins.api import OrgBulkModelViewSet
 from orgs.utils import tmp_to_root_org, tmp_to_org
+from rbac.permissions import RBACPermission
 from terminal import serializers
+from terminal.const import TerminalType
 from terminal.models import Session
-from terminal.utils import is_session_approver
 from terminal.permissions import IsSessionAssignee
+from terminal.utils import is_session_approver
 from users.models import User
 
 __all__ = [
@@ -117,9 +119,10 @@ class SessionViewSet(OrgBulkModelViewSet):
             url_name='replay-download')
     def download(self, request, *args, **kwargs):
         storage = self.get_storage()
-        local_path, url_or_err = storage.get_file_path_url()
+        local_path, url = storage.get_file_path_url()
         if local_path is None:
-            return Response({'error': url_or_err}, status=404)
+            # url => error message
+            return Response({'error': url}, status=404)
 
         file = self.prepare_offline_file(storage.obj, local_path)
         response = FileResponse(file)
@@ -181,14 +184,20 @@ class SessionReplayViewSet(AsyncApiMixin, viewsets.ViewSet):
 
     @staticmethod
     def get_replay_data(session, url):
-        tp = 'json'
-        if session.protocol in ('rdp', 'vnc'):
-            # 需要考虑录像播放和离线播放器的约定，暂时不处理
-            tp = 'guacamole'
+        all_guacamole_types = (
+            TerminalType.lion, TerminalType.guacamole,
+            TerminalType.razor, TerminalType.xrdp
+        )
+
         if url.endswith('.cast.gz'):
             tp = 'asciicast'
-        if url.endswith('.replay.mp4'):
+        elif url.endswith('.replay.mp4'):
             tp = 'mp4'
+        elif (getattr(session.terminal, 'type', None) in all_guacamole_types) or \
+                (session.protocol in ('rdp', 'vnc')):
+            tp = 'guacamole'
+        else:
+            tp = 'json'
 
         download_url = reverse('api-terminal:session-replay-download', kwargs={'pk': session.id})
         data = {
@@ -211,10 +220,11 @@ class SessionReplayViewSet(AsyncApiMixin, viewsets.ViewSet):
         session = get_object_or_404(Session, id=session_id)
 
         storage = ReplayStorageHandler(session)
-        local_path, url_or_err = storage.get_file_path_url()
+        local_path, url = storage.get_file_path_url()
         if local_path is None:
-            return Response({"error": url_or_err}, status=404)
-        data = self.get_replay_data(session, local_path)
+            # url => error message
+            return Response({"error": url}, status=404)
+        data = self.get_replay_data(session, url)
         return Response(data)
 
 
