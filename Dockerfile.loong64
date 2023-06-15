@@ -1,4 +1,4 @@
-FROM python:3.9-slim as stage-build
+FROM python:3.9-slim-buster as stage-build
 ARG TARGETARCH
 
 ARG VERSION
@@ -8,7 +8,7 @@ WORKDIR /opt/fortserver
 ADD . .
 RUN cd utils && bash -ixeu build.sh
 
-FROM python:3.9-slim
+FROM python:3.9-slim-buster
 ARG TARGETARCH
 MAINTAINER fortserver Team <ibuler@qq.com>
 
