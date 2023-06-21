@@ -14,8 +14,6 @@ from rest_framework.serializers import ValidationError
 
 from common import const
 
-logger = logging.getLogger('fortserver.common')
-
 __all__ = [
     "DatetimeRangeFilter", "IDSpmFilter",
     'IDInFilter', "CustomFilter",
@@ -72,7 +70,7 @@ class DatetimeRangeFilter(filters.BaseFilterBackend):
                         ]
                 ```
             """.format(view.name)
-            logger.error(msg)
+            logging.error(msg)
             raise ImproperlyConfigured(msg)
 
     def filter_queryset(self, request, queryset, view):
@@ -215,6 +213,6 @@ class AttrRulesFilterBackend(filters.BaseFilterBackend):
         except Exception:
             raise ValidationError({'attr_rules': 'attr_rules should be json'})
 
-        logger.debug('attr_rules: %s', attr_rules)
+        logging.debug('attr_rules: %s', attr_rules)
         q = RelatedManager.get_to_filter_q(attr_rules, queryset.model)
         return queryset.filter(q).distinct()

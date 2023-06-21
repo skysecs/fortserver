@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 import os
-
 from ..const import PROJECT_DIR, CONFIG
 
 LOG_DIR = os.path.join(PROJECT_DIR, 'logs')
@@ -133,6 +132,7 @@ LOGGING = {
             'handlers': ['null'],
             'level': 'ERROR'
         }
+
     }
 }
 
