@@ -106,7 +106,7 @@ LOGGING = {
             'propagate': False,
         },
         'fortserver': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],
             'level': LOG_LEVEL,
         },
         'drf_exception': {
