@@ -194,7 +194,7 @@ class Message(metaclass=MessageType):
         return self.markdown_msg
 
     def get_feishu_msg(self) -> dict:
-        return self.markdown_msg
+        return self.text_msg
 
     def get_email_msg(self) -> dict:
         return self.html_msg_with_sign

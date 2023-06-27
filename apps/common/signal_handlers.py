@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+import logging
 import os
 import re
 from collections import defaultdict
@@ -13,10 +14,9 @@ from django.dispatch import receiver
 from fortserver.utils import get_current_request
 from .local import thread_local
 from .signals import django_ready
-from .utils import get_logger
 
 pattern = re.compile(r'FROM `(\w+)`')
-logger = get_logger(__name__)
+logger = logging.getLogger("fortserver.common")
 
 
 class Counter:
@@ -129,6 +129,7 @@ else:
 
 @receiver(django_ready)
 def check_migrations_file_prefix_conflict(*args, **kwargs):
+
     if not settings.DEBUG_DEV:
         return
 
@@ -171,7 +172,7 @@ def check_migrations_file_prefix_conflict(*args, **kwargs):
     if not conflict_count:
         return
 
-    print('=' * 80)
+    print('='*80)
     for conflict_file in conflict_files:
         msg_dir = '{:<15}'.format(conflict_file[0])
         msg_split = '=> '
@@ -180,4 +181,4 @@ def check_migrations_file_prefix_conflict(*args, **kwargs):
         msg_right2 = ' ' * len(msg_left) + msg_split + conflict_file[2]
         print(f'{msg_left}{msg_right1}\n{msg_right2}\n')
 
-    print('=' * 80)
+    print('='*80)

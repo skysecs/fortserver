@@ -5,20 +5,20 @@ from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from accounts.const import AliasAccount
-from accounts.models import Account
+from users.models import User
 from assets.models import Asset
-from common.utils import date_expired_default
-from common.utils.timezone import local_now
+from accounts.models import Account
 from orgs.mixins.models import JMSOrgBaseModel
 from orgs.mixins.models import OrgManager
+from common.utils import date_expired_default
+from common.utils.timezone import local_now
 from perms.const import ActionChoices
-from users.models import User
+from accounts.const import AliasAccount
 
 __all__ = ['AssetPermission', 'ActionChoices', 'AssetPermissionQuerySet']
 
 # 使用场景
-logger = logging.getLogger('fortserver.permissions')
+logger = logging.getLogger(__name__)
 
 
 class AssetPermissionQuerySet(models.QuerySet):

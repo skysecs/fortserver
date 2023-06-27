@@ -7,9 +7,12 @@ from __future__ import unicode_literals
 import uuid
 
 from django.db import models
+import logging
 from django.utils.translation import ugettext_lazy as _
 
+
 __all__ = ['AssetGroup']
+logger = logging.getLogger(__name__)
 
 
 class AssetGroup(models.Model):
