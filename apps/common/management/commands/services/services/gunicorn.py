@@ -1,5 +1,5 @@
-from .base import BaseService
 from ..hands import *
+from .base import BaseService
 
 __all__ = ['GunicornService']
 
@@ -22,7 +22,7 @@ class GunicornService(BaseService):
             '-b', bind,
             '-k', 'uvicorn.workers.UvicornWorker',
             '-w', str(self.worker),
-            '--max-requests', '40960',
+            '--max-requests', '4096',
             '--access-logformat', log_format,
             '--access-logfile', '-'
         ]

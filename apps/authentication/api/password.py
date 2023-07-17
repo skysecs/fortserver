@@ -1,4 +1,3 @@
-from django.http import HttpResponseRedirect
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -42,7 +41,7 @@ class UserResetPasswordSendCodeApi(CreateAPIView):
         token = request.GET.get('token')
         userinfo = cache.get(token)
         if not userinfo:
-            return HttpResponseRedirect(reverse('authentication:forgot-previewing'))
+            return reverse('authentication:forgot-previewing')
 
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

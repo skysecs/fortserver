@@ -1,10 +1,15 @@
 # ~*~ coding: utf-8 ~*~
 import os
 import uuid
-from django.conf import settings
 
-from common.utils import get_logger, make_dirs
+from django.utils.translation import ugettext_lazy as _
+
+from common.utils import get_logger, get_object_or_none, make_dirs
+from orgs.utils import org_aware_func
 from fortserver.const import PROJECT_DIR
+
+from .models import AdHoc, CeleryTask
+from .const import DEFAULT_PASSWORD_RULES
 
 logger = get_logger(__file__)
 
@@ -20,12 +25,4 @@ def get_task_log_path(base_path, task_id, level=2):
     path = os.path.join(base_path, rel_path)
     make_dirs(os.path.dirname(path), exist_ok=True)
     return path
-
-
-def get_ansible_log_verbosity(verbosity=0):
-    if settings.DEBUG_ANSIBLE:
-        return 10
-    if verbosity is None and settings.DEBUG:
-        return 1
-    return verbosity
 

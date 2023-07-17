@@ -74,7 +74,7 @@ class PlatformProtocolSerializer(serializers.ModelSerializer):
 
     def get_setting_serializer(self):
         request = self.context.get('request')
-        default_field = DictSerializer(required=False)
+        default_field = DictSerializer()
 
         if not request:
             return default_field
