@@ -1,5 +1,4 @@
 from django.utils.translation import gettext_lazy as _
-from rest_framework import serializers
 
 from assets.models import GPT
 from .common import AssetSerializer
@@ -23,11 +22,3 @@ class GPTSerializer(AssetSerializer):
                 ),
                 'label': _('HTTP proxy')}
         }
-
-    @staticmethod
-    def validate_proxy(value):
-        if value and not value.startswith(("http://", "https://")):
-            raise serializers.ValidationError(
-                _('Proxy must start with http:// or https://')
-            )
-        return value

@@ -4,7 +4,6 @@ import zipfile
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext_lazy as _
 from rest_framework import status
 
 from common.exceptions import JMSException
@@ -13,6 +12,7 @@ from rbac.permissions import RBACPermission
 from ..exception import PlaybookNoValidEntry
 from ..models import Playbook
 from ..serializers.playbook import PlaybookSerializer
+from django.utils.translation import ugettext_lazy as _
 
 __all__ = ["PlaybookViewSet", "PlaybookFileBrowserAPIView"]
 
@@ -33,6 +33,7 @@ class PlaybookViewSet(OrgBulkModelViewSet):
     search_fields = ('name', 'comment')
 
     def perform_destroy(self, instance):
+        instance = self.get_object()
         if instance.job_set.exists():
             raise JMSException(code='playbook_has_job', detail={"msg": _("Currently playbook is being used in a job")})
         instance_id = instance.id
