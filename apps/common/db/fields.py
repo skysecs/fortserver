@@ -387,7 +387,7 @@ class RelatedManager:
                     lookup = "{}__{}".format(name, match)
                     q = Q(**{lookup: val})
                 except re.error:
-                    q = Q(pk__isnull=True)
+                    q = ~Q()
             elif match == "not":
                 q = ~Q(**{name: val})
             elif match in ['m2m', 'in']:

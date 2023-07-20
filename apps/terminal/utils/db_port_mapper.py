@@ -79,7 +79,6 @@ class DBPortManager(object):
         for port, db_id in mapper.items():
             if db_id == str(db.id):
                 return port
-
         if raise_exception:
             error = _(
                 'No available port is matched. '

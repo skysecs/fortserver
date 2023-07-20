@@ -225,7 +225,7 @@ class ConnectionToken(JMSOrgBaseModel):
             account.asset = self.asset
             account.org_id = self.asset.org_id
 
-            if self.account in [AliasAccount.INPUT, AliasAccount.USER]:
+            if self.account == AliasAccount.INPUT:
                 account.username = self.input_username
                 account.secret = self.input_secret
         else:
