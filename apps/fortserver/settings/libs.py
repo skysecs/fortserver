@@ -127,7 +127,7 @@ CHANNEL_LAYERS = {
     },
 }
 
-ASGI_APPLICATION = 'fortserver.routing.application'
+ASGI_APPLICATION = 'fortserver.asgi.application'
 
 # Dump all celery log to here
 CELERY_LOG_DIR = os.path.join(PROJECT_DIR, 'data', 'celery')

@@ -142,6 +142,9 @@ MIDDLEWARE = [
     'fortserver.middleware.EndMiddleware',
 ]
 
+if DEBUG or DEBUG_DEV:
+    INSTALLED_APPS.insert(0, 'daphne')
+
 ROOT_URLCONF = 'fortserver.urls'
 
 TEMPLATES = [
