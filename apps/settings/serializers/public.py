@@ -3,9 +3,7 @@
 
 from rest_framework import serializers
 
-__all__ = [
-    'PublicSettingSerializer', 'PrivateSettingSerializer', 'ServerInfoSerializer'
-]
+__all__ = ['PublicSettingSerializer', 'PrivateSettingSerializer']
 
 
 class PublicSettingSerializer(serializers.Serializer):
@@ -52,7 +50,3 @@ class PrivateSettingSerializer(PublicSettingSerializer):
 
     TICKETS_ENABLED = serializers.BooleanField()
     CONNECTION_TOKEN_REUSABLE = serializers.BooleanField()
-
-
-class ServerInfoSerializer(serializers.Serializer):
-    CURRENT_TIME = serializers.DateTimeField()
