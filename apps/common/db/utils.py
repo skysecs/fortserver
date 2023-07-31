@@ -1,9 +1,8 @@
 from contextlib import contextmanager
 
 from django.db import connections
-from django.utils.encoding import force_text
 
-from common.utils import get_logger, signer, crypto
+from common.utils import get_logger
 
 logger = get_logger(__file__)
 
@@ -56,19 +55,3 @@ def safe_db_connection():
     close_old_connections()
     yield
     close_old_connections()
-
-
-class Encryptor:
-    def __init__(self, value):
-        self.value = force_text(value)
-
-    def decrypt(self):
-        plain_value = crypto.decrypt(self.value)
-
-        # 如果没有解开，使用原来的signer解密
-        if not plain_value:
-            plain_value = signer.unsign(self.value) or ""
-        return plain_value
-
-    def encrypt(self):
-        return crypto.encrypt(self.value)

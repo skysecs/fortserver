@@ -50,7 +50,6 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         'huawei': serializers.HuaweiSMSSettingSerializer,
         'cmpp2': serializers.CMPP2SMSSettingSerializer,
         'custom': serializers.CustomSMSSettingSerializer,
-        'vault': serializers.VaultSettingSerializer,
     }
 
     rbac_category_permissions = {
@@ -76,7 +75,6 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         'sms': 'settings.change_sms',
         'alibaba': 'settings.change_sms',
         'tencent': 'settings.change_sms',
-        'vault': 'settings.change_vault',
     }
 
     def get_queryset(self):
