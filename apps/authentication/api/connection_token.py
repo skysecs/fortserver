@@ -64,7 +64,6 @@ class RDPFileClientProtocolURLMixin:
             'use redirection server name:i': '0',
             'smart sizing:i': '1',
         }
-
         # 设置多屏显示
         multi_mon = is_true(self.request.query_params.get('multi_mon'))
         if multi_mon:
