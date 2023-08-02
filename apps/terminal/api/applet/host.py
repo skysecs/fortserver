@@ -1,4 +1,3 @@
-from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -8,7 +7,8 @@ from common.permissions import IsServiceAccount
 from orgs.utils import tmp_to_builtin_org
 from terminal.models import AppletHost, AppletHostDeployment
 from terminal.serializers import (
-    AppletHostSerializer, AppletHostDeploymentSerializer, AppletHostStartupSerializer
+    AppletHostSerializer, AppletHostDeploymentSerializer,
+    AppletHostStartupSerializer, AppletHostDeployAppletSerializer
 )
 from terminal.tasks import run_applet_host_deployment, run_applet_host_deployment_install_applet
 
@@ -63,20 +63,12 @@ class AppletHostDeploymentViewSet(viewsets.ModelViewSet):
         instance.save_task(task.id)
         return Response({'task': str(task.id)}, status=201)
 
-    @action(methods=['post'], detail=False)
+    @action(methods=['post'], detail=False, serializer_class=AppletHostDeployAppletSerializer)
     def applets(self, request, *args, **kwargs):
-        hosts = request.data.get('hosts', [])
-        applet_id = request.data.get('applet_id', '')
-        model = self.get_queryset().model
-        hosts_qs = AppletHost.objects.filter(id__in=hosts)
-        if not hosts_qs.exists():
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        objs = [model(host=host) for host in hosts_qs]
-        applet_host_deployments = model.objects.bulk_create(objs)
-        applet_host_deployment_ids = [str(obj.id) for obj in applet_host_deployments]
-
-        task = run_applet_host_deployment_install_applet.delay(applet_host_deployment_ids, applet_id)
-        task_id = str(task.id)
-        model.objects.filter(id__in=applet_host_deployment_ids).update(task=task_id)
-        return Response({'task': task_id}, status=201)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        applet_id = serializer.validated_data.pop('applet_id', '')
+        instance = serializer.save()
+        task = run_applet_host_deployment_install_applet.delay(instance.id, applet_id)
+        instance.save_task(task.id)
+        return Response({'task': str(task.id)}, status=201)

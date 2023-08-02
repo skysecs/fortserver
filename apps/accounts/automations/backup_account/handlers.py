@@ -1,17 +1,22 @@
 import os
 import time
+from openpyxl import Workbook
 from collections import defaultdict, OrderedDict
 
 from django.conf import settings
-from openpyxl import Workbook
+from django.db.models import F
 from rest_framework import serializers
 
-from accounts.notifications import AccountBackupExecutionTaskMsg
-from accounts.serializers import AccountSecretSerializer
+from accounts.models import Account
 from assets.const import AllTypes
-from common.utils.file import encrypt_and_compress_zip_file
-from common.utils.timezone import local_now_display
+from accounts.serializers import AccountSecretSerializer
+from accounts.notifications import AccountBackupExecutionTaskMsg
 from users.models import User
+from common.utils import get_logger
+from common.utils.timezone import local_now_display
+from common.utils.file import encrypt_and_compress_zip_file
+
+logger = get_logger(__file__)
 
 PATH = os.path.join(os.path.dirname(settings.BASE_DIR), 'tmp')
 
@@ -94,7 +99,7 @@ class AssetAccountHandler(BaseAccountHandler):
             data = AccountSecretSerializer(_accounts, many=True).data
             data_map.update(cls.add_rows(data, header_fields, sheet_name))
 
-        print('\n\033[33m- 共备份 {} 条账号\033[0m'.format(accounts.count()))
+        logger.info('\n\033[33m- 共备份 {} 条账号\033[0m'.format(accounts.count()))
         return data_map
 
 
@@ -105,7 +110,7 @@ class AccountBackupHandler:
         self.is_frozen = False  # 任务状态冻结标志
 
     def create_excel(self):
-        print(
+        logger.info(
             '\n'
             '\033[32m>>> 正在生成资产或应用相关备份信息文件\033[0m'
             ''
@@ -128,14 +133,14 @@ class AccountBackupHandler:
         wb.save(filename)
         files.append(filename)
         timedelta = round((time.time() - time_start), 2)
-        print('步骤完成: 用时 {}s'.format(timedelta))
+        logger.info('步骤完成: 用时 {}s'.format(timedelta))
         return files
 
     def send_backup_mail(self, files, recipients):
         if not files:
             return
         recipients = User.objects.filter(id__in=list(recipients))
-        print(
+        logger.info(
             '\n'
             '\033[32m>>> 发送备份邮件\033[0m'
             ''
@@ -150,7 +155,7 @@ class AccountBackupHandler:
                 encrypt_and_compress_zip_file(attachment, password, files)
                 attachment_list = [attachment, ]
             AccountBackupExecutionTaskMsg(plan_name, user).publish(attachment_list)
-            print('邮件已发送至{}({})'.format(user, user.email))
+            logger.info('邮件已发送至{}({})'.format(user, user.email))
         for file in files:
             os.remove(file)
 
@@ -158,13 +163,13 @@ class AccountBackupHandler:
         self.execution.reason = reason[:1024]
         self.execution.is_success = is_success
         self.execution.save()
-        print('已完成对任务状态的更新')
+        logger.info('已完成对任务状态的更新')
 
     def step_finished(self, is_success):
         if is_success:
-            print('任务执行成功')
+            logger.info('任务执行成功')
         else:
-            print('任务执行失败')
+            logger.error('任务执行失败')
 
     def _run(self):
         is_success = False
@@ -172,7 +177,7 @@ class AccountBackupHandler:
         try:
             recipients = self.execution.plan_snapshot.get('recipients')
             if not recipients:
-                print(
+                logger.info(
                     '\n'
                     '\033[32m>>> 该备份任务未分配收件人\033[0m'
                     ''
@@ -182,9 +187,9 @@ class AccountBackupHandler:
                 self.send_backup_mail(files, recipients)
         except Exception as e:
             self.is_frozen = True
-            print('任务执行被异常中断')
-            print('下面打印发生异常的 Traceback 信息 : ')
-            print(e)
+            logger.error('任务执行被异常中断')
+            logger.info('下面打印发生异常的 Traceback 信息 : ')
+            logger.error(e, exc_info=True)
             error = str(e)
         else:
             is_success = True
@@ -194,15 +199,15 @@ class AccountBackupHandler:
             self.step_finished(is_success)
 
     def run(self):
-        print('任务开始: {}'.format(local_now_display()))
+        logger.info('任务开始: {}'.format(local_now_display()))
         time_start = time.time()
         try:
             self._run()
         except Exception as e:
-            print('任务运行出现异常')
-            print('下面显示异常 Traceback 信息: ')
-            print(e)
+            logger.error('任务运行出现异常')
+            logger.error('下面显示异常 Traceback 信息: ')
+            logger.error(e, exc_info=True)
         finally:
-            print('\n任务结束: {}'.format(local_now_display()))
+            logger.info('\n任务结束: {}'.format(local_now_display()))
             timedelta = round((time.time() - time_start), 2)
-            print('用时: {}'.format(timedelta))
+            logger.info('用时: {}'.format(timedelta))
