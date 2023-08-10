@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from common.api import JMSModelViewSet
 from common.permissions import IsServiceAccount
-from common.utils import is_uuid, get_logger
+from common.utils import is_uuid
 from orgs.utils import tmp_to_builtin_org
 from rbac.permissions import RBACPermission
 from terminal.models import AppletHost
@@ -17,8 +17,6 @@ from terminal.serializers import (
     AppletPublicationSerializer,
     AppletHostAppletReportSerializer,
 )
-
-logger = get_logger(__file__)
 
 
 class HostMixin:
@@ -38,10 +36,6 @@ class HostMixin:
 
     def self_host(self):
         try:
-            info = 'User {} has applet host {}'.format(
-                self.request.user, self.request.user.terminal.applet_host
-            )
-            logger.info(info)
             return self.request.user.terminal.applet_host
         except AttributeError:
             raise self.permission_denied(self.request, 'User has no applet host')
@@ -52,11 +46,9 @@ class HostMixin:
     @property
     def host(self):
         if self.kwargs.get('host'):
-            host = self.pk_host()
+            return self.pk_host()
         else:
-            host = self.self_host()
-        logger.info('Applet host: {}'.format(host))
-        return host
+            return self.self_host()
 
 
 class AppletHostAccountsViewSet(HostMixin, JMSModelViewSet):
