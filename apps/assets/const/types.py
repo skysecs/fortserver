@@ -224,7 +224,7 @@ class AllTypes(ChoicesMixin):
         return dict(id='ROOT', name=_('All types'), title=_('All types'), open=True, isParent=True)
 
     @classmethod
-    def get_tree_nodes(cls, resource_platforms, include_asset=False, get_root=True):
+    def get_tree_nodes(cls, resource_platforms, include_asset=False):
         from ..models import Platform
         platform_count = defaultdict(int)
         for platform_id in resource_platforms:
@@ -239,10 +239,10 @@ class AllTypes(ChoicesMixin):
             category_type_mapper[p.category] += platform_count[p.id]
             tp_platforms[p.category + '_' + p.type].append(p)
 
-        nodes = [cls.get_root_nodes()] if get_root else []
+        nodes = [cls.get_root_nodes()]
         for category, type_cls in cls.category_types():
             # Category 格式化
-            meta = {'type': 'category', 'category': category.value, '_type': category.value}
+            meta = {'type': 'category', 'category': category.value}
             category_node = cls.choice_to_node(category, 'ROOT', meta=meta)
             category_count = category_type_mapper.get(category, 0)
             category_node['name'] += f'({category_count})'
