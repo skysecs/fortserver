@@ -7,7 +7,6 @@ import subprocess
 import sys
 import time
 from subprocess import CREATE_NO_WINDOW
-from threading import Thread
 
 _blockInput = None
 _messageBox = None
@@ -37,10 +36,7 @@ def unblock_input():
 
 def notify_err_message(msg):
     if _messageBox:
-        # _messageBox 是阻塞当前线程的，所以需要开启一个新线程执行
-        t = Thread(target=_messageBox, args=(msg, 'Error'), kwargs={})
-        t.daemon = True
-        t.start()
+        _messageBox(msg, 'Error')
 
 
 def decode_content(content: bytes) -> str:

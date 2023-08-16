@@ -121,6 +121,7 @@ def execute_action(driver: webdriver.Chrome, step: StepAction) -> bool:
         return step.execute(driver)
     except Exception as e:
         print(e)
+        notify_err_message(str(e))
         return False
 
 
