@@ -12,9 +12,8 @@ logger = get_logger(__file__)
 
 
 def get_vault_client(raise_exception=False, **kwargs):
-    enabled = kwargs.get('VAULT_ENABLED')
-    tp = 'hcp' if enabled else 'local'
     try:
+        tp = kwargs.get('VAULT_TYPE')
         module_path = f'apps.accounts.backends.{tp}.main'
         client = import_module(module_path).Vault(**kwargs)
     except Exception as e:
@@ -23,6 +22,7 @@ def get_vault_client(raise_exception=False, **kwargs):
             raise
         tp = VaultTypeChoices.local
         module_path = f'apps.accounts.backends.{tp}.main'
+        kwargs['VAULT_TYPE'] = tp
         client = import_module(module_path).Vault(**kwargs)
     return client
 

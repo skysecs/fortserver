@@ -8,7 +8,10 @@ __all__ = ['BaseVault']
 class BaseVault(ABC):
 
     def __init__(self, *args, **kwargs):
-        self.enabled = kwargs.get('VAULT_ENABLED')
+        self.type = kwargs.get('VAULT_TYPE')
+
+    def is_type(self, tp):
+        return self.type == tp
 
     def get(self, instance):
         """ 返回 secret 值 """
