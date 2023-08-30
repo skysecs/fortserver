@@ -1,26 +1,30 @@
 # -*- coding: utf-8 -*-
 #
+import os
 
 from importlib import import_module
 
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 from django.db.models import F, Value, CharField, Q
 from django.http import HttpResponse, FileResponse
 from django.utils.encoding import escape_uri_path
 from rest_framework import generics
-from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import action
 
-from common.const.http import GET, POST
-from common.drf.filters import DatetimeRangeFilterBackend
+from common.api import AsyncApiMixin
+from common.drf.filters import DatetimeRangeFilter
 from common.permissions import IsServiceAccount
 from common.plugins.es import QuerySet as ESQuerySet
-from common.storage.ftp_file import FTPFileStorageHandler
 from common.utils import is_uuid, get_logger, lazyproperty
+from common.const.http import GET, POST
+from common.storage.ftp_file import FTPFileStorageHandler
 from orgs.mixins.api import OrgReadonlyModelViewSet, OrgModelViewSet
-from orgs.models import Organization
 from orgs.utils import current_org, tmp_to_root_org
+from orgs.models import Organization
 from rbac.permissions import RBACPermission
 from terminal.models import default_storage
 from users.models import User
@@ -34,12 +38,13 @@ from .serializers import (
     FileSerializer
 )
 
+
 logger = get_logger(__name__)
 
 
 class JobAuditViewSet(OrgReadonlyModelViewSet):
     model = JobLog
-    extra_filter_backends = [DatetimeRangeFilterBackend]
+    extra_filter_backends = [DatetimeRangeFilter]
     date_range_filter_fields = [
         ('date_start', ('date_from', 'date_to'))
     ]
@@ -52,7 +57,7 @@ class JobAuditViewSet(OrgReadonlyModelViewSet):
 class FTPLogViewSet(OrgModelViewSet):
     model = FTPLog
     serializer_class = FTPLogSerializer
-    extra_filter_backends = [DatetimeRangeFilterBackend]
+    extra_filter_backends = [DatetimeRangeFilter]
     date_range_filter_fields = [
         ('date_start', ('date_from', 'date_to'))
     ]
@@ -108,7 +113,7 @@ class FTPLogViewSet(OrgModelViewSet):
 class UserLoginCommonMixin:
     model = UserLoginLog
     serializer_class = UserLoginLogSerializer
-    extra_filter_backends = [DatetimeRangeFilterBackend]
+    extra_filter_backends = [DatetimeRangeFilter]
     date_range_filter_fields = [
         ('datetime', ('date_from', 'date_to'))
     ]
@@ -188,7 +193,7 @@ class ResourceActivityAPIView(generics.ListAPIView):
 class OperateLogViewSet(OrgReadonlyModelViewSet):
     model = OperateLog
     serializer_class = OperateLogSerializer
-    extra_filter_backends = [DatetimeRangeFilterBackend]
+    extra_filter_backends = [DatetimeRangeFilter]
     date_range_filter_fields = [
         ('datetime', ('date_from', 'date_to'))
     ]
@@ -227,7 +232,7 @@ class OperateLogViewSet(OrgReadonlyModelViewSet):
 class PasswordChangeLogViewSet(OrgReadonlyModelViewSet):
     model = PasswordChangeLog
     serializer_class = PasswordChangeLogSerializer
-    extra_filter_backends = [DatetimeRangeFilterBackend]
+    extra_filter_backends = [DatetimeRangeFilter]
     date_range_filter_fields = [
         ('datetime', ('date_from', 'date_to'))
     ]

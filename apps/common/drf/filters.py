@@ -18,10 +18,9 @@ from common.db.fields import RelatedManager
 logger = logging.getLogger('fortserver.common')
 
 __all__ = [
-    "DatetimeRangeFilterBackend", "IDSpmFilterBackend",
-    'IDInFilterBackend', "CustomFilterBackend",
-    "BaseFilterSet", 'IDNotFilterBackend',
-    'NotOrRelFilterBackend',
+    "DatetimeRangeFilter", "IDSpmFilter",
+    'IDInFilter', "CustomFilter",
+    "BaseFilterSet", 'IDNotFilter'
 ]
 
 
@@ -35,7 +34,7 @@ class BaseFilterSet(drf_filters.FilterSet):
         return default
 
 
-class DatetimeRangeFilterBackend(filters.BaseFilterBackend):
+class DatetimeRangeFilter(filters.BaseFilterBackend):
     def get_schema_fields(self, view):
         ret = []
         fields = self._get_date_range_filter_fields(view)
@@ -102,7 +101,7 @@ class DatetimeRangeFilterBackend(filters.BaseFilterBackend):
         return queryset
 
 
-class IDSpmFilterBackend(filters.BaseFilterBackend):
+class IDSpmFilter(filters.BaseFilterBackend):
     def get_schema_fields(self, view):
         return [
             coreapi.Field(
@@ -130,7 +129,7 @@ class IDSpmFilterBackend(filters.BaseFilterBackend):
         return queryset
 
 
-class IDInFilterBackend(filters.BaseFilterBackend):
+class IDInFilter(filters.BaseFilterBackend):
     def get_schema_fields(self, view):
         return [
             coreapi.Field(
@@ -149,7 +148,7 @@ class IDInFilterBackend(filters.BaseFilterBackend):
         return queryset
 
 
-class IDNotFilterBackend(filters.BaseFilterBackend):
+class IDNotFilter(filters.BaseFilterBackend):
     def get_schema_fields(self, view):
         return [
             coreapi.Field(
@@ -168,7 +167,7 @@ class IDNotFilterBackend(filters.BaseFilterBackend):
         return queryset
 
 
-class CustomFilterBackend(filters.BaseFilterBackend):
+class CustomFilter(filters.BaseFilterBackend):
 
     def get_schema_fields(self, view):
         fields = []
@@ -237,25 +236,3 @@ class AttrRulesFilterBackend(filters.BaseFilterBackend):
         logger.debug('attr_rules: %s', attr_rules)
         q = RelatedManager.get_to_filter_q(attr_rules, queryset.model)
         return queryset.filter(q).distinct()
-
-
-class NotOrRelFilterBackend(filters.BaseFilterBackend):
-    def get_schema_fields(self, view):
-        return [
-            coreapi.Field(
-                name='_rel', location='query', required=False,
-                type='string', example='/api/v1/users/users?name=abc&username=def&_rel=union',
-                description='Filter by rel, or not, default is and'
-            )
-        ]
-
-    def filter_queryset(self, request, queryset, view):
-        _rel = request.query_params.get('_rel')
-        if not _rel or _rel not in ('or', 'not'):
-            return queryset
-        if _rel == 'not':
-            queryset.query.where.negated = True
-        elif _rel == 'or':
-            queryset.query.where.connector = 'OR'
-        queryset._result_cache = None
-        return queryset
