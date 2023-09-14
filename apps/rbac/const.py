@@ -28,7 +28,6 @@ exclude_permissions = (
     ('authentication', 'superconnectiontoken', 'change,delete', 'superconnectiontoken'),
     ('authentication', 'temptoken', 'delete', 'temptoken'),
     ('users', 'userpasswordhistory', '*', '*'),
-    ('users', 'usersession', 'add,delete,change', 'usersession'),
     ('assets', 'adminuser', '*', '*'),
     ('assets', 'assetgroup', '*', '*'),
     ('assets', 'cluster', '*', '*'),

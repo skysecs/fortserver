@@ -1,12 +1,12 @@
 import copy
-from datetime import datetime
 from itertools import chain
+from datetime import datetime
 
 from django.db import models
 
-from common.db.fields import RelatedManager
-from common.utils import validate_ip, get_ip_city, get_logger
 from common.utils.timezone import as_current_tz
+from common.utils import validate_ip, get_ip_city, get_logger
+from common.db.fields import RelatedManager
 from .const import DEFAULT_CITY
 
 logger = get_logger(__name__)
@@ -22,7 +22,7 @@ def write_login_log(*args, **kwargs):
     else:
         city = get_ip_city(ip) or DEFAULT_CITY
     kwargs.update({'ip': ip, 'city': city})
-    return UserLoginLog.objects.create(**kwargs)
+    UserLoginLog.objects.create(**kwargs)
 
 
 def _get_instance_field_value(
