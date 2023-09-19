@@ -53,6 +53,7 @@ class UnlockIPSecurityAPI(CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         ips = request.data.get('ips')
+        prefix = LoginIpBlockUtil.BLOCK_KEY_TMPL.replace('{}', '')
         for ip in ips:
-            LoginIpBlockUtil(ip).clean_block_if_need()
+            LoginIpBlockUtil(f'{prefix}{ip}').clean_block_if_need()
         return Response(status=200)
