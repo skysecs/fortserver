@@ -5,7 +5,8 @@ from rest_framework import mixins
 
 from accounts import serializers
 from accounts.const import AutomationTypes
-from accounts.models import ChangeSecretAutomation, ChangeSecretRecord
+from accounts.models import ChangeSecretAutomation, ChangeSecretRecord, AutomationExecution
+from common.utils import get_object_or_none
 from orgs.mixins.api import OrgBulkModelViewSet, OrgGenericViewSet
 from .base import (
     AutomationAssetsListApi, AutomationRemoveAssetApi, AutomationAddAssetApi,
@@ -29,8 +30,8 @@ class ChangeSecretAutomationViewSet(OrgBulkModelViewSet):
 
 class ChangeSecretRecordViewSet(mixins.ListModelMixin, OrgGenericViewSet):
     serializer_class = serializers.ChangeSecretRecordSerializer
-    filter_fields = ('asset', 'execution_id')
-    search_fields = ('asset__address',)
+    filter_fields = ['asset', 'execution_id']
+    search_fields = ['asset__hostname']
 
     def get_queryset(self):
         return ChangeSecretRecord.objects.filter(
@@ -40,7 +41,10 @@ class ChangeSecretRecordViewSet(mixins.ListModelMixin, OrgGenericViewSet):
     def filter_queryset(self, queryset):
         queryset = super().filter_queryset(queryset)
         eid = self.request.query_params.get('execution_id')
-        return queryset.filter(execution_id=eid)
+        execution = get_object_or_none(AutomationExecution, pk=eid)
+        if execution:
+            queryset = queryset.filter(execution=execution)
+        return queryset
 
 
 class ChangSecretExecutionViewSet(AutomationExecutionViewSet):
