@@ -119,6 +119,8 @@ exclude_permissions = (
     ('terminal', 'sessionsharing', 'view,add,change,delete', 'sessionsharing'),
     ('terminal', 'session', 'delete,share', 'session'),
     ('terminal', 'session', 'delete,change', 'command'),
+    ('terminal', 'appletpublication', '*', '*'),
+    ('terminal', 'applethostdeployment', '*', '*'),
     ('applications', '*', '*', '*'),
 )
 
@@ -150,8 +152,6 @@ only_system_permissions = (
     ('orgs', 'organization', 'view', 'rootorg'),
     ('terminal', 'applet', '*', '*'),
     ('terminal', 'applethost', '*', '*'),
-    ('terminal', 'appletpublication', '*', '*'),
-    ('terminal', 'applethostdeployment', '*', '*'),
     ('acls', 'loginacl', '*', '*'),
     ('acls', 'connectmethodacl', '*', '*')
 )
