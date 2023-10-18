@@ -1,6 +1,5 @@
 import os
 import uuid
-from datetime import timedelta
 from importlib import import_module
 
 from django.conf import settings
@@ -264,6 +263,7 @@ class UserSession(models.Model):
     type = models.CharField(choices=LoginTypeChoices.choices, max_length=2, verbose_name=_("Login type"))
     backend = models.CharField(max_length=32, default="", verbose_name=_("Authentication backend"))
     date_created = models.DateTimeField(null=True, blank=True, verbose_name=_('Date created'))
+    date_expired = models.DateTimeField(null=True, blank=True, verbose_name=_("Date expired"), db_index=True)
     user = models.ForeignKey(
         'users.User', verbose_name=_('User'), related_name='sessions', on_delete=models.CASCADE
     )
@@ -275,14 +275,6 @@ class UserSession(models.Model):
     def backend_display(self):
         return gettext(self.backend)
 
-    @property
-    def date_expired(self):
-        session_store_cls = import_module(settings.SESSION_ENGINE).SessionStore
-        session_store = session_store_cls(session_key=self.key)
-        cache_key = session_store.cache_key
-        ttl = caches[settings.SESSION_CACHE_ALIAS].ttl(cache_key)
-        return timezone.now() + timedelta(seconds=ttl)
-
     @staticmethod
     def get_keys():
         session_store_cls = import_module(settings.SESSION_ENGINE).SessionStore
@@ -292,8 +284,8 @@ class UserSession(models.Model):
 
     @classmethod
     def clear_expired_sessions(cls):
-        keys = cls.get_keys()
-        cls.objects.exclude(key__in=keys).delete()
+        cls.objects.filter(date_expired__lt=timezone.now()).delete()
+        cls.objects.exclude(key__in=cls.get_keys()).delete()
 
     class Meta:
         ordering = ['-date_created']
