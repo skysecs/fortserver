@@ -1,9 +1,5 @@
 ARG VERSION
 FROM registry.fortserver.com/fortserver/xpack:${VERSION} as build-xpack
-FROM fortserver/core:${VERSION}
+FROM registry.fortserver.com/fortserver/core-ce:${VERSION}
 
 COPY --from=build-xpack /opt/xpack /opt/fortserver/apps/xpack
-
-RUN --mount=type=cache,target=/root/.cache \
-    set -ex \
-    && poetry install --only=xpack
