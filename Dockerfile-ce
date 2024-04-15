@@ -121,7 +121,7 @@ RUN set -ex \
 
 COPY --from=stage-2 /opt/py3 /opt/py3
 COPY --from=stage-1 /opt/fortserver/release/fortserver /opt/fortserver
-COPY --from=stage-1 /opt/fortserver/release/fortserver/apps/ops/ansible/ansible.cfg /etc/ansible/
+COPY --from=stage-1 /opt/fortserver/release/fortserver/apps/libs/ansible/ansible.cfg /etc/ansible/
 
 WORKDIR /opt/fortserver
 
