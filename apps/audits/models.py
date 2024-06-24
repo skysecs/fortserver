@@ -207,9 +207,9 @@ class UserLoginLog(models.Model):
         choices=LoginStatusChoices.choices,
         verbose_name=_("Status"),
     )
-    datetime = models.DateTimeField(default=timezone.now, verbose_name=_("Date login"), db_index=True)
+    datetime = models.DateTimeField(default=timezone.now, verbose_name=_("Login Date"), db_index=True)
     backend = models.CharField(
-        max_length=32, default="", verbose_name=_("Authentication backend")
+        max_length=32, default="", verbose_name=_("Auth backend")
     )
 
     def __str__(self):
@@ -257,16 +257,14 @@ class UserLoginLog(models.Model):
 
 
 class UserSession(models.Model):
-    _OPERATE_LOG_ACTION = {'delete': ActionChoices.finished}
-
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     ip = models.GenericIPAddressField(verbose_name=_("Login IP"))
     key = models.CharField(max_length=128, verbose_name=_("Session key"))
     city = models.CharField(max_length=254, blank=True, null=True, verbose_name=_("Login city"))
     user_agent = models.CharField(max_length=254, blank=True, null=True, verbose_name=_("User agent"))
     type = models.CharField(choices=LoginTypeChoices.choices, max_length=2, verbose_name=_("Login type"))
-    backend = models.CharField(max_length=32, default="", verbose_name=_("Authentication backend"))
-    date_created = models.DateTimeField(null=True, blank=True, verbose_name=_('Date created'))
+    backend = models.CharField(max_length=32, default="", verbose_name=_("Auth backend"))
+    date_created = models.DateTimeField(null=True, blank=True, verbose_name=_('Login date'))
     user = models.ForeignKey(
         'users.User', verbose_name=_('User'), related_name='sessions', on_delete=models.CASCADE
     )

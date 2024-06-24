@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-import re
 
 from django.conf import settings
-from django.core.cache import cache
 from django.http import HttpResponse
 from django.views.static import serve
 from rest_framework import generics
@@ -65,10 +63,12 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         'ticket': serializers.TicketSettingSerializer,
         'ops': serializers.OpsSettingSerializer,
         'virtualapp': serializers.VirtualAppSerializer,
+        'tool': serializers.ToolSerializer,
     }
 
     rbac_category_permissions = {
         'basic': 'settings.view_setting',
+        'tool': 'settings.view_setting',
         'terminal': 'settings.change_terminal',
         'ops': 'settings.change_ops',
         'ticket': 'settings.change_ticket',
@@ -81,24 +81,30 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         'security_password': 'settings.change_security',
         'security_login_limit': 'settings.change_security',
         'ldap': 'settings.change_auth',
-        'email': 'settings.change_email',
-        'email_content': 'settings.change_email',
+        'cas': 'settings.change_auth',
+        'oidc': 'settings.change_auth',
+        'saml2': 'settings.change_auth',
+        'oauth2': 'settings.change_auth',
         'wecom': 'settings.change_auth',
         'dingtalk': 'settings.change_auth',
         'feishu': 'settings.change_auth',
+        'lark': 'settings.change_auth',
+        'slack': 'settings.change_auth',
         'auth': 'settings.change_auth',
-        'oidc': 'settings.change_auth',
+        'passkey': 'settings.change_auth',
         'keycloak': 'settings.change_auth',
         'radius': 'settings.change_auth',
-        'cas': 'settings.change_auth',
         'sso': 'settings.change_auth',
-        'saml2': 'settings.change_auth',
-        'oauth2': 'settings.change_auth',
         'clean': 'settings.change_clean',
         'other': 'settings.change_other',
+        'chat': 'settings.change_chatai',
+        'email': 'settings.change_email',
+        'email_content': 'settings.change_email',
         'sms': 'settings.change_sms',
         'alibaba': 'settings.change_sms',
         'tencent': 'settings.change_sms',
+        'huawei': 'settings.change_sms',
+        'cmpp2': 'settings.change_sms',
         'vault': 'settings.change_vault',
     }
 
@@ -170,13 +176,6 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         if hasattr(serializer, 'post_save'):
             serializer.post_save()
         self.send_signal(serializer)
-        if self.request.query_params.get('category') == 'ldap':
-            self.clean_ldap_user_dn_cache()
-
-    @staticmethod
-    def clean_ldap_user_dn_cache():
-        del_count = cache.delete_pattern('django_auth_ldap.user_dn.*')
-        logger.debug(f'clear LDAP user_dn_cache count={del_count}')
 
 
 class SettingsLogoApi(APIView):

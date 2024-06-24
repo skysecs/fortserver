@@ -3,10 +3,10 @@
 
 import argparse
 import logging
-import os
 import shutil
-import signal
 import subprocess
+import os
+import signal
 import tempfile
 
 from apps.libs.process.ssh import kill_ansible_ssh_process

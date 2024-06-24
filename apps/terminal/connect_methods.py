@@ -68,7 +68,7 @@ class NativeClient(TextChoices):
 
     @classmethod
     def xpack_methods(cls):
-        return [cls.mstsc]
+        return [cls.mstsc, cls.db_client]
 
     @classmethod
     def get_methods(cls, os='windows'):
@@ -101,7 +101,7 @@ class AppletMethod:
         from .models import Applet, AppletHost
 
         methods = defaultdict(list)
-        has_applet_hosts = AppletHost.objects.filter(is_active=True).exists()
+        has_applet_hosts = AppletHost.objects.all().exists()
         applets = Applet.objects.filter(is_active=True)
         for applet in applets:
             for protocol in applet.protocols:
@@ -151,6 +151,7 @@ class ConnectMethodUtil:
 
                     Protocol.mysql, Protocol.mariadb,
                     Protocol.sqlserver, Protocol.postgresql,
+                    Protocol.oracle
                 ],
                 # 限制客户端的协议，比如 koko 虽然也支持 数据库的 ssh 连接，但是不再这里拉起
                 # Listen协议: [Asset协议]
@@ -166,8 +167,7 @@ class ConnectMethodUtil:
                 'support': [
                     Protocol.mysql, Protocol.postgresql,
                     Protocol.oracle, Protocol.sqlserver,
-                    Protocol.mariadb, Protocol.db2,
-                    Protocol.dameng
+                    Protocol.mariadb, Protocol.db2
                 ],
                 'match': 'm2m'
             },
@@ -254,9 +254,8 @@ class ConnectMethodUtil:
     def _filter_disable_protocols_connect_methods(cls, methods):
         # 过滤一些特殊的协议方式
         if not getattr(settings, 'TERMINAL_KOKO_SSH_ENABLED'):
-            disable_ssh_client_protocols = [Protocol.ssh, Protocol.sftp, Protocol.telnet]
-            for protocol in disable_ssh_client_protocols:
-                methods[protocol] = [m for m in methods[protocol] if m['type'] != 'native']
+            protocol = Protocol.ssh
+            methods[protocol] = [m for m in methods[protocol] if m['type'] != 'native']
         return methods
 
     @classmethod

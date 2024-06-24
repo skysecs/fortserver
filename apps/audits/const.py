@@ -37,9 +37,6 @@ class ActionChoices(TextChoices):
     approve = 'approve', _('Approve')
     close = 'close', _('Close')
 
-    # Custom action
-    finished = 'finished', _('Finished')
-
 
 class LoginTypeChoices(TextChoices):
     web = "W", _("Web")

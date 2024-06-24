@@ -27,7 +27,7 @@ class SlackRenderer(mistune.HTMLRenderer):
     def strong(self, text):
         return '*' + text + '*'
 
-    def list(self, text, *args, **kwargs):
+    def list(self, text, **kwargs):
         lines = text.split('\n')
         for i, line in enumerate(lines):
             if not line:
@@ -128,7 +128,7 @@ class Slack:
 
     def send_text(self, user_ids, msg_body):
         body = self.convert_to_markdown(msg_body)
-        logger.info(f'Slack send text: user_ids={user_ids}')
+        logger.info(f'Slack send text: user_ids={user_ids} msg={body}')
         for user_id in user_ids:
             body['channel'] = user_id
             try:

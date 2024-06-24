@@ -5,6 +5,7 @@ import re
 from collections import defaultdict
 
 from django.utils.translation import gettext as _
+from assets.const.category import Category
 
 __all__ = ['JMSInventory']
 
@@ -83,11 +84,11 @@ class JMSInventory:
     def make_custom_become_ansible_vars(account, su_from_auth, path_dir):
         su_method = su_from_auth['ansible_become_method']
         var = {
-            'jms_custom_become': True,
-            'jms_custom_become_method': su_method,
-            'jms_custom_become_user': account.su_from.username,
-            'jms_custom_become_password': account.escape_jinja2_syntax(account.su_from.secret),
-            'jms_custom_become_private_key_path': account.su_from.get_private_key_path(path_dir)
+            'custom_become': True,
+            'custom_become_method': su_method,
+            'custom_become_user': account.su_from.username,
+            'custom_become_password': account.escape_jinja2_syntax(account.su_from.secret),
+            'custom_become_private_key_path': account.su_from.get_private_key_path(path_dir)
         }
         return var
 
@@ -131,7 +132,7 @@ class JMSInventory:
         if gateway:
             ansible_connection = host.get('ansible_connection', 'ssh')
             if ansible_connection in ('local', 'winrm', 'rdp'):
-                host['jms_gateway'] = {
+                host['gateway'] = {
                     'address': gateway.address, 'port': gateway.port,
                     'username': gateway.username, 'secret': gateway.password,
                     'private_key_path': gateway.get_private_key_path(path_dir)

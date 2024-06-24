@@ -1,14 +1,51 @@
-FROM python:3.11-slim-bullseye as stage-build
+FROM debian:bullseye-slim as stage-1
 ARG TARGETARCH
 
+ARG DEPENDENCIES="                    \
+        ca-certificates               \
+        wget"
+
+ARG APT_MIRROR=http://mirrors.ustc.edu.cn
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=core \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=core \
+    set -ex \
+    && rm -f /etc/apt/apt.conf.d/docker-clean \
+    && echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache \
+    && sed -i "s@http://.*.debian.org@${APT_MIRROR}@g" /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get -y install --no-install-recommends ${DEPENDENCIES} \
+    && echo "no" | dpkg-reconfigure dash
+
+WORKDIR /opt
+
+ARG CHECK_VERSION=v1.0.2
+RUN set -ex \
+    && wget https://github.com/fortserver-dev/healthcheck/releases/download/${CHECK_VERSION}/check-${CHECK_VERSION}-linux-${TARGETARCH}.tar.gz \
+    && tar -xf check-${CHECK_VERSION}-linux-${TARGETARCH}.tar.gz \
+    && mv check /usr/local/bin/ \
+    && chown root:root /usr/local/bin/check \
+    && chmod 755 /usr/local/bin/check \
+    && rm -f check-${CHECK_VERSION}-linux-${TARGETARCH}.tar.gz
+
+ARG RECEPTOR_VERSION=v1.4.5
+RUN set -ex \
+    && wget -O /opt/receptor.tar.gz https://github.com/ansible/receptor/releases/download/${RECEPTOR_VERSION}/receptor_${RECEPTOR_VERSION/v/}_linux_${TARGETARCH}.tar.gz \
+    && tar -xf /opt/receptor.tar.gz -C /usr/local/bin/ \
+    && chown root:root /usr/local/bin/receptor \
+    && chmod 755 /usr/local/bin/receptor \
+    && rm -f /opt/receptor.tar.gz
+
 ARG VERSION
-ENV VERSION=$VERSION
 
 WORKDIR /opt/fortserver
 ADD . .
-RUN cd utils && bash -ixeu build.sh
+RUN echo > /opt/fortserver/config.yml \
+    && \
+    if [ -n "${VERSION}" ]; then \
+        sed -i "s@VERSION = .*@VERSION = '${VERSION}'@g" apps/fortserver/const.py; \
+    fi
 
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim-bullseye as stage-2
 ARG TARGETARCH
 
 ARG BUILD_DEPENDENCIES="              \
@@ -17,70 +54,93 @@ ARG BUILD_DEPENDENCIES="              \
         pkg-config"
 
 ARG DEPENDENCIES="                    \
+        default-libmysqlclient-dev    \
         freetds-dev                   \
-        libpq-dev                     \
-        libffi-dev                    \
-        libjpeg-dev                   \
+        gettext                       \
         libkrb5-dev                   \
         libldap2-dev                  \
-        libsasl2-dev                  \
-        libssl-dev                    \
-        libxml2-dev                   \
-        libxmlsec1-dev                \
-        libxmlsec1-openssl            \
-        freerdp2-dev                  \
-        libaio-dev"
+        libsasl2-dev"
+
+ARG APT_MIRROR=http://mirrors.ustc.edu.cn
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=core \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=core \
+    set -ex \
+    && rm -f /etc/apt/apt.conf.d/docker-clean \
+    && echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache \
+    && sed -i "s@http://.*.debian.org@${APT_MIRROR}@g" /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get -y install --no-install-recommends ${BUILD_DEPENDENCIES} \
+    && apt-get -y install --no-install-recommends ${DEPENDENCIES} \
+    && echo "no" | dpkg-reconfigure dash
+
+WORKDIR /opt/fortserver
+
+ARG PIP_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
+RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=core \
+    --mount=type=bind,source=poetry.lock,target=poetry.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    set -ex \
+    && python3 -m venv /opt/py3 \
+    && pip install poetry -i ${PIP_MIRROR} \
+    && poetry config virtualenvs.create false \
+    && . /opt/py3/bin/activate \
+    && poetry install --only main
+
+COPY --from=stage-1 /opt/fortserver /opt/fortserver
+
+RUN set -ex \
+    && export SECRET_KEY=$(head -c100 < /dev/urandom | base64 | tr -dc A-Za-z0-9 | head -c 48) \
+    && . /opt/py3/bin/activate \
+    && cd apps \
+    && python manage.py compilemessages
+
+FROM python:3.11-slim-bullseye
+ARG TARGETARCH
+ENV LANG=en_US.UTF-8 \
+    PATH=/opt/py3/bin:$PATH
+
+ARG DEPENDENCIES="                    \
+        libldap2-dev                  \
+        libx11-dev"
 
 ARG TOOLS="                           \
         ca-certificates               \
-        curl                          \
         default-libmysqlclient-dev    \
-        default-mysql-client          \
-        iputils-ping                  \
-        locales                       \
-        nmap                          \
         openssh-client                \
-        patch                         \
-        sshpass                       \
-        telnet                        \
-        vim                           \
-        wget"
+        sshpass"
 
 ARG APT_MIRROR=http://mirrors.ustc.edu.cn
-
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=core \
-    sed -i "s@http://.*.debian.org@${APT_MIRROR}@g" /etc/apt/sources.list \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=core \
+    set -ex \
     && rm -f /etc/apt/apt.conf.d/docker-clean \
+    && echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' >/etc/apt/apt.conf.d/keep-cache \
+    && sed -i "s@http://.*.debian.org@${APT_MIRROR}@g" /etc/apt/sources.list \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apt-get update \
-    && apt-get -y install --no-install-recommends ${BUILD_DEPENDENCIES} \
     && apt-get -y install --no-install-recommends ${DEPENDENCIES} \
     && apt-get -y install --no-install-recommends ${TOOLS} \
     && mkdir -p /root/.ssh/ \
     && echo "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n\tCiphers +aes128-cbc\n\tKexAlgorithms +diffie-hellman-group1-sha1\n\tHostKeyAlgorithms +ssh-rsa" > /root/.ssh/config \
-    && echo "set mouse-=a" > ~/.vimrc \
     && echo "no" | dpkg-reconfigure dash \
-    && echo "zh_CN.UTF-8" | dpkg-reconfigure locales \
     && sed -i "s@# export @export @g" ~/.bashrc \
-    && sed -i "s@# alias @alias @g" ~/.bashrc \
-    && rm -rf /var/lib/apt/lists/*
+    && sed -i "s@# alias @alias @g" ~/.bashrc
 
-COPY --from=stage-build /opt/fortserver/release/fortserver /opt/fortserver
+COPY --from=stage-2 /opt /opt
+COPY --from=stage-1 /usr/local/bin /usr/local/bin
+COPY --from=stage-1 /opt/fortserver/apps/libs/ansible/ansible.cfg /etc/ansible/
+
 WORKDIR /opt/fortserver
 
-ARG PIP_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
-RUN --mount=type=cache,target=/root/.cache \
-    set -ex \
-    && echo > /opt/fortserver/config.yml \
-    && pip install poetry -i ${PIP_MIRROR} \
-    && poetry config virtualenvs.create false \
-    && poetry install --only=main
+ARG VERSION
+ENV VERSION=$VERSION
 
 VOLUME /opt/fortserver/data
-VOLUME /opt/fortserver/logs
 
-ENV LANG=zh_CN.UTF-8
+ENTRYPOINT ["./entrypoint.sh"]
 
 EXPOSE 8080
 
-ENTRYPOINT ["./entrypoint.sh"]
+STOPSIGNAL SIGQUIT
+
+CMD ["start", "all"]

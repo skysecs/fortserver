@@ -96,9 +96,9 @@ class Terminal(StorageMixin, TerminalStatusMixin, JMSBaseModel):
 
     @property
     def is_active(self):
-        user_active = self.user and self.user.is_active
-        type_active = self.type in [TypeChoices.core, TypeChoices.celery]
-        return user_active or type_active
+        if self.user and self.user.is_active:
+            return True
+        return False
 
     @is_active.setter
     def is_active(self, active):
