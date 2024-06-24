@@ -526,6 +526,7 @@
     "HasImportErrorItemMsg": "There are import failures, click on the left x to view the failure reasons, after editing the table, you can continue to import failures.",
     "Help": "Help",
     "HighLoad": "Higher",
+    "HTTPSRequiredForSupport": "HTTPS is required for support",
     "HistoricalSessionNum": "Total historical sessions",
     "History": "History",
     "HistoryDate": "Date",
@@ -1342,8 +1343,5 @@
     "WeChat": "WeChat",
     "SuEnabled": "Enabled su",
     "Gateway": "Gateway",
-    "StopLogOutput": "Task Canceled: The current task (currentTaskId) has been manually stopped. Since the progress of each task varies, the following is the final execution result of the task. A failed execution indicates that the task has been successfully stopped.",
-    "OnlyInitialDeploy": "Only initial deployment",
-    "Uninstall": "Uninstall",
-    "Summary": "Summary"
+    "StopLogOutput": "Task Canceled: The current task (currentTaskId) has been manually stopped. Since the progress of each task varies, the following is the final execution result of the task. A failed execution indicates that the task has been successfully stopped."
 }
