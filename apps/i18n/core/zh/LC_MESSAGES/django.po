@@ -861,7 +861,7 @@ msgstr "ID"
 #: acls/templates/acls/asset_login_reminder.html:8
 #: acls/templates/acls/user_login_reminder.html:8
 #: assets/models/cmd_filter.py:24 assets/models/label.py:16 audits/models.py:54
-#: audits/models.py:90 audits/models.py:172 audits/models.py:269
+#: audits/models.py:90 audits/models.py:172 audits/models.py:271
 #: audits/serializers.py:171 authentication/models/connection_token.py:32
 #: authentication/models/sso_token.py:16
 #: notifications/models/notification.py:12
@@ -945,15 +945,15 @@ msgstr "特殊字符"
 msgid "Exclude symbol"
 msgstr "排除字符"
 
-#: accounts/serializers/account/template.py:38
+#: accounts/serializers/account/template.py:39
 msgid "Secret generation strategy for account creation"
 msgstr "密码生成策略，用于账号创建时，设置密码"
 
-#: accounts/serializers/account/template.py:39
+#: accounts/serializers/account/template.py:40
 msgid "Whether to automatically push the account to the asset"
 msgstr "是否自动推送账号到资产"
 
-#: accounts/serializers/account/template.py:42
+#: accounts/serializers/account/template.py:43
 msgid ""
 "Associated platform, you can configure push parameters. If not associated, "
 "default parameters will be used"
@@ -1455,8 +1455,7 @@ msgid "Unable to connect to port {port} on {address}"
 msgstr "无法连接到 {port} 上的端口 {address}"
 
 #: assets/automations/ping_gateway/manager.py:58
-#: authentication/backends/oauth2/views.py:60 authentication/middleware.py:93
-#: xpack/plugins/cloud/providers/fc.py:47
+#: authentication/middleware.py:93 xpack/plugins/cloud/providers/fc.py:47
 msgid "Authentication failed"
 msgstr "认证失败"
 
@@ -1465,7 +1464,7 @@ msgstr "认证失败"
 msgid "Connect failed"
 msgstr "连接失败"
 
-#: assets/const/automation.py:6 audits/const.py:6 audits/const.py:44
+#: assets/const/automation.py:6 audits/const.py:6 audits/const.py:47
 #: audits/signal_handlers/activity_log.py:62 common/utils/ip/geoip/utils.py:31
 #: common/utils/ip/geoip/utils.py:37 common/utils/ip/utils.py:104
 msgid "Unknown"
@@ -1498,7 +1497,7 @@ msgstr "禁用"
 msgid "Basic"
 msgstr "基本"
 
-#: assets/const/base.py:34 assets/const/protocol.py:268
+#: assets/const/base.py:34 assets/const/protocol.py:275
 #: assets/models/asset/web.py:13
 msgid "Script"
 msgstr "脚本"
@@ -1521,7 +1520,7 @@ msgid "Cloud service"
 msgstr "云服务"
 
 #: assets/const/category.py:14 assets/models/asset/gpt.py:11
-#: assets/models/asset/web.py:16 audits/const.py:42
+#: assets/models/asset/web.py:16 audits/const.py:45
 #: terminal/models/applet/applet.py:27 users/const.py:64
 msgid "Web"
 msgstr "Web"
@@ -1568,19 +1567,19 @@ msgstr "ChatGPT"
 msgid "Other"
 msgstr "其它"
 
-#: assets/const/protocol.py:45
+#: assets/const/protocol.py:46
 msgid "Old SSH version"
 msgstr "Old SSH version"
 
-#: assets/const/protocol.py:46
+#: assets/const/protocol.py:47
 msgid "Old SSH version like openssh 5.x or 6.x"
 msgstr "旧的 SSH 版本，例如 openssh 5.x 或 6.x"
 
-#: assets/const/protocol.py:57
+#: assets/const/protocol.py:58
 msgid "SFTP root"
 msgstr "SFTP 根路径"
 
-#: assets/const/protocol.py:59
+#: assets/const/protocol.py:60
 #, python-brace-format
 msgid ""
 "SFTP root directory, Support variable: <br>- ${ACCOUNT} The connected "
@@ -1590,15 +1589,15 @@ msgstr ""
 "SFTP根目录，支持变量：<br>-${ACCOUNT}已连接帐户用户名<br>-${HOME}连接帐户的主"
 "目录<br>-${USER}用户的用户名"
 
-#: assets/const/protocol.py:74
+#: assets/const/protocol.py:75
 msgid "Console"
 msgstr "控制台"
 
-#: assets/const/protocol.py:75
+#: assets/const/protocol.py:76
 msgid "Connect to console session"
 msgstr "连接到控制台会话"
 
-#: assets/const/protocol.py:79
+#: assets/const/protocol.py:80
 msgid "Any"
 msgstr "任意"
 
@@ -1607,35 +1606,35 @@ msgstr "任意"
 msgid "Security"
 msgstr "安全"
 
-#: assets/const/protocol.py:82
+#: assets/const/protocol.py:83
 msgid "Security layer to use for the connection"
 msgstr "连接 RDP 使用的安全层"
 
-#: assets/const/protocol.py:88
+#: assets/const/protocol.py:89
 msgid "AD domain"
 msgstr "AD 网域"
 
-#: assets/const/protocol.py:103
+#: assets/const/protocol.py:104
 msgid "Username prompt"
 msgstr "用户名提示"
 
-#: assets/const/protocol.py:104
+#: assets/const/protocol.py:105
 msgid "We will send username when we see this prompt"
 msgstr "当我们看到这个提示时，我们将发送用户名"
 
-#: assets/const/protocol.py:109
+#: assets/const/protocol.py:110
 msgid "Password prompt"
 msgstr "密码提示"
 
-#: assets/const/protocol.py:110
+#: assets/const/protocol.py:111
 msgid "We will send password when we see this prompt"
 msgstr "当我们看到这个提示时，我们将发送密码"
 
-#: assets/const/protocol.py:115
+#: assets/const/protocol.py:116
 msgid "Success prompt"
 msgstr "成功提示"
 
-#: assets/const/protocol.py:116
+#: assets/const/protocol.py:117
 msgid "We will consider login success when we see this prompt"
 msgstr "当我们看到这个提示时，我们将认为登录成功"
 
@@ -1644,60 +1643,60 @@ msgstr "当我们看到这个提示时，我们将认为登录成功"
 msgid "Use SSL"
 msgstr "使用 SSL"
 
-#: assets/const/protocol.py:162
+#: assets/const/protocol.py:163
 msgid "SYSDBA"
 msgstr "SYSDBA"
 
-#: assets/const/protocol.py:163
+#: assets/const/protocol.py:164
 msgid "Connect as SYSDBA"
 msgstr "以 SYSDBA 角色连接"
 
-#: assets/const/protocol.py:178
+#: assets/const/protocol.py:179
 msgid ""
 "SQL Server version, Different versions have different connection drivers"
 msgstr "SQL Server 版本，不同版本有不同的连接驱动"
 
-#: assets/const/protocol.py:202
+#: assets/const/protocol.py:209
 msgid "Auth source"
 msgstr "认证数据库"
 
-#: assets/const/protocol.py:203
+#: assets/const/protocol.py:210
 msgid "The database to authenticate against"
 msgstr "要进行身份验证的数据库"
 
-#: assets/const/protocol.py:215
+#: assets/const/protocol.py:222
 msgid "Auth username"
 msgstr "使用用户名认证"
 
-#: assets/const/protocol.py:238
+#: assets/const/protocol.py:245
 msgid "Safe mode"
 msgstr "安全模式"
 
-#: assets/const/protocol.py:240
+#: assets/const/protocol.py:247
 msgid ""
 "When safe mode is enabled, some operations will be disabled, such as: New "
 "tab, right click, visit other website, etc."
 msgstr ""
 "当安全模式启用时，一些操作将被禁用，例如：新建标签页、右键、访问其它网站 等"
 
-#: assets/const/protocol.py:245 assets/models/asset/web.py:9
+#: assets/const/protocol.py:252 assets/models/asset/web.py:9
 #: assets/serializers/asset/info/spec.py:16
 msgid "Autofill"
 msgstr "自动代填"
 
-#: assets/const/protocol.py:253 assets/models/asset/web.py:10
+#: assets/const/protocol.py:260 assets/models/asset/web.py:10
 msgid "Username selector"
 msgstr "用户名选择器"
 
-#: assets/const/protocol.py:258 assets/models/asset/web.py:11
+#: assets/const/protocol.py:265 assets/models/asset/web.py:11
 msgid "Password selector"
 msgstr "密码选择器"
 
-#: assets/const/protocol.py:263 assets/models/asset/web.py:12
+#: assets/const/protocol.py:270 assets/models/asset/web.py:12
 msgid "Submit selector"
 msgstr "确认按钮选择器"
 
-#: assets/const/protocol.py:286
+#: assets/const/protocol.py:293
 msgid "API mode"
 msgstr "API 模式"
 
@@ -2467,22 +2466,27 @@ msgstr "同意"
 msgid "Close"
 msgstr "关闭"
 
-#: audits/const.py:43 settings/serializers/terminal.py:6
+#: audits/const.py:41 ops/models/celery.py:84
+#: terminal/models/session/sharing.py:128 tickets/const.py:25
+msgid "Finished"
+msgstr "结束"
+
+#: audits/const.py:46 settings/serializers/terminal.py:6
 #: terminal/models/applet/host.py:26 terminal/models/component/terminal.py:175
 #: terminal/models/virtualapp/provider.py:14 terminal/serializers/session.py:55
 #: terminal/serializers/session.py:69
 msgid "Terminal"
 msgstr "终端"
 
-#: audits/const.py:48 audits/models.py:132
+#: audits/const.py:51 audits/models.py:132
 msgid "Operate log"
 msgstr "操作日志"
 
-#: audits/const.py:49
+#: audits/const.py:52
 msgid "Session log"
 msgstr "会话日志"
 
-#: audits/const.py:50
+#: audits/const.py:53
 msgid "Login log"
 msgstr "登录日志"
 
@@ -2492,7 +2496,7 @@ msgstr "登录日志"
 msgid "Task"
 msgstr "任务"
 
-#: audits/const.py:57
+#: audits/const.py:60
 msgid "-"
 msgstr "-"
 
@@ -2576,11 +2580,11 @@ msgstr "修改者"
 msgid "Password change log"
 msgstr "改密日志"
 
-#: audits/models.py:190 audits/models.py:265
+#: audits/models.py:190 audits/models.py:267
 msgid "Login type"
 msgstr "登录方式"
 
-#: audits/models.py:192 audits/models.py:261
+#: audits/models.py:192 audits/models.py:263
 #: tickets/models/ticket/login_confirm.py:10
 msgid "Login IP"
 msgstr "登录 IP"
@@ -2606,7 +2610,7 @@ msgstr "认证令牌"
 msgid "User login log"
 msgstr "用户登录日志"
 
-#: audits/models.py:262
+#: audits/models.py:264
 msgid "Session key"
 msgstr "会话标识"
 
@@ -2618,7 +2622,7 @@ msgstr "登录日期"
 msgid "User session"
 msgstr "用户会话"
 
-#: audits/models.py:300
+#: audits/models.py:302
 msgid "Offline user session"
 msgstr "下线用户会话"
 
@@ -3869,13 +3873,19 @@ msgstr "此操作需要确认当前用户"
 msgid "Unexpect error occur"
 msgstr "发生意外错误"
 
-#: common/plugins/es.py:31
+#: common/plugins/es.py:35
 msgid "Invalid elasticsearch config"
 msgstr "无效的 Elasticsearch 配置"
 
-#: common/plugins/es.py:36
+#: common/plugins/es.py:40
 msgid "Not Support Elasticsearch8"
 msgstr "不支持 Elasticsearch8"
+
+#: common/plugins/es.py:46
+msgid ""
+"Connection failed: Self-signed certificate used. Please check server "
+"certificate configuration"
+msgstr "连接失败：使用了自签名证书，请检查服务器证书配置"
 
 #: common/sdk/im/exceptions.py:23
 msgid "Network error, please contact system administrator"
@@ -4144,7 +4154,7 @@ msgstr "等待任务开始"
 msgid "Task {} not found"
 msgstr "任务 {} 不存在"
 
-#: ops/api/celery.py:267
+#: ops/api/celery.py:269
 msgid "Task {} args or kwargs error"
 msgstr "任务 {} 执行参数错误"
 
@@ -4600,6 +4610,10 @@ msgstr "组织存在资源 ({}) 不能被删除"
 #: orgs/apps.py:7
 msgid "App Organizations"
 msgstr "组织管理"
+
+#: orgs/mixins/models.py:48 orgs/mixins/models.py:73
+msgid "Please save in a org"
+msgstr "请选择一个组织后再保存"
 
 #: orgs/mixins/models.py:57 orgs/mixins/serializers.py:25 orgs/models.py:91
 #: rbac/const.py:7 rbac/models/rolebinding.py:56
@@ -5348,8 +5362,12 @@ msgstr "User DN 缓存超时时间 (秒)"
 #: settings/serializers/auth/ldap.py:92
 msgid ""
 "Caching the User DN obtained during user login authentication can "
-"effectivelyimprove the speed of user authentication., 0 means no cache"
-msgstr "对用户登录认证时查询出的 User DN 进行缓存，可以有效提高用户认证的速度"
+"effectivelyimprove the speed of user authentication., 0 means no cache<br>If "
+"the user OU structure has been adjusted, click Submit to clear the user DN "
+"cache"
+msgstr ""
+"对用户登录认证时查询出的 User DN 进行缓存，可以有效提高用户认证的速度<br>如果"
+"用户 OU 架构有调整，点击提交即可清除用户 DN 缓存"
 
 #: settings/serializers/auth/ldap.py:97
 msgid "Search paged size (piece)"

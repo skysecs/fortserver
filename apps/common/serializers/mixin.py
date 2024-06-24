@@ -51,7 +51,18 @@ class SecretReadableMixin(serializers.Serializer):
             field_extra_kwargs = extra_kwargs[field_name]
             if "write_only" not in field_extra_kwargs:
                 continue
-            serializer_field.write_only = field_extra_kwargs["write_only"]
+            serializer_field.write_only = field_extra_kwargs['write_only']
+        self.remove_spec_info_field()
+
+    def remove_spec_info_field(self):
+        request = self.context.get('request')
+        if not request:
+            return
+
+        _format = request.query_params.get('format')
+        if _format not in ['csv', 'xlsx']:
+            return
+        self.fields.pop('spec_info', None)
 
 
 class BulkSerializerMixin(object):

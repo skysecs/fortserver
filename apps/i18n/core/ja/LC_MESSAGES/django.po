@@ -863,7 +863,7 @@ msgstr "ID"
 #: acls/templates/acls/asset_login_reminder.html:8
 #: acls/templates/acls/user_login_reminder.html:8
 #: assets/models/cmd_filter.py:24 assets/models/label.py:16 audits/models.py:54
-#: audits/models.py:90 audits/models.py:172 audits/models.py:269
+#: audits/models.py:90 audits/models.py:172 audits/models.py:271
 #: audits/serializers.py:171 authentication/models/connection_token.py:32
 #: authentication/models/sso_token.py:16
 #: notifications/models/notification.py:12
@@ -947,15 +947,15 @@ msgstr "特殊記号"
 msgid "Exclude symbol"
 msgstr "除外文字"
 
-#: accounts/serializers/account/template.py:38
+#: accounts/serializers/account/template.py:39
 msgid "Secret generation strategy for account creation"
 msgstr "账号创建时，密文生成策略"
 
-#: accounts/serializers/account/template.py:39
+#: accounts/serializers/account/template.py:40
 msgid "Whether to automatically push the account to the asset"
 msgstr "是否自动推送账号到资产"
 
-#: accounts/serializers/account/template.py:42
+#: accounts/serializers/account/template.py:43
 msgid ""
 "Associated platform, you can configure push parameters. If not associated, "
 "default parameters will be used"
@@ -1465,8 +1465,7 @@ msgid "Unable to connect to port {port} on {address}"
 msgstr "{port} のポート {address} に接続できません"
 
 #: assets/automations/ping_gateway/manager.py:58
-#: authentication/backends/oauth2/views.py:60 authentication/middleware.py:93
-#: xpack/plugins/cloud/providers/fc.py:47
+#: authentication/middleware.py:93 xpack/plugins/cloud/providers/fc.py:47
 msgid "Authentication failed"
 msgstr "認証に失敗しました"
 
@@ -1475,7 +1474,7 @@ msgstr "認証に失敗しました"
 msgid "Connect failed"
 msgstr "接続に失敗しました"
 
-#: assets/const/automation.py:6 audits/const.py:6 audits/const.py:44
+#: assets/const/automation.py:6 audits/const.py:6 audits/const.py:47
 #: audits/signal_handlers/activity_log.py:62 common/utils/ip/geoip/utils.py:31
 #: common/utils/ip/geoip/utils.py:37 common/utils/ip/utils.py:104
 msgid "Unknown"
@@ -1508,7 +1507,7 @@ msgstr "無効"
 msgid "Basic"
 msgstr "基本"
 
-#: assets/const/base.py:34 assets/const/protocol.py:268
+#: assets/const/base.py:34 assets/const/protocol.py:275
 #: assets/models/asset/web.py:13
 msgid "Script"
 msgstr "脚本"
@@ -1531,7 +1530,7 @@ msgid "Cloud service"
 msgstr "クラウド サービス"
 
 #: assets/const/category.py:14 assets/models/asset/gpt.py:11
-#: assets/models/asset/web.py:16 audits/const.py:42
+#: assets/models/asset/web.py:16 audits/const.py:45
 #: terminal/models/applet/applet.py:27 users/const.py:64
 msgid "Web"
 msgstr "Web"
@@ -1578,19 +1577,19 @@ msgstr "ChatGPT"
 msgid "Other"
 msgstr "その他"
 
-#: assets/const/protocol.py:45
+#: assets/const/protocol.py:46
 msgid "Old SSH version"
 msgstr "古いSSHバージョン"
 
-#: assets/const/protocol.py:46
+#: assets/const/protocol.py:47
 msgid "Old SSH version like openssh 5.x or 6.x"
 msgstr "openssh 5.x または 6.x などの古い SSH バージョン"
 
-#: assets/const/protocol.py:57
+#: assets/const/protocol.py:58
 msgid "SFTP root"
 msgstr "SFTPルート"
 
-#: assets/const/protocol.py:59
+#: assets/const/protocol.py:60
 #, python-brace-format
 msgid ""
 "SFTP root directory, Support variable: <br>- ${ACCOUNT} The connected "
@@ -1601,15 +1600,15 @@ msgstr ""
 "ユーザー名<br>-${HOME}接続されたアカウントのホームディレクトリ<br>-${USER}"
 "ユーザーのユーザー名"
 
-#: assets/const/protocol.py:74
+#: assets/const/protocol.py:75
 msgid "Console"
 msgstr "Console"
 
-#: assets/const/protocol.py:75
+#: assets/const/protocol.py:76
 msgid "Connect to console session"
 msgstr "コンソールセッションに接続"
 
-#: assets/const/protocol.py:79
+#: assets/const/protocol.py:80
 msgid "Any"
 msgstr "任意"
 
@@ -1618,35 +1617,35 @@ msgstr "任意"
 msgid "Security"
 msgstr "セキュリティ"
 
-#: assets/const/protocol.py:82
+#: assets/const/protocol.py:83
 msgid "Security layer to use for the connection"
 msgstr "接続に使用するセキュリティ レイヤー"
 
-#: assets/const/protocol.py:88
+#: assets/const/protocol.py:89
 msgid "AD domain"
 msgstr "AD ドメイン"
 
-#: assets/const/protocol.py:103
+#: assets/const/protocol.py:104
 msgid "Username prompt"
 msgstr "ユーザー名プロンプト"
 
-#: assets/const/protocol.py:104
+#: assets/const/protocol.py:105
 msgid "We will send username when we see this prompt"
 msgstr "このプロンプトが表示されたらユーザー名を送信します"
 
-#: assets/const/protocol.py:109
+#: assets/const/protocol.py:110
 msgid "Password prompt"
 msgstr "パスワードプロンプト"
 
-#: assets/const/protocol.py:110
+#: assets/const/protocol.py:111
 msgid "We will send password when we see this prompt"
 msgstr "このプロンプトが表示されたらパスワードを送信します"
 
-#: assets/const/protocol.py:115
+#: assets/const/protocol.py:116
 msgid "Success prompt"
 msgstr "成功プロンプト"
 
-#: assets/const/protocol.py:116
+#: assets/const/protocol.py:117
 msgid "We will consider login success when we see this prompt"
 msgstr "このプロンプトが表示されたらログイン成功とみなします"
 
@@ -1655,36 +1654,36 @@ msgstr "このプロンプトが表示されたらログイン成功とみなし
 msgid "Use SSL"
 msgstr "SSLの使用"
 
-#: assets/const/protocol.py:162
+#: assets/const/protocol.py:163
 msgid "SYSDBA"
 msgstr "SYSDBA"
 
-#: assets/const/protocol.py:163
+#: assets/const/protocol.py:164
 msgid "Connect as SYSDBA"
 msgstr "SYSDBA として接続"
 
-#: assets/const/protocol.py:178
+#: assets/const/protocol.py:179
 msgid ""
 "SQL Server version, Different versions have different connection drivers"
 msgstr "SQL Server のバージョン。バージョンによって接続ドライバが異なります"
 
-#: assets/const/protocol.py:202
+#: assets/const/protocol.py:209
 msgid "Auth source"
 msgstr "認証データベース"
 
-#: assets/const/protocol.py:203
+#: assets/const/protocol.py:210
 msgid "The database to authenticate against"
 msgstr "認証するデータベース"
 
-#: assets/const/protocol.py:215
+#: assets/const/protocol.py:222
 msgid "Auth username"
 msgstr "ユーザー名で認証する"
 
-#: assets/const/protocol.py:238
+#: assets/const/protocol.py:245
 msgid "Safe mode"
 msgstr "安全モード"
 
-#: assets/const/protocol.py:240
+#: assets/const/protocol.py:247
 msgid ""
 "When safe mode is enabled, some operations will be disabled, such as: New "
 "tab, right click, visit other website, etc."
@@ -1692,24 +1691,24 @@ msgstr ""
 "安全モードが有効になっている場合、新しいタブ、右クリック、他のウェブサイトへ"
 "のアクセスなど、一部の操作が無効になります"
 
-#: assets/const/protocol.py:245 assets/models/asset/web.py:9
+#: assets/const/protocol.py:252 assets/models/asset/web.py:9
 #: assets/serializers/asset/info/spec.py:16
 msgid "Autofill"
 msgstr "自動充填"
 
-#: assets/const/protocol.py:253 assets/models/asset/web.py:10
+#: assets/const/protocol.py:260 assets/models/asset/web.py:10
 msgid "Username selector"
 msgstr "ユーザー名ピッカー"
 
-#: assets/const/protocol.py:258 assets/models/asset/web.py:11
+#: assets/const/protocol.py:265 assets/models/asset/web.py:11
 msgid "Password selector"
 msgstr "パスワードセレクター"
 
-#: assets/const/protocol.py:263 assets/models/asset/web.py:12
+#: assets/const/protocol.py:270 assets/models/asset/web.py:12
 msgid "Submit selector"
 msgstr "ボタンセレクターを確認する"
 
-#: assets/const/protocol.py:286
+#: assets/const/protocol.py:293
 msgid "API mode"
 msgstr "APIモード"
 
@@ -2487,22 +2486,27 @@ msgstr "承認"
 msgid "Close"
 msgstr "閉じる"
 
-#: audits/const.py:43 settings/serializers/terminal.py:6
+#: audits/const.py:41 ops/models/celery.py:84
+#: terminal/models/session/sharing.py:128 tickets/const.py:25
+msgid "Finished"
+msgstr "終了"
+
+#: audits/const.py:46 settings/serializers/terminal.py:6
 #: terminal/models/applet/host.py:26 terminal/models/component/terminal.py:175
 #: terminal/models/virtualapp/provider.py:14 terminal/serializers/session.py:55
 #: terminal/serializers/session.py:69
 msgid "Terminal"
 msgstr "ターミナル"
 
-#: audits/const.py:48 audits/models.py:132
+#: audits/const.py:51 audits/models.py:132
 msgid "Operate log"
 msgstr "ログの操作"
 
-#: audits/const.py:49
+#: audits/const.py:52
 msgid "Session log"
 msgstr "セッションログ"
 
-#: audits/const.py:50
+#: audits/const.py:53
 msgid "Login log"
 msgstr "ログインログ"
 
@@ -2512,7 +2516,7 @@ msgstr "ログインログ"
 msgid "Task"
 msgstr "タスク"
 
-#: audits/const.py:57
+#: audits/const.py:60
 msgid "-"
 msgstr "-"
 
@@ -2596,11 +2600,11 @@ msgstr "による変更"
 msgid "Password change log"
 msgstr "パスワード変更ログ"
 
-#: audits/models.py:190 audits/models.py:265
+#: audits/models.py:190 audits/models.py:267
 msgid "Login type"
 msgstr "ログインタイプ"
 
-#: audits/models.py:192 audits/models.py:261
+#: audits/models.py:192 audits/models.py:263
 #: tickets/models/ticket/login_confirm.py:10
 msgid "Login IP"
 msgstr "ログインIP"
@@ -2626,7 +2630,7 @@ msgstr "認証バックエンド"
 msgid "User login log"
 msgstr "ユーザーログインログ"
 
-#: audits/models.py:262
+#: audits/models.py:264
 msgid "Session key"
 msgstr "セッションID"
 
@@ -2638,7 +2642,7 @@ msgstr "日付ログイン"
 msgid "User session"
 msgstr "ユーザーセッション"
 
-#: audits/models.py:300
+#: audits/models.py:302
 msgid "Offline user session"
 msgstr "オフラインユーザセッション"
 
@@ -3918,13 +3922,21 @@ msgstr "このアクションでは、MFAの確認が必要です。"
 msgid "Unexpect error occur"
 msgstr "予期しないエラーが発生します"
 
-#: common/plugins/es.py:31
+#: common/plugins/es.py:35
 msgid "Invalid elasticsearch config"
 msgstr "無効なElasticsearch構成"
 
-#: common/plugins/es.py:36
+#: common/plugins/es.py:40
 msgid "Not Support Elasticsearch8"
 msgstr "サポートされていません Elasticsearch8"
+
+#: common/plugins/es.py:46
+msgid ""
+"Connection failed: Self-signed certificate used. Please check server "
+"certificate configuration"
+msgstr ""
+"接続失敗：自己署名証明書が使用されています，サーバーの証明書設定を確認してく"
+"ださい"
 
 #: common/sdk/im/exceptions.py:23
 msgid "Network error, please contact system administrator"
@@ -4196,7 +4208,7 @@ msgstr "タスク開始待ち"
 msgid "Task {} not found"
 msgstr "タスクは存在しません"
 
-#: ops/api/celery.py:267
+#: ops/api/celery.py:269
 msgid "Task {} args or kwargs error"
 msgstr "タスク実行パラメータエラー"
 
@@ -4658,6 +4670,10 @@ msgstr "組織のリソース ({}) は削除できません"
 #: orgs/apps.py:7
 msgid "App Organizations"
 msgstr "アプリ組織"
+
+#: orgs/mixins/models.py:48
+msgid "Please save in a org"
+msgstr "組織を選択してから保存してください"
 
 #: orgs/mixins/models.py:57 orgs/mixins/serializers.py:25 orgs/models.py:91
 #: rbac/const.py:7 rbac/models/rolebinding.py:56
@@ -5401,10 +5417,13 @@ msgstr "User DN キャッシュの有効期限 (秒)"
 #: settings/serializers/auth/ldap.py:92
 msgid ""
 "Caching the User DN obtained during user login authentication can "
-"effectivelyimprove the speed of user authentication., 0 means no cache"
+"effectivelyimprove the speed of user authentication., 0 means no cache<br>If "
+"the user OU structure has been adjusted, click Submit to clear the user DN "
+"cache"
 msgstr ""
 "ユーザーログイン認証時に取得したユーザー DN をキャッシュすることで、ユーザー"
-"認証の速度を効果的に向上させることができます"
+"認証の速度を効果的に向上させることができます<br>ユーザー OU 構造が調整された"
+"場合、送信をクリックしてユーザー DN キャッシュをクリアします"
 
 #: settings/serializers/auth/ldap.py:97
 msgid "Search paged size (piece)"

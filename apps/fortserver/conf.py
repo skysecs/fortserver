@@ -621,6 +621,8 @@ class Config(dict):
         'ANSIBLE_RECEPTOR_GATEWAY_PROXY_HOST': 'jms_celery',
         'ANSIBLE_RECEPTOR_TCP_LISTEN_ADDRESS': 'receptor:7521',
 
+        'FILE_UPLOAD_TEMP_DIR': None,
+
         'LOKI_LOG_ENABLED': False,
         'LOKI_BASE_URL': 'http://loki:3100',
 
