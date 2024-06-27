@@ -4099,7 +4099,7 @@ msgid "Your account has been created successfully"
 msgstr "アカウントが正常に作成されました"
 
 #: fortserver/context_processor.py:14
-msgid "fortserver Open Source Bastion Host"
+msgid "fortserver - An open-source PAM"
 msgstr "fortserver オープンソースの要塞ホスト"
 
 #: fortserver/views/celery_flower.py:22

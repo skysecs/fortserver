@@ -4050,7 +4050,7 @@ msgid "Your account has been created successfully"
 msgstr "你的账号已创建成功"
 
 #: fortserver/context_processor.py:14
-msgid "fortserver Open Source Bastion Host"
+msgid "fortserver - An open-source PAM"
 msgstr "fortserver 开源堡垒机"
 
 #: fortserver/views/celery_flower.py:22

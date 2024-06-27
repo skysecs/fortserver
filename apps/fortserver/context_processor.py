@@ -11,7 +11,7 @@ default_interface = dict((
     ('logo_index', static('img/logo_text_white.png')),
     ('login_image', static('img/login_image.png')),
     ('favicon', static('img/facio.ico')),
-    ('login_title', _('fortserver Open Source Bastion Host')),
+    ('login_title', _('fortserver - An open-source PAM')),
     ('theme', 'classic_green'),
     ('theme_info', {}),
     ('footer_content', ''),
