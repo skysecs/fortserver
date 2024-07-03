@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fortserver 0.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 15:09+0800\n"
+"POT-Creation-Date: 2024-07-03 16:39+0800\n"
 "PO-Revision-Date: 2021-05-20 10:54+0800\n"
 "Last-Translator: ibuler <ibuler@qq.com>\n"
 "Language-Team: fortserver team<ibuler@qq.com>\n"
@@ -31,7 +31,7 @@ msgstr "备份账号数量"
 
 #: accounts/automations/backup_account/handlers.py:131
 msgid "Generating asset or application related backup information files"
-msgstr ""
+msgstr "生成资产或应用相关备份信息文件"
 
 #: accounts/automations/backup_account/handlers.py:156
 #: accounts/automations/backup_account/handlers.py:295
@@ -1453,9 +1453,13 @@ msgstr "登录城市"
 msgid "User agent"
 msgstr "用户代理"
 
-#: assets/api/asset/asset.py:180
+#: assets/api/asset/asset.py:181
 msgid "Cannot create asset directly, you should create a host or other"
 msgstr "不能直接创建资产, 你应该创建主机或其他资产"
+
+#: assets/api/asset/asset.py:185
+msgid "The number of assets exceeds the limit of 5000"
+msgstr "资产数量超过了 5000 的限制"
 
 #: assets/api/domain.py:67
 msgid "Number required"
@@ -3857,7 +3861,7 @@ msgid "Invalid ids for ids, should be a list"
 msgstr "无效的ID，应为列表"
 
 #: common/db/fields.py:594 common/db/fields.py:599
-#: common/serializers/fields.py:142 tickets/serializers/ticket/common.py:58
+#: common/serializers/fields.py:147 tickets/serializers/ticket/common.py:58
 #: xpack/plugins/cloud/serializers/account_attrs.py:56
 #: xpack/plugins/cloud/serializers/account_attrs.py:79
 #: xpack/plugins/cloud/serializers/account_attrs.py:150
@@ -4038,25 +4042,25 @@ msgstr "节点"
 msgid "File"
 msgstr "文件"
 
-#: common/serializers/fields.py:135
+#: common/serializers/fields.py:140
 msgid "Invalid data type"
 msgstr "无效的数据"
 
-#: common/serializers/fields.py:143
+#: common/serializers/fields.py:148
 #, python-brace-format
 msgid "Invalid pk \"{pk_value}\" - object does not exist."
 msgstr "错误的 pk \"{pk_value}\" - 对象不存在"
 
-#: common/serializers/fields.py:144
+#: common/serializers/fields.py:149
 #, python-brace-format
 msgid "Incorrect type. Expected pk value, received {data_type}."
 msgstr "错误类型。期望 pk 值，收到 {data_type}。"
 
-#: common/serializers/fields.py:218
+#: common/serializers/fields.py:223
 msgid "Invalid data type, should be list"
 msgstr "错误的数据类型，应该是列表"
 
-#: common/serializers/fields.py:233
+#: common/serializers/fields.py:238
 msgid "Invalid choice: {}"
 msgstr "无效选项: {}"
 
@@ -6758,10 +6762,8 @@ msgid "This is enterprise edition applet"
 msgstr "企业版远程应用，在社区版中不能使用"
 
 #: terminal/api/applet/applet.py:91
-#, fuzzy
-#| msgid "Asset not found"
 msgid "Applet not found in path: {}"
-msgstr "资产不存在"
+msgstr "路径中未找到远程应用: {}"
 
 #: terminal/api/component/endpoint.py:32
 msgid "Not found protocol query params"
@@ -8416,7 +8418,7 @@ msgstr "两次密码不一致"
 
 #: users/serializers/preference/lina.py:47
 msgid "Language"
-msgstr ""
+msgstr "语言"
 
 #: users/serializers/preference/lina.py:52
 msgid "File Encryption"
@@ -9048,9 +9050,9 @@ msgid "Imported"
 msgstr "导入"
 
 #: xpack/plugins/cloud/manager.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Task \"%s\" starts executing"
-msgstr "任务 %s 开始执行"
+msgstr "任务 \"%s\" 开始执行"
 
 #: xpack/plugins/cloud/manager.py:81
 msgid "View the task details path: "
@@ -9094,20 +9096,19 @@ msgid ""
 msgstr "资产“%s”的更新平台与原平台类型不一致。跳过平台和协议更新"
 
 #: xpack/plugins/cloud/manager.py:390
-#, fuzzy, python-format
+#, python-format
 msgid "The asset \"%s\" already exists"
-msgstr "资产 %s 已存在"
+msgstr "资产 \"%s\" 已存在"
 
 #: xpack/plugins/cloud/manager.py:392
-#, fuzzy, python-format
-#| msgid "Update asset \"%s\""
+#, python-format
 msgid "Update asset \"%s\""
-msgstr "更新资产 %s"
+msgstr "更新资产 \"%s\""
 
 #: xpack/plugins/cloud/manager.py:395
-#, fuzzy, python-format
+#, python-format
 msgid "Asset \"%s\" has been updated"
-msgstr "资产 %s 已更新"
+msgstr "资产 \"%s\" 已更新"
 
 #: xpack/plugins/cloud/manager.py:405
 #, python-format
@@ -9115,9 +9116,9 @@ msgid "Prepare to create asset \"%s\""
 msgstr "准备创建资产 %s"
 
 #: xpack/plugins/cloud/manager.py:426
-#, fuzzy, python-format
+#, python-format
 msgid "Set nodes \"%s\""
-msgstr "删除节点: %s"
+msgstr "删除节点: \"%s\""
 
 #: xpack/plugins/cloud/manager.py:452
 #, python-format
@@ -9125,9 +9126,9 @@ msgid "Set accounts \"%s\""
 msgstr "删除账号: %s"
 
 #: xpack/plugins/cloud/manager.py:468
-#, fuzzy, python-format
+#, python-format
 msgid "Set protocols \"%s\""
-msgstr "设置协议 %s"
+msgstr "设置协议 \"%s\""
 
 #: xpack/plugins/cloud/manager.py:482 xpack/plugins/cloud/tasks.py:27
 msgid "Run sync instance task"
@@ -9410,10 +9411,8 @@ msgid "CN South-Guangzhou"
 msgstr "华南-广州"
 
 #: xpack/plugins/cloud/providers/baiducloud.py:60
-#, fuzzy
-#| msgid "CN Southwest-Guiyang1"
 msgid "CN Southwest-Chengdu"
-msgstr "西南-贵阳1"
+msgstr "西南地区-成都"
 
 #: xpack/plugins/cloud/providers/baiducloud.py:61
 #: xpack/plugins/cloud/providers/huaweicloud.py:54
