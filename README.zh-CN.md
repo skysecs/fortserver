@@ -12,13 +12,13 @@
 
 
 <p align="center">
-    9 年时间，倾情投入，用心做好一款开源堡垒机。
+    10 年时间，倾情投入，用心做好一款开源堡垒机。
 </p>
 
 ------------------------------
-fortserver 是广受欢迎的开源堡垒机，是符合 4A 规范的专业运维安全审计系统。
+## fortserver 是什么？
 
-fortserver 堡垒机帮助企业以更安全的方式管控和登录各种类型的资产，包括：
+fortserver 是广受欢迎的开源堡垒机，是符合 4A 规范的专业运维安全审计系统。fortserver 堡垒机帮助企业以更安全的方式管控和登录各种类型的资产，包括：
 
 - **SSH**: Linux / Unix / 网络设备 等；
 - **Windows**: Web 方式连接 / 原生 RDP 连接；
@@ -38,6 +38,13 @@ fortserver 堡垒机帮助企业以更安全的方式管控和登录各种类型
 - **多租户**: 一套系统，多个子公司或部门同时使用；
 - **云端存储**: 审计录像云端存储，永不丢失；
 
+## 快速开始
+
+- [快速入门](https://docs.fortserver.org/zh/v3/quick_start/)
+- [产品文档](https://docs.fortserver.org)
+- [在线学习](https://edu.fortserver.com/page/2635362)
+- [知识库](https://kb.fortserver.com/categories/fortserver)
+
 ## UI 展示
 
 ![UI展示](https://docs.fortserver.org/zh/v3/img/dashboard.png)
@@ -51,13 +58,6 @@ fortserver 堡垒机帮助企业以更安全的方式管控和登录各种类型
 | 该环境仅作体验目的使用，我们会定时清理、重置数据！    |
 | 请勿修改体验环境用户的密码！               |
 | 请勿在环境中添加业务生产环境地址、用户名密码等敏感信息！ |
-
-## 快速开始
-
-- [快速入门](https://docs.fortserver.org/zh/v3/quick_start/)
-- [产品文档](https://docs.fortserver.org)
-- [在线学习](https://edu.fortserver.com/page/2635362)
-- [知识库](https://kb.fortserver.com/categories/fortserver)
 
 ## 案例研究
 
@@ -81,28 +81,24 @@ fortserver 堡垒机帮助企业以更安全的方式管控和登录各种类型
 
 您也可以到我们的 [社区论坛](https://bbs.fortserver.com/c/js/5) 当中进行交流沟通。
 
-### 参与贡献
+## 参与贡献
 
 欢迎提交 PR 参与贡献。 参考 [CONTRIBUTING.md](https://github.com/fortserver/fortserver/blob/dev/CONTRIBUTING.md)
 
 ## 组件项目
 
-| 项目                                                     | 状态                                                                                                                                                                     | 描述                                                                                |
-|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserver Web UI 项目                                                              |
-| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserver Web Terminal 项目                                                        |
-| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserver 字符协议 Connector 项目                                                      |
-| [Lion](https://github.com/fortserver/lion-release)     | <a href="https://github.com/fortserver/lion-release/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion-release.svg" /></a>   | fortserver 图形协议 Connector 项目，依赖 [Apache Guacamole](https://guacamole.apache.org/) |
-| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-私有发布-red" />                                                                                                 | fortserver RDP 代理 Connector 项目                                                    |
-| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-私有发布-red" />                                                                                               | fortserver 远程应用 Connector 项目 (Windows)                                                      |
-| [Panda](https://github.com/fortserver/Panda)         | <img alt="Panda" src="https://img.shields.io/badge/release-私有发布-red" />                                                                                               | fortserver 远程应用 Connector 项目 (Linux)                                                      |
-| [Magnus](https://github.com/fortserver/magnus-release) | <a href="https://github.com/fortserver/magnus-release/releases"><img alt="Magnus release" src="https://img.shields.io/github/release/fortserver/magnus-release.svg" /> | fortserver 数据库代理 Connector 项目                                                     |
-| [Chen](https://github.com/fortserver/chen-release)     | <a href="https://github.com/fortserver/chen-release/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen-release.svg" />       | fortserver Web DB 项目，替代原来的 OmniDB                                                 |
-| [Kael](https://github.com/fortserver/kael)             | <a href="https://github.com/fortserver/kael/releases"><img alt="Kael release" src="https://img.shields.io/github/release/fortserver/kael.svg" />                       | fortserver 连接 GPT 资产的组件项目                                                         |
-| [Wisp](https://github.com/fortserver/wisp)             | <a href="https://github.com/fortserver/wisp/releases"><img alt="Magnus release" src="https://img.shields.io/github/release/fortserver/wisp.svg" />                     | fortserver 各系统终端组件和 Core API 通信的组件项目                                              |
-| [Clients](https://github.com/fortserver/clients)       | <a href="https://github.com/fortserver/clients/releases"><img alt="Clients release" src="https://img.shields.io/github/release/fortserver/clients.svg" />              | fortserver 客户端 项目                                                                 |
-| [Installer](https://github.com/fortserver/installer)   | <a href="https://github.com/fortserver/installer/releases"><img alt="Installer release" src="https://img.shields.io/github/release/fortserver/installer.svg" />        | fortserver 安装包 项目                                                                 |
 
+| Project                                                | Status                                                                                                                                                                 | Description                                                                                             |
+|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserver Web UI                                                                                       |
+| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserver Web Terminal                                                                                 |
+| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserver Character Protocol Connector                                                                 |
+| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserver Graphical Protocol Connector                                                                 |
+| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserver Web DB                                                                                       |  
+| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDP Proxy Connector                                                                          |
+| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EE Remote Application Connector (Windows)                                                       |
+| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EE Remote Application Connector (Linux)                                                         |
+| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EE Database Proxy Connector                                                                     |
 ## 安全说明
 
 fortserver是一款安全产品，请参考 [基本安全建议](https://docs.fortserver.org/zh/master/install/install_security/)
