@@ -15,7 +15,7 @@ class LarkSettingSerializer(serializers.Serializer):
     LARK_RENAME_ATTRIBUTES = serializers.JSONField(
         required=False, label=_('User attribute'),
         help_text=_(
-            "User attribute mapping, where the `key` is the CAS service user attribute name "
-            "and the `value` is the fortserver user attribute name"
+            'User attribute mapping, where the `key` is the fortserver user attribute name and the '
+            '`value` is the Lark service user attribute name'
         )
     )
