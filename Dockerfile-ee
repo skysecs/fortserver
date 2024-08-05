@@ -16,7 +16,9 @@ ARG TOOLS="                           \
         wget"
 
 ARG APT_MIRROR=http://deb.debian.org
-RUN set -ex \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=core \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=core \
+    set -ex \
     && rm -f /etc/apt/apt.conf.d/docker-clean \
     && echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache \
     && sed -i "s@http://.*.debian.org@${APT_MIRROR}@g" /etc/apt/sources.list \
@@ -24,12 +26,13 @@ RUN set -ex \
     && apt-get -y install --no-install-recommends ${TOOLS} \
     && echo "no" | dpkg-reconfigure dash
 
-WORKDIR /opt/fortserver
 
 ARG PIP_MIRROR=https://pypi.org/simple
-COPY poetry.lock pyproject.toml ./
-RUN set -ex \
-    && . /opt/py3/bin/activate \
+RUN --mount=type=bind,source=poetry.lock,target=/opt/fortserver/poetry.lock \
+    --mount=type=bind,source=pyproject.toml,target=/opt/fortserver/pyproject.toml \
+    set -ex \
+    . /opt/py3/bin/activate \
     && pip install poetry -i ${PIP_MIRROR} \
+    && poetry config repositories.mirror ${PIP_MIRROR} \
     && poetry install --only xpack
 
