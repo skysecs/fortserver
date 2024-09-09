@@ -1,5 +1,4 @@
 from django.db.models import Count
-from django_filters import rest_framework as filters
 from rest_framework import generics
 from rest_framework import serializers
 from rest_framework.decorators import action
@@ -15,14 +14,6 @@ from common.serializers import GroupedChoiceSerializer
 __all__ = ['AssetPlatformViewSet', 'PlatformAutomationMethodsApi', 'PlatformProtocolViewSet']
 
 
-class PlatformFilter(filters.FilterSet):
-    name__startswith = filters.CharFilter(field_name='name', lookup_expr='istartswith')
-
-    class Meta:
-        model = Platform
-        fields = ['name', 'category', 'type']
-
-
 class AssetPlatformViewSet(JMSModelViewSet):
     queryset = Platform.objects.all()
     serializer_classes = {
@@ -30,7 +21,7 @@ class AssetPlatformViewSet(JMSModelViewSet):
         'list': PlatformListSerializer,
         'categories': GroupedChoiceSerializer,
     }
-    filterset_class = PlatformFilter
+    filterset_fields = ['name', 'category', 'type']
     search_fields = ['name']
     ordering = ['-internal', 'name']
     rbac_perms = {

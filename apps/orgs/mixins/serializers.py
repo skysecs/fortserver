@@ -23,7 +23,7 @@ class OrgResourceSerializerMixin(serializers.Serializer):
     但是coco需要资产的org_id字段，所以修改为CharField类型
     """
     org_id = serializers.ReadOnlyField(default=get_current_org_id_for_serializer, label=_("Organization"))
-    org_name = serializers.CharField(label=_("Org name"), read_only=True)
+    org_name = serializers.ReadOnlyField(label=_("Org name"))
     add_org_fields = True
 
     def get_validators(self):

@@ -158,6 +158,7 @@ class Terminal(StorageMixin, TerminalStatusMixin, JMSBaseModel):
         self.user = None
         self.is_deleted = True
         self.save()
+        return
 
     def __str__(self):
         status = "Active"

@@ -38,15 +38,9 @@ class SuggestionMixin:
 class RenderToJsonMixin:
     @action(methods=[POST, PUT], detail=False, url_path='render-to-json')
     def render_to_json(self, request: Request, *args, **kwargs):
-        rows = request.data
-        if rows and isinstance(rows[0], dict):
-            first = list(rows[0].values())[0]
-            if first.startswith('#Help'):
-                rows.pop(0)
-
         data = {
             'title': (),
-            'data': rows,
+            'data': request.data,
         }
 
         jms_context = getattr(request, 'jms_context', {})
