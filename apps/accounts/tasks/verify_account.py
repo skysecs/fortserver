@@ -4,6 +4,7 @@ from django.utils.translation import gettext_noop
 
 from accounts.const import AutomationTypes
 from accounts.tasks.common import quickstart_automation_by_snapshot
+from assets.const import GATEWAY_NAME
 from common.utils import get_logger
 from orgs.utils import org_aware_func
 
@@ -31,13 +32,13 @@ def verify_accounts_connectivity_util(accounts, task_name):
     asset_ids = [a.asset_id for a in accounts]
     assets = Asset.objects.filter(id__in=asset_ids)
 
-    gateways = assets.gateways()
+    gateways = assets.filter(platform__name=GATEWAY_NAME)
     verify_connectivity_util(
         gateways, AutomationTypes.verify_gateway_account,
         accounts, task_name
     )
 
-    common_assets = assets.gateways(0)
+    common_assets = assets.exclude(platform__name=GATEWAY_NAME)
     verify_connectivity_util(
         common_assets, AutomationTypes.verify_account,
         accounts, task_name
