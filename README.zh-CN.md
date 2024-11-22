@@ -109,7 +109,7 @@ fortserver是一款安全产品，请参考 [基本安全建议](https://docs.fo
 
 ## License & Copyright
 
-Copyright (c) 2014-2024 fortserver fortserver, All rights reserved.
+Copyright (c) 2014-2024 fortserver, All rights reserved.
 
 Licensed under The GNU General Public License version 3 (GPLv3)  (the "License"); you may not use this file except in
 compliance with the License. You may obtain a copy of the License at
