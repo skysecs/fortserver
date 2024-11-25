@@ -25,7 +25,7 @@ default_context = {
     'LOGIN_WECOM_logo_logout': static('img/login_wecom_logo.png'),
     'LOGIN_DINGTALK_logo_logout': static('img/login_dingtalk_logo.png'),
     'LOGIN_FEISHU_logo_logout': static('img/login_feishu_logo.png'),
-    'COPYRIGHT': f'fortserver fortserver © 2014-{current_year}',
+    'COPYRIGHT': f'{_("fortserver")} © 2014-{current_year}',
     'INTERFACE': default_interface,
 }
 
