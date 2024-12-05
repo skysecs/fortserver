@@ -10,30 +10,30 @@
 [![][github-release-shield]][github-release-link]
 [![][github-stars-shield]][github-stars-link]
 
-[English](./README.md) · [中文(简体)](./readmes/README.zh-hans.md) · [中文(繁體)](./readmes/README.zh-hant.md) · [日本語](./readmes/README.ja.md) · [Português (Brasil)](./readmes/README.pt-br.md)
+[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md)
 
 </div>
 <br/>
 
 ## O que é o fortserver?
 
-fortserver é uma ferramenta de Gestão de Acesso Privilegiado (PAM) de código aberto que fornece às equipes de DevOps e TI acesso seguro e sob demanda a SSH, RDP, Kubernetes, Banco de Dados e pontos finais RemoteApp através de um navegador da web.
+fortserver é uma ferramenta de Gerenciamento de Acesso Privilegiado (PAM) de código aberto que fornece às equipes de DevOps e TI acesso sob demanda e seguro a SSH, RDP, Kubernetes, Banco de Dados e endpoints RemoteApp através de um navegador da web.
 
-![Visão Geral do fortserver](https://github.com/fortserver/fortserver/assets/32935519/35a371cb-8590-40ed-88ec-f351f8cf9045)
+![Visão geral do fortserver](https://github.com/fortserver/fortserver/assets/32935519/35a371cb-8590-40ed-88ec-f351f8cf9045)
 
-## Início Rápido
+## Começando Rápido
 
-Prepare um Servidor Linux limpo ( 64 bits, >= 4c8g )
+Prepare um servidor Linux limpo (64 bits, >= 4c8g)
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Acesse o fortserver no seu navegador em `http://seu-fortserver-ip/`
+Acesse o fortserver no seu navegador em `http://your-fortserver-ip/`
 - Nome de usuário: `admin`
 - Senha: `ChangeMe`
 
-[![Início Rápido do fortserver](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "Início Rápido do fortserver")
+[![fortserver Começando Rápido](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "fortserver Começando Rápido")
 
 ## Capturas de Tela
 
@@ -60,21 +60,21 @@ Acesse o fortserver no seu navegador em `http://seu-fortserver-ip/`
 
 ## Componentes
 
-fortserver consiste em vários componentes-chave, que formam coletivamente a estrutura funcional do fortserver, fornecendo aos usuários capacidades abrangentes para gestão de operações e controle de segurança.
+fortserver consiste em múltiplos componentes-chave, que em conjunto formam a estrutura funcional do fortserver, fornecendo aos usuários capacidades abrangentes para gerenciamento de operações e controle de segurança.
 
-| Projeto                                                | Status                                                                                                                                                                 | Descrição                                                                                             |
-|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | Interface Web do fortserver                                                                             |
-| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | Terminal Web do fortserver                                                                                |
-| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | Conector de Protocolo de Caractere do fortserver                                                       |
-| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | Conector de Protocolo Gráfico do fortserver                                                            |
-| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | Banco de Dados Web do fortserver                                                                         |  
-| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | Conector Proxy RDP do fortserver EE                                                                      |
-| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | Conector de Aplicativo Remoto do fortserver EE (Windows)                                               |
-| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | Conector de Aplicativo Remoto do fortserver EE (Linux)                                                |
-| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | Conector Proxy de Banco de Dados do fortserver EE                                                       |
-| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | Conector Proxy VNC do fortserver EE                                                                      |
-| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | Reconhecimento Facial do fortserver EE                                                                   |
+| Projeto                                               | Status                                                                                                                                                                 | Descrição                                                                                             |
+|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| [Lina](https://github.com/fortserver/lina)            | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | Interface do Usuário Web do fortserver                                                                  |
+| [Luna](https://github.com/fortserver/luna)            | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | Terminal Web do fortserver                                                                               |
+| [KoKo](https://github.com/fortserver/koko)            | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | Conector do Protocolo de Caracteres do fortserver                                                       |
+| [Lion](https://github.com/fortserver/lion)            | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | Conector do Protocolo Gráfico do fortserver                                                               |
+| [Chen](https://github.com/fortserver/chen)            | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | Banco de Dados Web do fortserver                                                                          |  
+| [Razor](https://github.com/fortserver/razor)          | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                             | Conector Proxy RDP do fortserver EE                                                                      |
+| [Tinker](https://github.com/fortserver/tinker)        | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                           | Conector de Aplicativo Remoto do fortserver EE (Windows)                                                |
+| [Panda](https://github.com/fortserver/Panda)          | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                            | Conector de Aplicativo Remoto do fortserver EE (Linux)                                                  |
+| [Magnus](https://github.com/fortserver/magnus)        | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | Conector Proxy de Banco de Dados do fortserver EE                                                        |
+| [Nec](https://github.com/fortserver/nec)              | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | Conector Proxy VNC do fortserver EE                                                                       |
+| [Facelive](https://github.com/fortserver/facelive)    | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | Reconhecimento Facial do fortserver EE                                                                    |
 
 
 ## Contribuindo
@@ -83,9 +83,9 @@ Bem-vindo para enviar PR para contribuir. Por favor, consulte [CONTRIBUTING.md][
 
 ## Segurança
 
-fortserver é um produto crítico para a missão. Por favor, consulte as Recomendações Básicas de Segurança para instalação e implantação. Se você encontrar qualquer problema relacionado à segurança, entre em contato conosco diretamente:
+fortserver é um produto crítico para a missão. Por favor, consulte as Recomendações Básicas de Segurança para instalação e implantação. Se você encontrar quaisquer problemas relacionados à segurança, entre em contato conosco diretamente:
 
-- E-mail: support@fortserver.com
+- Email: support@fortserver.com
 
 ## License
 
