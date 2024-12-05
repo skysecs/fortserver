@@ -2,6 +2,19 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.org/index-en.html"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
+## An open-source PAM tool (Bastion Host)
+
+[![][license-shield]][license-link]
+[![][discord-shield]][discord-link]
+[![][docker-shield]][docker-link]
+[![][github-release-shield]][github-release-link]
+[![][github-stars-shield]][github-stars-link]
+
+[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md)
+
+</div>
+<br/>
+
 ## fortserver 是什么？
 
 fortserver 是一个开源的特权访问管理 (PAM) 工具，提供 DevOps 和 IT 团队通过网页浏览器对 SSH、RDP、Kubernetes、数据库和 RemoteApp 终端的按需和安全访问。
