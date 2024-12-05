@@ -2,7 +2,7 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.org/index-en.html"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
-## 一個開源的 PAM 工具（堡壘主機）
+## An open-source PAM tool (Bastion Host)
 
 [![][license-shield]][license-link]
 [![][discord-shield]][discord-link]
