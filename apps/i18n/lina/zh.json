@@ -1265,7 +1265,7 @@
     "TestConnection": "测试连接",
     "TestGatewayHelpMessage": "如果使用了nat端口映射，请设置为ssh真实监听的端口",
     "TestGatewayTestConnection": "测试连接网关",
-    "TestLdapLoginTitle": "测试LDAP 用户登录",
+    "TestLdapLoginTitle": "测试 LDAP 用户登录",
     "TestNodeAssetConnectivity": "测试资产节点可连接性",
     "TestPortErrorMsg": "端口错误,请重新输入",
     "TestSelected": "测试所选",
@@ -1429,5 +1429,7 @@
     "forceEnableMFAHelpText": "如果强制启用，用户无法自行禁用",
     "removeWarningMsg": "你确定要移除",
     "setVariable": "设置参数",
-    "VerifyFace": "验证人脸"
+    "VerifyFace": "验证人脸",
+    "ServerBusyRetry": "服务器繁忙，请稍后再试。",
+    "DeeplyThoughtAbout": "已深度思考"
 }
