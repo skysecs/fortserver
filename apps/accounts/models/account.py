@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from simple_history.models import HistoricalRecords
 
@@ -167,10 +166,6 @@ class Account(AbsConnectivity, LabeledMixin, BaseAccount):
             return v.replace('{%', '{{ "{%" }}').replace('%}', '{{ "%}" }}')
 
         return escape(value)
-
-    def update_last_login_date(self):
-        self.date_last_login = timezone.now()
-        self.save(update_fields=['date_last_login'])
 
 
 def replace_history_model_with_mixin():

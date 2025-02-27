@@ -7,7 +7,6 @@ from django_filters import rest_framework as drf_filters
 from assets.models import Node
 from common.drf.filters import BaseFilterSet
 from common.utils.timezone import local_zero_hour, local_now
-from .const.automation import ChangeSecretRecordStatusChoice
 from .models import Account, GatheredAccount, ChangeSecretRecord, PushSecretRecord, IntegrationApplication
 
 
@@ -105,11 +104,11 @@ class AccountFilterSet(BaseFilterSet):
 
         if name == "latest_secret_change_failed":
             queryset = queryset.filter(date_change_secret__gt=date).exclude(
-                change_secret_status=ChangeSecretRecordStatusChoice.success
+                change_secret_status="ok"
             )
 
         if kwargs:
-            queryset = queryset.filter(**kwargs)
+            queryset = queryset.filter(date_last_login__gte=date)
         return queryset
 
     @staticmethod
