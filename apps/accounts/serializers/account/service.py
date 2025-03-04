@@ -24,7 +24,6 @@ class IntegrationApplicationSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'comment': {'label': _('Comment')},
             'name': {'label': _('Name')},
-            'accounts_amount': {'label': _('Accounts amount')},
             'is_active': {'default': True},
         }
 
