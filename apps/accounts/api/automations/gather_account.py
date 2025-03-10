@@ -95,7 +95,6 @@ class GatheredAccountViewSet(OrgBulkModelViewSet):
         updated_instances.update(status=new_status)
         if new_status == "confirmed":
             GatheredAccount.sync_accounts(updated_instances)
-            updated_instances.update(present=True)
 
         return Response(status=status.HTTP_200_OK)
 

@@ -52,7 +52,10 @@ class PushAccountRecordViewSet(mixins.ListModelMixin, OrgGenericViewSet):
     }
 
     def get_queryset(self):
-        return PushSecretRecord.get_valid_records()
+        qs = PushSecretRecord.get_valid_records()
+        return qs.filter(
+            execution__automation__type=self.tp
+        )
 
 
 class PushAccountAssetsListApi(AutomationAssetsListApi):

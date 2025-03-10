@@ -171,8 +171,4 @@ class RiskHandler:
         }
         execution.save()
         execution.start()
-
-        GatheredAccount.objects.filter(asset=self.asset, username=self.username).update(
-            present=True
-        )
         return execution.summary

@@ -43,7 +43,6 @@ class AutomationExecutionSerializer(serializers.ModelSerializer):
     snapshot = serializers.SerializerMethodField(label=_('Automation snapshot'))
     trigger = LabeledChoiceField(choices=Trigger.choices, read_only=True, label=_("Trigger mode"))
     status = LabeledChoiceField(choices=Status.choices, read_only=True, label=_('Status'))
-    automation = ObjectRelatedField(required=False, queryset=BaseAutomation.objects, attrs=('id', 'name'))
 
     class Meta:
         model = AutomationExecution

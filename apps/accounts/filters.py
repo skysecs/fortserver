@@ -150,7 +150,7 @@ class GatheredAccountFilterSet(BaseFilterSet):
         fields = ["id", "username"]
 
 
-class SecretRecordMixin(drf_filters.FilterSet):
+class SecretRecordMixin:
     asset_name = drf_filters.CharFilter(
         field_name="asset__name", lookup_expr="icontains"
     )
