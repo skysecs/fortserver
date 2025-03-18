@@ -8,6 +8,9 @@ __all__ = ['AnsibleNativeRunner']
 
 
 class AnsibleNativeRunner(BaseRunner):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     @classmethod
     def kill_precess(cls, pid):
         return kill_ansible_ssh_process(pid)
