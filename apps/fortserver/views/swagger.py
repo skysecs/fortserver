@@ -54,7 +54,7 @@ api_info = openapi.Info(
     default_version='v1',
     description="fortserver Restful api docs",
     terms_of_service="https://www.fortserver.org",
-    contact=openapi.Contact(email="support@fortserver.com"),
+    contact=openapi.Contact(email="support@lxware.hk"),
     license=openapi.License(name="GPLv3 License"),
 )
 
