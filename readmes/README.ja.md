@@ -2,44 +2,51 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
-## オープンソースPAMツール (バスティオンホスト)
+## オープンソースのPAMツール (バスティオンホスト)
 
 </div>
 <br/>
 
 ## fortserverとは？
 
-fortserverは、DevOpsおよびITチームに対して、SSH、RDP、Kubernetes、データベース、およびRemoteAppエンドポイントへのオンデマンドで安全なアクセスをウェブブラウザを介して提供するオープンソースの特権アクセス管理（PAM）ツールです。
+fortserverは、DevOpsおよびITチームに対して、SSH、RDP、Kubernetes、データベース、リモートアプリケーションエンドポイントへのオンデマンドかつ安全なアクセスをウェブブラウザを通じて提供するオープンソースの特権アクセス管理 (PAM) ツールです。
 
-![fortserverの概要](https://github.com/fortserver/fortserver/assets/32935519/35a371cb-8590-40ed-88ec-f351f8cf9045)
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/28676212-2bc4-4a9f-ae10-3be9320647e3">
+  <img src="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f" alt="テーマに基づく画像">
+</picture>
+
 
 ## クイックスタート
 
-クリーンなLinuxサーバーを準備してください (64ビット, >= 4c8g)
+クリーンなLinuxサーバーを準備します (64ビット, >= 4c8g)
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-ブラウザでfortserverにアクセス `http://your-fortserver-ip/`
+ブラウザでfortserverにアクセスします `http://your-fortserver-ip/`
 - ユーザー名: `admin`
 - パスワード: `ChangeMe`
 
-[![fortserverのクイックスタート](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "fortserverのクイックスタート")
+[![fortserver クイックスタート](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "fortserver クイックスタート")
 
 ## スクリーンショット
-
 <table style="border-collapse: collapse; border: 1px solid black;">
   <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/99fabe5b-0475-4a53-9116-4c370a1426c4" alt="fortserverコンソール"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/a424d731-1c70-4108-a7d8-5bbf387dda9a" alt="fortserver監査"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/99fabe5b-0475-4a53-9116-4c370a1426c4" alt="fortserver コンソール"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/7c1f81af-37e8-4f07-8ac9-182895e1062e" alt="fortserver PAM"   /></td>    
   </tr>
-
   <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/393d2c27-a2d0-4dea-882d-00ed509e00c9" alt="fortserverワークベンチ"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/3a2611cd-8902-49b8-b82b-2a6dac851f3e" alt="fortserver設定"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/a424d731-1c70-4108-a7d8-5bbf387dda9a" alt="fortserver 監査"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/393d2c27-a2d0-4dea-882d-00ed509e00c9" alt="fortserver 作業台"   /></td>
   </tr>
-
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/eaa41f66-8cc8-4f01-a001-0d258501f1c9" alt="fortserver RBAC"   /></td>     
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/3a2611cd-8902-49b8-b82b-2a6dac851f3e" alt="fortserver 設定"   /></td>
+  </tr>
   <tr>
     <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/1e236093-31f7-4563-8eb1-e36d865f1568" alt="fortserver SSH"   /></td>
     <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/69373a82-f7ab-41e8-b763-bbad2ba52167" alt="fortserver RDP"   /></td>
@@ -52,34 +59,28 @@ curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quic
 
 ## コンポーネント
 
-fortserverは、ユーザーに運用管理とセキュリティ制御の包括的な能力を提供する機能的フレームワークを形成する複数の主要コンポーネントで構成されています。
+fortserverは複数の主要コンポーネントで構成されており、全体としてfortserverの機能フレームワークを形成し、ユーザーに対して運用管理およびセキュリティ制御の包括的な機能を提供します。
 
-| プロジェクト                                              | ステータス                                                                                                                                                                 | 説明                                                                                             |
-|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| プロジェクト                                            | ステータス                                                                                                                                                                 | 説明                                                                                                      |
+|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Linaのリリース" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserverウェブUI                                                                                       |
-| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Lunaのリリース" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserverウェブターミナル                                                                                 |
-| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Kokoのリリース" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserverキャラクタープロトコルコネクタ                                                                 |
-| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lionのリリース" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserverグラフィカルプロトコルコネクタ                                                                 |
-| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chenのリリース" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserverウェブDB                                                                                       |  
-| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserverリモートアプリケーションコネクタ (Windows)                                                    |
-| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EEリモートアプリケーションコネクタ (Linux)                                                      |
-| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDPプロキシコネクタ                                                                       |
-| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EEデータベースプロキシコネクタ                                                                  |
-| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | fortserver EE VNCプロキシコネクタ                                                                       |
-| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | fortserver EE顔認識                                                                                     |
+| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Lunaのリリース" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserverウェブ端末                                                                                     |
+| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Kokoのリリース" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserverキャラクタプロトコルコネクタ                                                                   |
+| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lionのリリース" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserverグラフィカルプロトコルコネクタ                                                                  |
+| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chenのリリース" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserverウェブデータベース                                                                                |  
+| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserverリモートアプリケーションコネクタ (Windows)                                                |
+| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EEリモートアプリケーションコネクタ (Linux)                                                   |
+| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDPプロキシコネクタ                                                                         |
+| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EEデータベースプロキシコネクタ                                                                  |
+| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | fortserver EE VNCプロキシコネクタ                                                                         |
+| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | fortserver EE顔認識                                                                                       |
 
 
-## コントリビューション
+## 貢献
 
-プルリクエストをお待ちしております。ガイドラインについては[CONTRIBUTING.md][contributing-link]を参照してください。
+貢献するためにPRを提出することを歓迎します。ガイドラインについては[CONTRIBUTING.md][contributing-link]を参照してください。
 
-## セキュリティ
-
-fortserverはミッションクリティカルな製品です。インストールおよびデプロイメントのための基本的なセキュリティ推奨事項を参照してください。セキュリティ関連の問題に遭遇した場合は、直接お問い合わせください：
-
-- Eメール: support@fortserver.com
-
-## License
+## ライセンス
 
 Copyright (c) 2014-2025 fortserver, All rights reserved.
 
@@ -107,5 +108,3 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [docker-shield]: https://img.shields.io/docker/pulls/fortserver/jms_all.svg
 [license-shield]: https://img.shields.io/github/license/fortserver/fortserver
 [discord-shield]: https://img.shields.io/discord/1194233267294052363?style=flat&logo=discord&logoColor=%23f5f5f5&labelColor=%235462eb&color=%235462eb
-
-<!-- Image link -->

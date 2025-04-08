@@ -9,58 +9,65 @@
 
 ## ¿Qué es fortserver?
 
-fortserver es una herramienta de Gestión de Acceso Privilegiado (PAM) de código abierto que proporciona a los equipos de DevOps e IT acceso seguro y bajo demanda a SSH, RDP, Kubernetes, Bases de Datos y puntos finales de RemoteApp a través de un navegador web.
+fortserver es una herramienta de Gestión de Acceso Privilegiado (PAM) de código abierto que proporciona a los equipos de DevOps e IT acceso seguro y bajo demanda a SSH, RDP, Kubernetes, bases de datos y puntos finales de RemoteApp a través de un navegador web.
 
-![fortserver Overview](https://github.com/fortserver/fortserver/assets/32935519/35a371cb-8590-40ed-88ec-f351f8cf9045)
 
-## Inicio rápido
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/28676212-2bc4-4a9f-ae10-3be9320647e3">
+  <img src="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f" alt="Imagen basada en el tema">
+</picture>
 
-Prepara un servidor Linux limpio (64 bits, >= 4c8g)
+
+## Inicio Rápido
+
+Prepara un Servidor Linux limpio ( 64 bits, >= 4c8g )
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Accede a fortserver en tu navegador en `http://tu-ip-de-fortserver/`
+Accede a fortserver en tu navegador en `http://your-fortserver-ip/`
 - Nombre de usuario: `admin`
 - Contraseña: `ChangeMe`
 
-[![fortserver Quickstart](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "fortserver Quickstart")
+[![fortserver Inicio Rápido](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "fortserver Inicio Rápido")
 
-## Capturas de pantalla
-
+## Capturas de Pantalla
 <table style="border-collapse: collapse; border: 1px solid black;">
   <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/99fabe5b-0475-4a53-9116-4c370a1426c4" alt="fortserver Console"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/a424d731-1c70-4108-a7d8-5bbf387dda9a" alt="fortserver Audits"   /></td>
-  </tr>
-
-  <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/393d2c27-a2d0-4dea-882d-00ed509e00c9" alt="fortserver Workbench"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/3a2611cd-8902-49b8-b82b-2a6dac851f3e" alt="fortserver Settings"   /></td>
-  </tr>
-
-  <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/1e236093-31f7-4563-8eb1-e36d865f1568" alt="fortserver SSH"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/69373a82-f7ab-41e8-b763-bbad2ba52167" alt="fortserver RDP"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/99fabe5b-0475-4a53-9116-4c370a1426c4" alt="Consola fortserver"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/7c1f81af-37e8-4f07-8ac9-182895e1062e" alt="fortserver PAM"   /></td>    
   </tr>
   <tr>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/5bed98c6-cbe8-4073-9597-d53c69dc3957" alt="fortserver K8s"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/b80ad654-548f-42bc-ba3d-c1cfdf1b46d6" alt="fortserver DB"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/a424d731-1c70-4108-a7d8-5bbf387dda9a" alt="Auditorías fortserver"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/393d2c27-a2d0-4dea-882d-00ed509e00c9" alt="Taller fortserver"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/eaa41f66-8cc8-4f01-a001-0d258501f1c9" alt="RBAC fortserver"   /></td>     
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/3a2611cd-8902-49b8-b82b-2a6dac851f3e" alt="Configuraciones fortserver"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/1e236093-31f7-4563-8eb1-e36d865f1568" alt="SSH fortserver"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/69373a82-f7ab-41e8-b763-bbad2ba52167" alt="RDP fortserver"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/5bed98c6-cbe8-4073-9597-d53c69dc3957" alt="K8s fortserver"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/b80ad654-548f-42bc-ba3d-c1cfdf1b46d6" alt="DB fortserver"   /></td>
   </tr>
 </table>
 
 ## Componentes
 
-fortserver consta de múltiples componentes clave, que en conjunto forman el marco funcional de fortserver, brindando a los usuarios capacidades integrales para la gestión de operaciones y el control de seguridad.
+fortserver consta de múltiples componentes clave, que en conjunto forman el marco funcional de fortserver, proporcionando a los usuarios capacidades integrales para la gestión de operaciones y control de seguridad.
 
 | Proyecto                                                | Estado                                                                                                                                                                 | Descripción                                                                                             |
 |--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | Interfaz Web de fortserver                                                                                       |
-| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | Terminal Web de fortserver                                                                                 |
-| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | Conector del Protocolo de Caracteres de fortserver                                                                 |
-| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | Conector de Protocolo Gráfico de fortserver                                                                 |
-| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | Base de Datos Web de fortserver                                                                                       |  
+| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lanzamiento de Lina" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | Interfaz Web de fortserver                                                                                       |
+| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Lanzamiento de Luna" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | Terminal Web de fortserver                                                                                 |
+| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Lanzamiento de Koko" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | Conector de Protocolo de Carácter de fortserver                                                                 |
+| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lanzamiento de Lion" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | Conector de Protocolo Gráfico de fortserver                                                                 |
+| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Lanzamiento de Chen" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | Base de Datos Web de fortserver                                                                                       |  
 | [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | Conector de Aplicación Remota de fortserver (Windows)                                                    |
 | [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | Conector de Aplicación Remota EE de fortserver (Linux)                                                      |
 | [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | Conector Proxy RDP EE de fortserver                                                                       |
@@ -71,13 +78,7 @@ fortserver consta de múltiples componentes clave, que en conjunto forman el mar
 
 ## Contribuyendo
 
-Bienvenido a enviar PR para contribuir. Consulta [CONTRIBUTING.md][contributing-link] para obtener pautas.
-
-## Seguridad
-
-fortserver es un producto crítico para la misión. Consulta las Recomendaciones de Seguridad Básicas para la instalación y el despliegue. Si encuentras algún problema relacionado con la seguridad, por favor contáctanos directamente:
-
-- Correo electrónico: support@fortserver.com
+Bienvenido a enviar PR para contribuir. Por favor, consulta [CONTRIBUTING.md][contributing-link] para las pautas.
 
 ## License
 
@@ -107,5 +108,3 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [docker-shield]: https://img.shields.io/docker/pulls/fortserver/jms_all.svg
 [license-shield]: https://img.shields.io/github/license/fortserver/fortserver
 [discord-shield]: https://img.shields.io/discord/1194233267294052363?style=flat&logo=discord&logoColor=%23f5f5f5&labelColor=%235462eb&color=%235462eb
-
-<!-- Image link -->
