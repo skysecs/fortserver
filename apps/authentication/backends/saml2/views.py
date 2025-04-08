@@ -136,7 +136,7 @@ class PrepareRequestMixin:
                 "en": {
                     "name": "fortserver",
                     "displayname": "fortserver",
-                    "url": "https://fortserver.org/"
+                    "url": "https://fortserver.com/"
                 }
             },
         }

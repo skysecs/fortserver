@@ -393,7 +393,7 @@ class Config(dict):
                 "en": {
                     "name": "fortserver",
                     "displayname": "fortserver",
-                    "url": "https://fortserver.org/"
+                    "url": "https://fortserver.com/"
                 }
             },
             "strict": True,

@@ -26,7 +26,7 @@ class ServicesUtil(object):
 
     def start_and_watch(self):
         logging.info(time.ctime())
-        logging.info(f'fortserver version {__version__}, more see https://www.fortserver.org')
+        logging.info(f'fortserver version {__version__}, more see https://www.fortserver.com')
         self.start()
         if self.run_daemon:
             self.show_status()

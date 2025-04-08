@@ -7,8 +7,8 @@ license = "GPLv3"
 readme = "README.md"
 package-mode = false
 repository = "https://github.com/fortserver/fortserver"
-homepage = "https://www.fortserver.org"
-documentation = "https://docs.fortserver.org"
+homepage = "https://www.fortserver.com"
+documentation = "https://www.fortserver.com/docs"
 
 # 说明
 # poetry install (社区版)
