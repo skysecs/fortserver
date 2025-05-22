@@ -13,8 +13,8 @@ fortserver is an open-source Privileged Access Management (PAM) tool that provid
 
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f">
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/28676212-2bc4-4a9f-ae10-3be9320647e3">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.fortserver.com/images/fortserver-arch-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.fortserver.com/images/fortserver-arch-dark.png">
   <img src="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f" alt="Theme-based Image">
 </picture>
 
@@ -93,6 +93,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 <!-- fortserver official link -->
 [docs-link]: https://fortserver.com/docs
 [discord-link]: https://discord.com/invite/W6vYXmAQG2
+[deepwiki-link]: https://deepwiki.com/fortserver/fortserver/
 [contributing-link]: https://github.com/fortserver/fortserver/blob/dev/CONTRIBUTING.md
 
 <!-- fortserver Other link-->
@@ -103,8 +104,10 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [github-issues-link]: https://github.com/fortserver/fortserver/issues
 
 <!-- Shield link-->
+[docs-shield]: https://img.shields.io/badge/documentation-148F76
 [github-release-shield]: https://img.shields.io/github/v/release/fortserver/fortserver
-[github-stars-shield]: https://img.shields.io/github/stars/fortserver/fortserver?color=%231890FF&style=flat-square
+[github-stars-shield]: https://img.shields.io/github/stars/fortserver/fortserver?color=%231890FF&style=flat-square   
 [docker-shield]: https://img.shields.io/docker/pulls/fortserver/jms_all.svg
 [license-shield]: https://img.shields.io/github/license/fortserver/fortserver
+[deepwiki-shield]: https://img.shields.io/badge/deepwiki-devin?color=blue
 [discord-shield]: https://img.shields.io/discord/1194233267294052363?style=flat&logo=discord&logoColor=%23f5f5f5&labelColor=%235462eb&color=%235462eb
