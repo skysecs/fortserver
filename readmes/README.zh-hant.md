@@ -9,24 +9,25 @@
 
 ## 什麼是 fortserver？
 
-fortserver 是一款開源的特權訪問管理 (PAM) 工具，為 DevOps 和 IT 團隊提供按需和安全的 SSH、RDP、Kubernetes、數據庫和 RemoteApp 端點的訪問，通過網頁瀏覽器實現。
+fortserver 是一款開源的特權訪問管理 (PAM) 工具，為 DevOps 和 IT 團隊提供通過網頁瀏覽器按需且安全地訪問 SSH、RDP、Kubernetes、資料庫和遠端應用端點的能力。
+
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f">
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/28676212-2bc4-4a9f-ae10-3be9320647e3">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.fortserver.com/images/fortserver-arch-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.fortserver.com/images/fortserver-arch-dark.png">
   <img src="https://github.com/user-attachments/assets/dd612f3d-c958-4f84-b164-f31b75454d7f" alt="Theme-based Image">
 </picture>
 
 
 ## 快速開始
 
-準備一臺乾淨的 Linux 伺服器 (64位，>= 4c8g)
+準備一台乾淨的 Linux 伺服器 (64 位，>= 4c8g)
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-在瀏覽器中訪問 fortserver，網址為 `http://your-fortserver-ip/`
+在您的瀏覽器中訪問 fortserver：`http://your-fortserver-ip/`
 - 用戶名：`admin`
 - 密碼：`ChangeMe`
 
@@ -52,34 +53,34 @@ curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quic
   </tr>
   <tr>
     <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/5bed98c6-cbe8-4073-9597-d53c69dc3957" alt="fortserver K8s"   /></td>
-    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/b80ad654-548f-42bc-ba3d-c1cfdf1b46d6" alt="fortserver 數據庫"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/b80ad654-548f-42bc-ba3d-c1cfdf1b46d6" alt="fortserver DB"   /></td>
   </tr>
 </table>
 
 ## 組件
 
-fortserver 由多個關鍵組件組成，這些組件共同構成了 fortserver 的功能框架，為用戶提供全方位的操作管理和安全控制能力。
+fortserver 由多個關鍵組件組成，這些組件共同構成 fortserver 的功能框架，為用戶提供全面的運營管理和安全控制能力。
 
-| 項目                                                    | 狀態                                                                                                                                                                 | 描述                                                                                                   |
-|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina 版本" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserver 網頁 UI                                                                                   |
-| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna 版本" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserver 網頁終端                                                                                   |
-| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko 版本" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserver 字元協議連接器                                                                             |
-| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion 版本" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserver 圖形協議連接器                                                                             |
-| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen 版本" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserver 網頁數據庫                                                                                 |  
-| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver 遠程應用程式連接器 (Windows)                                                              |
-| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EE 遠程應用程式連接器 (Linux)                                                              |
-| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDP 代理連接器                                                                          |
-| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EE 數據庫代理連接器                                                                        |
-| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | fortserver EE VNC 代理連接器                                                                          |
-| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | fortserver EE 人臉識別                                                                                |
+| 專案                                                  | 狀態                                                                                                                                                                 | 描述                                                                                             |
+|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserver 網頁介面                                                                                       |
+| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserver 網頁終端                                                                                 |
+| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserver 字元協議連接器                                                                 |
+| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserver 圖形協議連接器                                                                 |
+| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserver 網頁資料庫                                                                                       |  
+| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver 遠端應用連接器 (Windows)                                                    |
+| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EE 遠端應用連接器 (Linux)                                                      |
+| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDP 代理連接器                                                                       |
+| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EE 資料庫代理連接器                                                                  |
+| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | fortserver EE VNC 代理連接器                                                                       |
+| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | fortserver EE 臉部識別                                                                        |
 
 
 ## 貢獻
 
-歡迎提交 PR 來貢獻。請參閱 [CONTRIBUTING.md][contributing-link] 以獲取指南。
+歡迎提交 PR 以作貢獻。請參考 [CONTRIBUTING.md][contributing-link] 獲取指導。
 
-## License
+## 授權
 
 Copyright (c) 2014-2025 fortserver, All rights reserved.
 
@@ -92,6 +93,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 <!-- fortserver official link -->
 [docs-link]: https://fortserver.com/docs
 [discord-link]: https://discord.com/invite/W6vYXmAQG2
+[deepwiki-link]: https://deepwiki.com/fortserver/fortserver/
 [contributing-link]: https://github.com/fortserver/fortserver/blob/dev/CONTRIBUTING.md
 
 <!-- fortserver Other link-->
@@ -102,8 +104,10 @@ Unless required by applicable law or agreed to in writing, software distributed 
 [github-issues-link]: https://github.com/fortserver/fortserver/issues
 
 <!-- Shield link-->
+[docs-shield]: https://img.shields.io/badge/documentation-148F76
 [github-release-shield]: https://img.shields.io/github/v/release/fortserver/fortserver
-[github-stars-shield]: https://img.shields.io/github/stars/fortserver/fortserver?color=%231890FF&style=flat-square
+[github-stars-shield]: https://img.shields.io/github/stars/fortserver/fortserver?color=%231890FF&style=flat-square   
 [docker-shield]: https://img.shields.io/docker/pulls/fortserver/jms_all.svg
 [license-shield]: https://img.shields.io/github/license/fortserver/fortserver
+[deepwiki-shield]: https://img.shields.io/badge/deepwiki-devin?color=blue
 [discord-shield]: https://img.shields.io/discord/1194233267294052363?style=flat&logo=discord&logoColor=%23f5f5f5&labelColor=%235462eb&color=%235462eb

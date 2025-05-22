@@ -2,14 +2,14 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
-## Uma ferramenta de PAM de código aberto (Bastion Host)
+## 오픈 소스 PAM 도구 (Bastion Host)
 
 </div>
 <br/>
 
-## O que é o fortserver?
+## fortserver란 무엇인가요?
 
-fortserver é uma ferramenta de Gestão de Acesso Privilegiado (PAM) de código aberto que fornece aos times de DevOps e TI acesso sob demanda e seguro a SSH, RDP, Kubernetes, Database e endpoints RemoteApp através de um navegador web.
+fortserver는 DevOps 및 IT 팀이 웹 브라우저를 통해 SSH, RDP, Kubernetes, 데이터베이스 및 RemoteApp 엔드포인트에 대한 온디맨드 및 안전한 액세스를 제공하는 오픈 소스 권한 있는 액세스 관리(PAM) 도구입니다.
 
 
 <picture>
@@ -19,21 +19,21 @@ fortserver é uma ferramenta de Gestão de Acesso Privilegiado (PAM) de código 
 </picture>
 
 
-## Começando Rápido
+## 빠른 시작
 
-Prepare um servidor Linux limpo (64 bits, >= 4c8g)
+깨끗한 리눅스 서버를 준비하세요 (64비트, >= 4c8g)
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Acesse o fortserver em seu navegador em `http://your-fortserver-ip/`
-- Nome de usuário: `admin`
-- Senha: `ChangeMe`
+브라우저에서 fortserver에 접속하세요 `http://your-fortserver-ip/`
+- 사용자 이름: `admin`
+- 비밀번호: `ChangeMe`
 
 [![fortserver Quickstart](https://github.com/user-attachments/assets/0f32f52b-9935-485e-8534-336c63389612)](https://www.youtube.com/watch?v=UlGYRbKrpgY "fortserver Quickstart")
 
-## Capturas de Tela
+## 스크린샷
 <table style="border-collapse: collapse; border: 1px solid black;">
   <tr>
     <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/fortserver/fortserver/assets/32935519/99fabe5b-0475-4a53-9116-4c370a1426c4" alt="fortserver Console"   /></td>
@@ -57,28 +57,28 @@ Acesse o fortserver em seu navegador em `http://your-fortserver-ip/`
   </tr>
 </table>
 
-## Componentes
+## 구성 요소
 
-fortserver consiste em múltiplos componentes chave, que formam coletivamente a estrutura funcional do fortserver, proporcionando aos usuários capacidades abrangentes para gerenciamento de operações e controle de segurança.
+fortserver는 여러 주요 구성 요소로 구성되어 있으며, 이들은 집합적으로 fortserver의 기능적 프레임워크를 형성하여 사용자가 운영 관리 및 보안 제어를 위한 포괄적인 기능을 제공합니다.
 
-| Projeto                                                | Status                                                                                                                                                                 | Descrição                                                                                             |
+| 프로젝트                                                 | 상태                                                                                                                                                                 | 설명                                                                                             |
 |--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserver Web UI                                                                                       |
-| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserver Web Terminal                                                                                 |
-| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserver Character Protocol Connector                                                                 |
-| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserver Graphical Protocol Connector                                                                 |
-| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserver Web DB                                                                                       |  
-| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver Remote Application Connector (Windows)                                                    |
-| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EE Remote Application Connector (Linux)                                                      |
-| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDP Proxy Connector                                                                       |
-| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EE Database Proxy Connector                                                                  |
-| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | fortserver EE VNC Proxy Connector                                                                       |
-| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | fortserver EE Facial Recognition                                                                        |
+| [Lina](https://github.com/fortserver/lina)             | <a href="https://github.com/fortserver/lina/releases"><img alt="Lina release" src="https://img.shields.io/github/release/fortserver/lina.svg" /></a>                   | fortserver 웹 UI                                                                                     |
+| [Luna](https://github.com/fortserver/luna)             | <a href="https://github.com/fortserver/luna/releases"><img alt="Luna release" src="https://img.shields.io/github/release/fortserver/luna.svg" /></a>                   | fortserver 웹 터미널                                                                                 |
+| [KoKo](https://github.com/fortserver/koko)             | <a href="https://github.com/fortserver/koko/releases"><img alt="Koko release" src="https://img.shields.io/github/release/fortserver/koko.svg" /></a>                   | fortserver 문자 프로토콜 커넥터                                                                     |
+| [Lion](https://github.com/fortserver/lion)             | <a href="https://github.com/fortserver/lion/releases"><img alt="Lion release" src="https://img.shields.io/github/release/fortserver/lion.svg" /></a>                   | fortserver 그래픽 프로토콜 커넥터                                                                   |
+| [Chen](https://github.com/fortserver/chen)             | <a href="https://github.com/fortserver/chen/releases"><img alt="Chen release" src="https://img.shields.io/github/release/fortserver/chen.svg" />                       | fortserver 웹 DB                                                                                     |  
+| [Tinker](https://github.com/fortserver/tinker)         | <img alt="Tinker" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver 원격 응용 프로그램 커넥터 (Windows)                                                    |
+| [Panda](https://github.com/fortserver/Panda)           | <img alt="Panda" src="https://img.shields.io/badge/release-private-red" />                                                                                             | fortserver EE 원격 응용 프로그램 커넥터 (Linux)                                                      |
+| [Razor](https://github.com/fortserver/razor)           | <img alt="Chen" src="https://img.shields.io/badge/release-private-red" />                                                                                              | fortserver EE RDP 프록시 커넥터                                                                      |
+| [Magnus](https://github.com/fortserver/magnus)         | <img alt="Magnus" src="https://img.shields.io/badge/release-private-red" />                                                                                            | fortserver EE 데이터베이스 프록시 커넥터                                                             |
+| [Nec](https://github.com/fortserver/nec)               | <img alt="Nec" src="https://img.shields.io/badge/release-private-red" />                                                                                               | fortserver EE VNC 프록시 커넥터                                                                      |
+| [Facelive](https://github.com/fortserver/facelive)     | <img alt="Facelive" src="https://img.shields.io/badge/release-private-red" />                                                                                          | fortserver EE 얼굴 인식                                                                               |
 
 
-## Contribuindo
+## 기여하기
 
-Bem-vindo para enviar PR para contribuir. Por favor, consulte [CONTRIBUTING.md][contributing-link] para diretrizes.
+기여하기 위해 PR을 제출하는 것을 환영합니다. 가이드는 [CONTRIBUTING.md][contributing-link]를 참조하십시오.
 
 ## License
 
