@@ -9,4 +9,3 @@
       vars:
         ansible_user: "{{ account.full_username }}"
         ansible_password: "{{ account.secret }}"
-        ansible_timeout: 30

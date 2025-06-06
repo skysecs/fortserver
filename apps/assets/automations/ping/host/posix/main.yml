@@ -1,7 +1,5 @@
 - hosts: demo
   gather_facts: no
-  vars:
-    ansible_timeout: 30
   tasks:
     - name: Posix ping
       ansible.builtin.ping:

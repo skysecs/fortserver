@@ -46,7 +46,7 @@ class DatabaseSerializer(AssetSerializer):
         elif self.context.get('request'):
             platform_id = self.context['request'].query_params.get('platform')
 
-        if not platform and platform_id and platform_id.isdigit():
+        if not platform and platform_id:
             platform = Platform.objects.filter(id=platform_id).first()
         return platform
 

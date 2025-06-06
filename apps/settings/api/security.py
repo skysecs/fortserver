@@ -4,9 +4,8 @@ from django.conf import settings
 from django.core.cache import cache
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.views import Response
-from rest_framework_bulk.generics import BulkModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
-from common.drf.filters import IDSpmFilterBackend
 from users.utils import LoginIpBlockUtil
 from ..models import LeakPasswords
 from ..serializers import SecurityBlockIPSerializer, LeakPasswordPSerializer
@@ -61,7 +60,7 @@ class UnlockIPSecurityAPI(CreateAPIView):
         return Response(status=200)
 
 
-class LeakPasswordViewSet(BulkModelViewSet):
+class LeakPasswordViewSet(ModelViewSet):
     serializer_class = LeakPasswordPSerializer
     model = LeakPasswords
     rbac_perms = {
@@ -72,11 +71,3 @@ class LeakPasswordViewSet(BulkModelViewSet):
 
     def get_queryset(self):
         return LeakPasswords.objects.using('sqlite').all()
-
-    def allow_bulk_destroy(self, qs, filtered):
-        return True
-
-    def filter_queryset(self, queryset):
-        queryset = super().filter_queryset(queryset)
-        queryset = IDSpmFilterBackend().filter_queryset(self.request, queryset, self)
-        return queryset

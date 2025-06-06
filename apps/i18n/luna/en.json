@@ -147,7 +147,7 @@
     "RDP Client": "RDP Client",
     "RDP File": "RDP File",
     "RDP client options": "RDP client options",
-    "RDP color quality": "RDP Color Quality",
+    "RDP color quality": "RDP color quality",
     "RDP connection speed": "RDP connection speed",
     "RDP resolution": "RDP resolution",
     "RDP smart size": "RDP smart size",
@@ -237,8 +237,5 @@
     "success": "Success",
     "system user": "System user",
     "user": "User",
-    "VerificationFailed": "Verification failed",
-    "BatchCommands": "Batch commands",
-    "SendCommandPlaceholder": "Input command here..., Enter for new line, Ctrl+Enter to send",
-    "SelectCommand": "Please select the command to execute."
+    "VerificationFailed": "Verification failed"
 }
