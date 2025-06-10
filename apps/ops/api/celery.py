@@ -109,6 +109,7 @@ class CelerySummaryAPIView(generics.RetrieveAPIView):
 
 
 class CeleryTaskFilterSet(BaseFilterSet):
+    id = drf_filters.CharFilter(field_name='id', lookup_expr='exact')
     name = drf_filters.CharFilter(method='filter_name')
 
     @staticmethod
@@ -126,7 +127,7 @@ class CeleryTaskFilterSet(BaseFilterSet):
 
     class Meta:
         model = CeleryTask
-        fields = ['name']
+        fields = ['id', 'name']
 
 
 class CeleryTaskViewSet(
@@ -134,7 +135,7 @@ class CeleryTaskViewSet(
     mixins.ListModelMixin, mixins.DestroyModelMixin,
     viewsets.GenericViewSet
 ):
-    search_fields = ('name',)
+    search_fields = ('id', 'name')
     filterset_class = CeleryTaskFilterSet
     serializer_class = CeleryTaskSerializer
 
@@ -205,14 +206,6 @@ class CeleryTaskViewSet(
             i.state = summary_state_dict.get(i.name, {}).get('state', 'green')
         return queryset
 
-    def filter_queryset(self, queryset):
-        search = self.request.query_params.get('search')
-        if search:
-            queryset = CeleryTaskFilterSet.filter_name(queryset, 'name', search)
-        else:
-            queryset = super().filter_queryset(queryset)
-        return queryset
-
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
         queryset = self.mark_periodic_and_sorted(queryset)
@@ -248,7 +241,7 @@ class CeleryTaskExecutionViewSet(CommonApiMixin, viewsets.ModelViewSet):
     serializer_class = CeleryTaskExecutionSerializer
     http_method_names = ('get', 'post', 'head', 'options',)
     queryset = CeleryTaskExecution.objects.all()
-    search_fields = ('id',)
+    search_fields = ('name',)
 
     def get_queryset(self):
         task_id = self.request.query_params.get('task_id')

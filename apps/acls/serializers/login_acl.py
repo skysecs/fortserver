@@ -22,8 +22,7 @@ class LoginACLSerializer(BaseUserACLSerializer, BulkOrgResourceModelSerializer):
             ActionChoices.warning,
             ActionChoices.notify_and_warn,
             ActionChoices.face_online,
-            ActionChoices.face_verify,
-            ActionChoices.change_secret
+            ActionChoices.face_verify
         ]
 
     def get_rules_serializer(self):

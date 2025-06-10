@@ -33,10 +33,7 @@ class CommandFilterACLSerializer(BaseSerializer, BulkOrgResourceModelSerializer)
         model = CommandFilterACL
         fields = BaseSerializer.Meta.fields + ['command_groups']
         action_choices_exclude = [
-            ActionChoices.notice,
-            ActionChoices.face_verify,
-            ActionChoices.face_online,
-            ActionChoices.change_secret
+            ActionChoices.notice, ActionChoices.face_verify, ActionChoices.face_online
         ]
 
 
