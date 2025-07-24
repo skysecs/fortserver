@@ -172,6 +172,7 @@ MIDDLEWARE = [
     'authentication.middleware.ThirdPartyLoginMiddleware',
     'authentication.middleware.SessionCookieMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    'fortserver.middleware.SafeRedirectMiddleware',
     'fortserver.middleware.EndMiddleware',
 ]
 
