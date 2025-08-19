@@ -161,7 +161,6 @@ Homepage = "https://www.fortserver.com"
 Documentation = "https://www.fortserver.com/docs"
 
 [tool.uv]
-resolution = "lowest-direct"
 default-groups = ["xpack"]
 
 
