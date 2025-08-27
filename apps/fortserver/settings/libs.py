@@ -49,21 +49,44 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'fortserver.rewriting.pagination.MaxLimitOffsetPagination',
     'PAGE_SIZE': CONFIG.DEFAULT_PAGE_SIZE,
     'EXCEPTION_HANDLER': 'common.drf.exc_handlers.common_exception_handler',
+    'DEFAULT_SCHEMA_CLASS': 'fortserver.views.schema.CustomAutoSchema',
 }
 
-SWAGGER_SETTINGS = {
-    'DEFAULT_AUTO_SCHEMA_CLASS': 'fortserver.views.swagger.CustomSwaggerAutoSchema',
-    'USE_SESSION_AUTH': True,
-    'SECURITY_DEFINITIONS': {
-        'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-        }
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'fortserver API Docs',
+    'DESCRIPTION': 'fortserver Restful api docs',
+    'VERSION': 'v1',
+    'LICENSE': {
+        'name': 'GPLv3 License',
+        'url': 'https://www.gnu.org/licenses/gpl-3.0.html',
     },
-    'DEFAULT_INFO': 'fortserver.views.swagger.api_info',
+    'CONTACT': {
+        'name': 'fortserver',
+        'url': 'https://fortserver.org',
+        'email': 'support@fortserver.org',
+    },
+    "SERVE_INCLUDE_SCHEMA": False,
+    'SERVE_PUBLIC': True,
+    'BASE_PATH': '/api/v1/',
+    'SCHEMA_PATH_PREFIX': '/api/v1/',
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'SWAGGER_UI_OAUTH2_REDIRECT_URL': 'SIDECAR',
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_GENERATOR_CLASS': 'fortserver.views.schema.CustomSchemaGenerator',
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,
+        'displayOperationId': True,
+    },
+    # 添加自定义字段扩展
+    'SERIALIZER_EXTENSIONS': [
+        'fortserver.views.schema.ObjectRelatedFieldExtension',
+        'fortserver.views.schema.LabeledChoiceFieldExtension',
+        'fortserver.views.schema.BitChoicesFieldExtension',
+        'fortserver.views.schema.LabelRelatedFieldExtension',
+    ],
+    'SECURITY': [{'Bearer': []}],
 }
-
 # Captcha settings, more see https://django-simple-captcha.readthedocs.io/en/latest/advanced.html
 CAPTCHA_IMAGE_SIZE = (180, 38)
 CAPTCHA_FOREGROUND_COLOR = '#001100'
