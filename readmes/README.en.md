@@ -2,14 +2,14 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
-## An open-source PAM tool (Bastion Host)
+## An open-source PAM platform (Bastion Host)
 
 </div>
 <br/>
 
 ## What is fortserver?
 
-fortserver is an open-source Privileged Access Management (PAM) tool that provides DevOps and IT teams with on-demand and secure access to SSH, RDP, Kubernetes, Database and RemoteApp endpoints through a web browser.
+fortserver is an open-source Privileged Access Management (PAM) platform that provides DevOps and IT teams with on-demand and secure access to SSH, RDP, Kubernetes, Database and RemoteApp endpoints through a web browser.
 
 
 <picture>
