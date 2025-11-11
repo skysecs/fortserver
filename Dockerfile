@@ -1,4 +1,4 @@
-FROM fortserver/core-base:20251111_055730 AS stage-build
+FROM fortserver/core-base:20251111_065955 AS stage-build
 
 ARG VERSION
 
