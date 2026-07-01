@@ -1585,7 +1585,7 @@
     "Variable": "Variáveis",
     "VariableHelpText": "Você pode usar {{ key }} no comando para ler a variável integrada",
     "VariableName": " Nome da variável ",
-    "VaultHCPMountPoint": "Ponto de montagem do servidor Vault, padrão é fortserver",
+    "VaultHCPMountPoint": "Ponto de montagem do servidor Vault, padrão é pam",
     "VaultHelpText": "1. Por razões de segurança, é necessário adicionar os parâmetros VAULT_ENABLED=true e VAULT_BACKEND=hcp/azure/aws no arquivo de configuração para ativar o armazenamento Vault.<br>2. Depois de ativado, preencha as outras configurações e faça o teste.<br>3. Proceda com a sincronização de dados, a sincronização é unidirecional, sincronizará apenas do banco de dados local para o Vault remoto, após a conclusão da sincronização, o banco de dados local não armazenará mais a senha, por favor, faça backup dos dados.<br>4. Após a segunda modificação da configuração do Vault, é necessário reiniciar o serviço.",
     "VerificationCodeSent": "O código de verificação foi enviado",
     "VerifyFace": " Verificar rosto ",

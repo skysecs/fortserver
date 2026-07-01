@@ -1584,7 +1584,7 @@
     "Variable": "Variable",
     "VariableHelpText": "Puede usar {{ key }} en el comando para leer variables integradas",
     "VariableName": "Nombre de variable",
-    "VaultHCPMountPoint": "Punto de montaje del servidor Vault, por defecto fortserver",
+    "VaultHCPMountPoint": "Punto de montaje del servidor Vault, por defecto pam",
     "VaultHelpText": "1. Por razones de seguridad, es necesario activar el almacenamiento Vault en el archivo de configuración. <br>2. Una vez activado, complete las otras configuraciones y realice pruebas. <br>3. Realice una sincronización de datos; la sincronización es unidireccional, solo se sincronizará desde la base de datos local hacia el Vault remoto. Al completar la sincronización, la base de datos local dejará de almacenar la contraseña, por favor, respalde bien los datos. <br>4. Después de realizar una segunda modificación en la configuración de Vault, es necesario reiniciar el servicio.",
     "VerificationCodeSent": "Se ha enviado el código de verificación",
     "VerifyFace": "Verificación facial",

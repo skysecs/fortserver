@@ -288,7 +288,7 @@ class Config(dict):
 
         'VAULT_HCP_HOST': '',
         'VAULT_HCP_TOKEN': '',
-        'VAULT_HCP_MOUNT_POINT': 'fortserver',
+        'VAULT_HCP_MOUNT_POINT': 'pam',
 
         'VAULT_AZURE_HOST': '',
         'VAULT_AZURE_CLIENT_ID': '',
