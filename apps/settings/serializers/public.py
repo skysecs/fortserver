@@ -12,7 +12,6 @@ class PublicSettingSerializer(serializers.Serializer):
     XPACK_ENABLED = serializers.BooleanField()
     INTERFACE = serializers.DictField()
     LANGUAGES = serializers.ListField()
-    VENDOR = serializers.CharField()
 
 
 class PrivateSettingSerializer(PublicSettingSerializer):
@@ -93,7 +92,7 @@ class PrivateSettingSerializer(PublicSettingSerializer):
     REMOTE_APP_STORE_URL = serializers.CharField()
     VENDOR = serializers.CharField()
 
-    AUTH_UKEY = serializers.BooleanField()
+    AUTH_CERT = serializers.BooleanField()
 
 
 class ServerInfoSerializer(serializers.Serializer):

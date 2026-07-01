@@ -20,11 +20,9 @@ from elasticsearch7 import Elasticsearch
 from elasticsearch7.helpers import bulk
 from elasticsearch7.exceptions import RequestError, SSLError
 from elasticsearch7.exceptions import NotFoundError as NotFoundError7
-from elasticsearch7.exceptions import UnsupportedProductError as UnsupportedProductError7
 
 from elasticsearch8.exceptions import NotFoundError as NotFoundError8
 from elasticsearch8.exceptions import BadRequestError
-from elasticsearch8.exceptions import UnsupportedProductError as UnsupportedProductError8
 
 from common.utils.common import lazyproperty
 from common.utils import get_logger
@@ -33,20 +31,10 @@ from common.exceptions import JMSException
 
 logger = get_logger(__file__)
 
-UNSUPPORTED_PRODUCT_ERRORS = (
-    UnsupportedProductError7,
-    UnsupportedProductError8,
-)
-
 
 class InvalidElasticsearch(JMSException):
     default_code = 'invalid_elasticsearch'
     default_detail = _('Invalid elasticsearch config')
-
-
-class InvalidElasticsearchProduct(JMSException):
-    default_code = 'invalid_elasticsearch_product'
-    default_detail = _('The server is not Elasticsearch or this product is not supported')
 
 
 class NotSupportElasticsearch8(JMSException):
@@ -122,13 +110,6 @@ class ESClientV8(ESClientBase):
         return sorts
 
 
-def raise_invalid_elasticsearch(exc):
-    logger.warning('Elasticsearch validation failed: %s', exc)
-    if isinstance(exc, UNSUPPORTED_PRODUCT_ERRORS):
-        raise InvalidElasticsearchProduct
-    raise InvalidElasticsearch
-
-
 def get_es_client_version(**kwargs):
     try:
         es = Elasticsearch(**kwargs)
@@ -138,7 +119,7 @@ def get_es_client_version(**kwargs):
     except SSLError:
         raise InvalidElasticsearchSSL
     except Exception as e:
-        raise_invalid_elasticsearch(e)
+        raise InvalidElasticsearch(e)
 
 
 class ES(object):
@@ -158,7 +139,7 @@ class ES(object):
         try:
             self.client = ESClient(hosts=hosts, max_retries=0, **kwargs)
         except Exception as e:
-            raise_invalid_elasticsearch(e)
+            raise InvalidElasticsearch(e)
         self.es = self.client.es
         self.index_prefix = self.config.get('INDEX') or 'fortserver'
         self.is_index_by_date = bool(self.config.get('INDEX_BY_DATE', False))

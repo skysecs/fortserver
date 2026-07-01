@@ -1,13 +1,12 @@
 from .base.device import Device
 from enum import Enum
 
-from common.sdk.gm import piico, ccupm, sctu
+from common.sdk.gm import piico, ccupm
 
 
 class CryptoVendor(Enum):
     PIICO = "piico"
     CCUPM = "ccupm"
-    SCTU = "sctu"
 
     @classmethod
     def from_str(cls, name: str):
@@ -25,7 +24,5 @@ def open_gm_device(vendor: CryptoVendor) -> Device:
         return piico.PiicoDevice()
     elif vendor is CryptoVendor.CCUPM:
         return ccupm.CCUPMDevice()
-    elif vendor is CryptoVendor.SCTU:
-        return sctu.SCTUDevice()
     else:
         raise Exception("UnSupported HSM")

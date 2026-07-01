@@ -82,7 +82,7 @@ urlpatterns = [
     path('openid/', include(('authentication.backends.oidc.urls', 'authentication'), namespace='openid')),
     path('saml2/', include(('authentication.backends.saml2.urls', 'authentication'), namespace='saml2')),
     path('oauth2/', include(('authentication.backends.oauth2.urls', 'authentication'), namespace='oauth2')),
-    path('ukey/', include(('authentication.backends.ukey.view_urls', 'authentication'), namespace='ukey')),
+    path('cert/', include(('authentication.backends.cert.view_urls', 'authentication'), namespace='cert')),
 
     path('captcha/', include('captcha.urls')),
 

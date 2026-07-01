@@ -4,10 +4,10 @@ import sys
 
 from django.conf import settings
 
-from fortserver.const import CONFIG
+from apps.fortserver.const import CONFIG
 
 try:
-    from fortserver import const
+    from apps.fortserver import const
 
     __version__ = const.VERSION
 except ImportError as e:

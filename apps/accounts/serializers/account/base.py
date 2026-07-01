@@ -4,9 +4,7 @@ from rest_framework import serializers
 
 from accounts.const import SecretType
 from accounts.models import BaseAccount
-from accounts.utils import (
-    validate_account_username, validate_password_for_ansible, validate_ssh_key
-)
+from accounts.utils import validate_password_for_ansible, validate_ssh_key
 from common.serializers import ResourceLabelsMixin
 from common.serializers.fields import EncryptedField, LabeledChoiceField
 from orgs.mixins.serializers import BulkOrgResourceModelSerializer
@@ -73,10 +71,6 @@ class BaseAccountSerializer(
     AuthValidateMixin, ResourceLabelsMixin, BulkOrgResourceModelSerializer
 ):
     spec_info = serializers.DictField(label=_('Spec info'), read_only=True)
-
-    @staticmethod
-    def validate_username(value):
-        return validate_account_username(value)
 
     class Meta:
         model = BaseAccount

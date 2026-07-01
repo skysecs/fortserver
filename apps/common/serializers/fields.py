@@ -137,14 +137,7 @@ class LabelRelatedField(serializers.RelatedField):
                 k, v = [x.strip() for x in data.split(":", 1)]
             else:
                 raise serializers.ValidationError(_("Invalid data type"))
-            from labels.serializers import LabelSerializer
-
-            validated = LabelSerializer.validate_name_value(k, v)
-            label, __ = Label.objects.get_or_create(
-                name=validated['name'],
-                value=validated['value'],
-                defaults=validated,
-            )
+            label, __ = Label.objects.get_or_create(name=k, value=v, defaults={'name': k, 'value': v})
         return LabeledResource(label=label)
 
 

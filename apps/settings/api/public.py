@@ -33,8 +33,7 @@ class OpenPublicSettingApi(generics.RetrieveAPIView):
                     'other_codes': Language.get_other_codes(code),
                 }
                 for code, title in Language.choices_supported()
-            ],
-            "VENDOR": settings.VENDOR,
+            ]
         }
 
 

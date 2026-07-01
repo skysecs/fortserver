@@ -13,7 +13,6 @@ from accounts.models import (
 )
 from accounts.serializers import AuthValidateMixin, PasswordRulesSerializer
 from assets.models import Asset
-from common.serializers import SecretReadableCheckMixin
 from common.serializers.fields import LabeledChoiceField, ObjectRelatedField
 from common.utils import get_logger
 from .base import BaseAutomationSerializer
@@ -135,13 +134,12 @@ class ChangeSecretRecordSerializer(serializers.ModelSerializer):
         return obj.status == ChangeSecretRecordStatusChoice.success
 
 
-class ChangeSecretRecordViewSecretSerializer(SecretReadableCheckMixin, serializers.ModelSerializer):
+class ChangeSecretRecordViewSecretSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChangeSecretRecord
         fields = [
             'id', 'old_secret', 'new_secret',
         ]
-        secret_fields = ['old_secret', 'new_secret']
         read_only_fields = fields
 
 

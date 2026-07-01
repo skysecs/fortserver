@@ -2,7 +2,6 @@ import datetime
 import os
 import re
 import shutil
-import uuid
 
 import yaml
 from django.conf import settings
@@ -29,8 +28,7 @@ class DeployAppletHostManager:
     def get_run_dir():
         base = os.path.join(settings.ANSIBLE_DIR, "applet_host_deploy")
         now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-        suffix = uuid.uuid4().hex[:8]
-        return os.path.join(base, f"{now}_{suffix}")
+        return os.path.join(base, now)
 
     def run(self, **kwargs):
         self._run(self._run_initial_deploy, **kwargs)
@@ -133,18 +131,14 @@ class DeployAppletHostManager:
         playbook_dst = os.path.join(playbook_dir, "main.yml")
         os.makedirs(playbook_dir, exist_ok=True)
         with open(playbook_dst, "w") as f:
-            yaml.safe_dump(plays, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+            yaml.safe_dump(plays, f)
         return playbook_dst
 
     def _run_playbook(self, generate_playbook: callable, **kwargs):
         inventory = self.generate_inventory()
         playbook = generate_playbook()
         runner = SuperPlaybookRunner(
-            inventory=inventory,
-            playbook=playbook,
-            project_dir=self.run_dir,
-            safety_mode="playbook_unsafe",
-            inventory_safety="json_escape",
+            inventory=inventory, playbook=playbook, project_dir=self.run_dir
         )
         return runner.run(**kwargs)
 

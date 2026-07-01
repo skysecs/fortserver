@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 10:17+0800\n"
+"POT-Creation-Date: 2026-05-25 14:02+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: accounts/api/account/account.py:193
-#: accounts/serializers/account/account.py:182
-#: accounts/serializers/account/account.py:363
+#: accounts/serializers/account/account.py:181
+#: accounts/serializers/account/account.py:358
 msgid "Account already exists"
 msgstr "계정이 이미 존재합니다"
 
-#: accounts/api/account/account.py:281
+#: accounts/api/account/account.py:258
 msgid "No valid assets found for account creation."
 msgstr "계정 생성을 위한 유효한 자산을 찾을 수 없습니다."
 
 #: accounts/api/account/application.py:87
-#: authentication/api/connection_token.py:468
+#: authentication/api/connection_token.py:463
 msgid "Account not found"
 msgstr "계정을 찾을 수 없습니다"
 
@@ -142,7 +143,7 @@ msgid ">>> Start executing the task to test gateway account connectivity"
 msgstr ">>> 테스트 게이트웨이 계정 연결성 작업 시작"
 
 #: accounts/const/account.py:6
-#: accounts/serializers/automations/change_secret.py:37
+#: accounts/serializers/automations/change_secret.py:36
 #: audits/signal_handlers/login_log.py:34 authentication/confirm/password.py:25
 #: authentication/confirm/password.py:27 authentication/const.py:13
 #: authentication/forms.py:28
@@ -162,7 +163,7 @@ msgid "Password"
 msgstr "비밀번호"
 
 #: accounts/const/account.py:7
-#: accounts/serializers/automations/change_secret.py:38
+#: accounts/serializers/automations/change_secret.py:37
 #: authentication/models/ssh_key.py:27 terminal/serializers/storage.py:124
 msgid "SSH key"
 msgstr "SSH 키"
@@ -210,7 +211,7 @@ msgstr "데이터베이스"
 msgid "Discovery"
 msgstr "발견"
 
-#: accounts/const/account.py:28 accounts/serializers/account/account.py:29
+#: accounts/const/account.py:28 accounts/serializers/account/account.py:28
 #: settings/serializers/auth/sms.py:84
 msgid "Template"
 msgstr "템플릿"
@@ -225,7 +226,7 @@ msgid "Update"
 msgstr "업데이트"
 
 #: accounts/const/account.py:34 accounts/const/automation.py:115
-#: accounts/serializers/automations/change_secret.py:173 audits/const.py:66
+#: accounts/serializers/automations/change_secret.py:171 audits/const.py:66
 #: audits/signal_handlers/activity_log.py:34 common/const/choices.py:67
 #: ops/const.py:77 terminal/const.py:81 xpack/plugins/cloud/const.py:55
 msgid "Failed"
@@ -346,7 +347,7 @@ msgid "SFTP"
 msgstr "SFTP"
 
 #: accounts/const/automation.py:116
-#: accounts/serializers/automations/change_secret.py:172 audits/const.py:65
+#: accounts/serializers/automations/change_secret.py:170 audits/const.py:65
 #: audits/models.py:65 audits/signal_handlers/activity_log.py:34
 #: common/const/choices.py:66 ops/const.py:75 ops/serializers/celery.py:48
 #: terminal/const.py:80 terminal/models/session/sharing.py:119
@@ -375,7 +376,7 @@ msgstr "처리 중"
 msgid "Can login"
 msgstr "로그인 가능"
 
-#: accounts/const/automation.py:128 users/serializers/user.py:260
+#: accounts/const/automation.py:128 users/serializers/user.py:259
 msgid "Superuser"
 msgstr "슈퍼 사용자"
 
@@ -413,7 +414,7 @@ msgid "Perms"
 msgstr "권한"
 
 #: accounts/const/automation.py:137 perms/serializers/permission.py:56
-#: users/serializers/user.py:251
+#: users/serializers/user.py:250
 msgid "Groups"
 msgstr "사용자 그룹"
 
@@ -450,14 +451,14 @@ msgid ""
 msgstr ""
 "Vault 작업이 실패했습니다. 다시 시도하거나 Vault의 계정 정보를 확인하십시오."
 
-#: accounts/models/account.py:89
+#: accounts/models/account.py:85
 #: accounts/models/automations/check_account.py:59
 #: accounts/models/automations/gather_account.py:17
-#: accounts/serializers/account/account.py:228
-#: accounts/serializers/account/account.py:295
-#: accounts/serializers/automations/change_secret.py:116
-#: accounts/serializers/automations/change_secret.py:149
-#: accounts/serializers/automations/change_secret.py:190
+#: accounts/serializers/account/account.py:227
+#: accounts/serializers/account/account.py:294
+#: accounts/serializers/automations/change_secret.py:115
+#: accounts/serializers/automations/change_secret.py:147
+#: accounts/serializers/automations/change_secret.py:188
 #: accounts/serializers/automations/check_account.py:33
 #: accounts/serializers/automations/gather_account.py:48
 #: accounts/templates/accounts/asset_account_change_info.html:7
@@ -478,107 +479,107 @@ msgstr ""
 #: terminal/serializers/command.py:17 terminal/serializers/session.py:38
 #: terminal/templates/terminal/_msg_command_warning.html:10
 #: terminal/templates/terminal/_msg_session_sharing.html:4
-#: tickets/models/ticket/apply_asset.py:17 xpack/plugins/cloud/models.py:298
+#: tickets/models/ticket/apply_asset.py:17 xpack/plugins/cloud/models.py:296
 msgid "Asset"
 msgstr "자산"
 
-#: accounts/models/account.py:93 accounts/models/template.py:16
-#: accounts/serializers/account/account.py:235
-#: accounts/serializers/account/account.py:306
+#: accounts/models/account.py:89 accounts/models/template.py:16
+#: accounts/serializers/account/account.py:234
+#: accounts/serializers/account/account.py:305
 #: accounts/serializers/account/template.py:35
 #: authentication/serializers/connect_token_secret.py:51
 msgid "Su from"
 msgstr "전환"
 
-#: accounts/models/account.py:95 assets/const/protocol.py:195
+#: accounts/models/account.py:91 assets/const/protocol.py:195
 #: settings/serializers/auth/cas.py:25 terminal/models/applet/applet.py:36
 #: terminal/models/virtualapp/virtualapp.py:21
 msgid "Version"
 msgstr "버전"
 
-#: accounts/models/account.py:98
+#: accounts/models/account.py:94
 msgid "historical Account"
 msgstr "계정 기록"
 
-#: accounts/models/account.py:100
+#: accounts/models/account.py:96
 msgid "Secret reset"
 msgstr "변경 가능"
 
-#: accounts/models/account.py:101 accounts/serializers/account/account.py:230
+#: accounts/models/account.py:97 accounts/serializers/account/account.py:229
 #: users/models/user/__init__.py:132
 msgid "Source"
 msgstr "출처"
 
-#: accounts/models/account.py:102
+#: accounts/models/account.py:98
 msgid "Source ID"
 msgstr "출처 ID"
 
-#: accounts/models/account.py:103
+#: accounts/models/account.py:99
 msgid "Date last access"
 msgstr "최근 방문 날짜"
 
-#: accounts/models/account.py:104
+#: accounts/models/account.py:100
 msgid "Access by"
 msgstr "방문 방식"
 
-#: accounts/models/account.py:105
+#: accounts/models/account.py:101
 msgid "Date change secret"
 msgstr "비밀번호 날짜"
 
-#: accounts/models/account.py:107
+#: accounts/models/account.py:103
 msgid "Change secret status"
 msgstr "비밀번호 변경 상태"
 
-#: accounts/models/account.py:111
+#: accounts/models/account.py:107
 #: accounts/models/automations/check_account.py:64
-#: accounts/serializers/account/account.py:296
+#: accounts/serializers/account/account.py:295
 #: accounts/serializers/account/service.py:13
-#: accounts/serializers/automations/change_secret.py:118
-#: accounts/serializers/automations/change_secret.py:150
+#: accounts/serializers/automations/change_secret.py:117
+#: accounts/serializers/automations/change_secret.py:148
 #: acls/serializers/base.py:111
 #: acls/templates/acls/asset_login_reminder.html:11
 #: assets/serializers/gateway.py:33 audits/models.py:60 audits/models.py:337
 #: audits/reporting.py:114 audits/serializers.py:246
-#: authentication/api/connection_token.py:480 ops/models/base.py:18
+#: authentication/api/connection_token.py:475 ops/models/base.py:18
 #: perms/models/asset_permission.py:75 settings/serializers/msg.py:33
 #: terminal/backends/command/models.py:18 terminal/models/session/session.py:31
 #: terminal/notifications.py:306 terminal/serializers/command.py:72
 #: terminal/templates/terminal/_msg_command_warning.html:11
 #: terminal/templates/terminal/_msg_session_sharing.html:8
 #: tickets/models/ticket/command_confirm.py:14
-#: xpack/plugins/cloud/models.py:108 xpack/plugins/cloud/ws.py:36
+#: xpack/plugins/cloud/models.py:106 xpack/plugins/cloud/ws.py:36
 msgid "Account"
 msgstr "계정"
 
-#: accounts/models/account.py:117
+#: accounts/models/account.py:113
 msgid "Can view asset account secret"
 msgstr "자산 계정 비밀번호 조회 가능"
 
-#: accounts/models/account.py:118
+#: accounts/models/account.py:114
 msgid "Can view asset history account"
 msgstr "자산 역사 계정 조회 가능"
 
-#: accounts/models/account.py:119
+#: accounts/models/account.py:115
 msgid "Can view asset history account secret"
 msgstr "자산 역사 계정 비밀번호 조회 가능"
 
-#: accounts/models/account.py:120
+#: accounts/models/account.py:116
 msgid "Can verify account"
 msgstr "계정 검증 가능"
 
-#: accounts/models/account.py:121
+#: accounts/models/account.py:117
 msgid "Can push account"
 msgstr "계정 푸시 가능"
 
-#: accounts/models/account.py:122
+#: accounts/models/account.py:118
 msgid "Can remove account"
 msgstr "계정 제거 가능"
 
-#: accounts/models/account.py:123
+#: accounts/models/account.py:119
 msgid "Can view session"
 msgstr "계정 세션"
 
-#: accounts/models/account.py:124
+#: accounts/models/account.py:120
 msgid "Can view activity"
 msgstr "계정 활동"
 
@@ -592,7 +593,7 @@ msgstr "계정 활동"
 #: assets/models/asset/common.py:166 assets/models/cmd_filter.py:21
 #: assets/models/label.py:18 assets/models/platform.py:15
 #: assets/models/platform.py:94 assets/models/zone.py:19
-#: assets/serializers/asset/common.py:175 assets/serializers/platform.py:159
+#: assets/serializers/asset/common.py:174 assets/serializers/platform.py:159
 #: assets/serializers/platform.py:284
 #: authentication/backends/passkey/models.py:10
 #: authentication/models/ssh_key.py:12 authentication/notifications.py:17
@@ -619,7 +620,7 @@ msgstr "계정 활동"
 #: users/notifications.py:145 users/notifications.py:184
 #: users/notifications.py:224 users/notifications.py:252
 #: users/notifications.py:279 xpack/plugins/cloud/models.py:35
-#: xpack/plugins/cloud/models.py:318 xpack/plugins/cloud/serializers/task.py:77
+#: xpack/plugins/cloud/models.py:316 xpack/plugins/cloud/serializers/task.py:77
 msgid "Name"
 msgstr "이름"
 
@@ -630,8 +631,8 @@ msgstr "아이콘"
 
 #: accounts/models/application.py:20 accounts/models/base.py:39
 #: accounts/models/mixins/vault.py:49
-#: accounts/serializers/account/account.py:500
-#: accounts/serializers/account/base.py:22
+#: accounts/serializers/account/account.py:495
+#: accounts/serializers/account/base.py:20
 #: authentication/models/temp_token.py:11
 #: authentication/templates/authentication/_access_key_modal.html:31
 #: settings/serializers/auth/radius.py:20
@@ -640,8 +641,8 @@ msgstr "암호"
 
 #: accounts/models/application.py:21 acls/models/base.py:98
 #: assets/models/automations/base.py:22 assets/models/cmd_filter.py:38
-#: assets/serializers/asset/common.py:149
-#: assets/serializers/asset/common.py:425 perms/serializers/permission.py:67
+#: assets/serializers/asset/common.py:148
+#: assets/serializers/asset/common.py:424 perms/serializers/permission.py:67
 #: perms/serializers/user_permission.py:87 rbac/tree.py:36 rbac/tree.py:51
 msgid "Accounts"
 msgstr "계정"
@@ -763,7 +764,7 @@ msgstr "변경 후 연결 확인"
 #: accounts/models/automations/change_secret.py:17
 #: accounts/models/automations/check_account.py:19
 #: accounts/models/automations/gather_account.py:117
-#: accounts/serializers/automations/change_secret.py:62
+#: accounts/serializers/automations/change_secret.py:61
 #: settings/serializers/auth/ldap.py:105
 #: settings/serializers/auth/ldap_ha.py:87 settings/serializers/msg.py:46
 msgid "Recipient"
@@ -793,14 +794,13 @@ msgstr "종료 날짜"
 #: terminal/serializers/applet.py:19 terminal/serializers/applet_host.py:163
 #: terminal/serializers/virtualapp.py:36 tickets/models/ticket/general.py:284
 #: tickets/reporting.py:80 tickets/serializers/super_ticket.py:13
-#: tickets/serializers/ticket/ticket.py:20 xpack/plugins/cloud/models.py:235
-#: xpack/plugins/cloud/models.py:302
+#: tickets/serializers/ticket/ticket.py:20 xpack/plugins/cloud/models.py:233
+#: xpack/plugins/cloud/models.py:300
 msgid "Status"
 msgstr "상태"
 
 #: accounts/models/automations/change_secret.py:51
-#: accounts/serializers/account/account.py:298 assets/const/automation.py:9
-#: authentication/templates/authentication/login_ukey.html:207
+#: accounts/serializers/account/account.py:297 assets/const/automation.py:9
 #: authentication/templates/authentication/passkey.html:177
 #: authentication/views/base.py:43 authentication/views/base.py:44
 #: authentication/views/base.py:45 common/const/choices.py:68
@@ -898,7 +898,7 @@ msgstr "중복 비밀번호"
 #: accounts/templates/accounts/push_account_report.html:79
 #: accounts/templates/accounts/push_account_report.html:119
 #: acls/serializers/base.py:19 acls/serializers/base.py:50 audits/models.py:204
-#: audits/reporting.py:241 authentication/backends/ukey/forms.py:8
+#: audits/reporting.py:241 authentication/backends/cert/forms.py:7
 #: authentication/forms.py:21 authentication/forms.py:23
 #: authentication/models/temp_token.py:10
 #: authentication/serializers/connect_token_secret.py:43
@@ -1030,9 +1030,9 @@ msgid "Verify asset account"
 msgstr "계정 검증"
 
 #: accounts/models/base.py:37 accounts/models/base.py:66
-#: accounts/serializers/account/account.py:499
-#: accounts/serializers/account/base.py:19
-#: accounts/serializers/automations/change_secret.py:51
+#: accounts/serializers/account/account.py:494
+#: accounts/serializers/account/base.py:17
+#: accounts/serializers/automations/change_secret.py:50
 #: authentication/serializers/connect_token_secret.py:42
 #: authentication/serializers/connect_token_secret.py:52
 #: terminal/serializers/storage.py:140
@@ -1040,12 +1040,12 @@ msgid "Secret type"
 msgstr "암호 유형"
 
 #: accounts/models/base.py:42
-#: accounts/serializers/automations/change_secret.py:44
+#: accounts/serializers/automations/change_secret.py:43
 msgid "Secret strategy"
 msgstr "암호 전략"
 
 #: accounts/models/base.py:44 accounts/serializers/account/template.py:32
-#: accounts/serializers/automations/change_secret.py:50
+#: accounts/serializers/automations/change_secret.py:49
 msgid "Password rules"
 msgstr "암호 규칙"
 
@@ -1057,7 +1057,7 @@ msgstr "권한 계정"
 #: assets/models/cmd_filter.py:39 assets/models/label.py:22
 #: authentication/serializers/connect_token_secret.py:129 reports/models.py:18
 #: terminal/models/applet/applet.py:41
-#: terminal/models/virtualapp/virtualapp.py:23 users/serializers/user.py:263
+#: terminal/models/virtualapp/virtualapp.py:23 users/serializers/user.py:262
 msgid "Is active"
 msgstr "활성화"
 
@@ -1073,7 +1073,7 @@ msgstr "플랫폼"
 msgid "Push params"
 msgstr "계정 푸시 매개변수"
 
-#: accounts/models/template.py:26 xpack/plugins/cloud/models.py:406
+#: accounts/models/template.py:26 xpack/plugins/cloud/models.py:404
 msgid "Account template"
 msgstr "계정 템플릿"
 
@@ -1207,33 +1207,33 @@ msgstr "비밀번호 변경 및 추가"
 msgid "Execution failed: {}"
 msgstr "실행 실패: {}"
 
-#: accounts/serializers/account/account.py:32
+#: accounts/serializers/account/account.py:31
 msgid "Push now"
 msgstr "즉시 푸시"
 
-#: accounts/serializers/account/account.py:37
+#: accounts/serializers/account/account.py:36
 msgid "Params"
 msgstr "매개변수"
 
-#: accounts/serializers/account/account.py:41
+#: accounts/serializers/account/account.py:40
 msgid "Exist policy"
 msgstr "계정에 정책이 존재합니다"
 
-#: accounts/serializers/account/account.py:207 assets/models/label.py:21
-#: assets/models/platform.py:95 assets/serializers/asset/common.py:146
+#: accounts/serializers/account/account.py:206 assets/models/label.py:21
+#: assets/models/platform.py:95 assets/serializers/asset/common.py:145
 #: assets/serializers/cagegory.py:12 assets/serializers/platform.py:174
 #: assets/serializers/platform.py:285 perms/serializers/user_permission.py:27
 #: settings/models.py:40 tickets/models/ticket/apply_application.py:13
 #: users/models/preference.py:12 xpack/plugins/cloud/models.py:41
-#: xpack/plugins/cloud/models.py:329
+#: xpack/plugins/cloud/models.py:327
 #: xpack/plugins/cloud/serializers/account.py:87
 msgid "Category"
 msgstr "카테고리"
 
-#: accounts/serializers/account/account.py:208 acls/models/command_acl.py:24
+#: accounts/serializers/account/account.py:207 acls/models/command_acl.py:24
 #: acls/serializers/command_acl.py:19 assets/models/automations/base.py:27
 #: assets/models/automations/base.py:146 assets/models/cmd_filter.py:74
-#: assets/models/platform.py:96 assets/serializers/asset/common.py:147
+#: assets/models/platform.py:96 assets/serializers/asset/common.py:146
 #: assets/serializers/platform.py:161 assets/serializers/platform.py:173
 #: audits/reporting.py:221 audits/reporting.py:492 audits/serializers.py:76
 #: audits/serializers.py:211 authentication/models/connection_token.py:67
@@ -1249,26 +1249,26 @@ msgstr "카테고리"
 msgid "Type"
 msgstr "유형"
 
-#: accounts/serializers/account/account.py:224
+#: accounts/serializers/account/account.py:223
 msgid "Asset not found"
 msgstr "자산이 존재하지 않습니다"
 
-#: accounts/serializers/account/account.py:237 assets/const/category.py:15
+#: accounts/serializers/account/account.py:236 assets/const/category.py:15
 #: assets/models/asset/common.py:180 assets/models/asset/ds.py:14
-#: assets/serializers/asset/common.py:182
+#: assets/serializers/asset/common.py:181
 msgid "Directory service"
 msgstr "디렉토리 서비스"
 
-#: accounts/serializers/account/account.py:279
+#: accounts/serializers/account/account.py:278
 #, python-brace-format
 msgid "Account already exists. Field(s): {fields} must be unique."
 msgstr "계정이 이미 존재합니다. 필드: {fields}는 고유해야 합니다."
 
-#: accounts/serializers/account/account.py:286
+#: accounts/serializers/account/account.py:285
 msgid "Has secret"
 msgstr "이미 관리된 비밀번호"
 
-#: accounts/serializers/account/account.py:297 ops/models/celery.py:84
+#: accounts/serializers/account/account.py:296 ops/models/celery.py:84
 #: tickets/models/comment.py:13 tickets/models/ticket/general.py:49
 #: tickets/models/ticket/general.py:280 tickets/reporting.py:75
 #: tickets/serializers/super_ticket.py:14
@@ -1276,33 +1276,33 @@ msgstr "이미 관리된 비밀번호"
 msgid "State"
 msgstr "상태"
 
-#: accounts/serializers/account/account.py:299
+#: accounts/serializers/account/account.py:298
 msgid "Changed"
 msgstr "수정됨"
 
-#: accounts/serializers/account/account.py:411
+#: accounts/serializers/account/account.py:406
 #, python-format
 msgid "Asset does not support this secret type: %s"
 msgstr "자산이 지원하지 않는 계정 유형: %s"
 
-#: accounts/serializers/account/account.py:444
+#: accounts/serializers/account/account.py:439
 msgid "Account has exist"
 msgstr "계정이 이미 존재합니다"
 
-#: accounts/serializers/account/account.py:469
-#: accounts/serializers/account/account.py:470
+#: accounts/serializers/account/account.py:464
+#: accounts/serializers/account/account.py:465
 msgid "At least one asset or node must be specified"
 msgstr "자산 또는 노드 중 최소 하나 선택"
 
-#: accounts/serializers/account/account.py:483
-#: accounts/serializers/account/account.py:490
-#: accounts/serializers/account/base.py:75
-#: accounts/serializers/account/base.py:94
-#: assets/serializers/asset/common.py:426
+#: accounts/serializers/account/account.py:478
+#: accounts/serializers/account/account.py:485
+#: accounts/serializers/account/base.py:73
+#: accounts/serializers/account/base.py:88
+#: assets/serializers/asset/common.py:425
 msgid "Spec info"
 msgstr "특별 정보"
 
-#: accounts/serializers/account/account.py:501
+#: accounts/serializers/account/account.py:496
 #: authentication/serializers/connect_token_secret.py:173
 #: authentication/templates/authentication/_access_key_modal.html:30
 #: perms/models/perm_node.py:21 settings/models.py:215
@@ -1310,7 +1310,7 @@ msgstr "특별 정보"
 msgid "ID"
 msgstr "ID"
 
-#: accounts/serializers/account/account.py:511 acls/notifications.py:18
+#: accounts/serializers/account/account.py:506 acls/notifications.py:18
 #: acls/notifications.py:68 acls/serializers/base.py:103
 #: acls/templates/acls/asset_login_reminder.html:8
 #: acls/templates/acls/user_login_reminder.html:8
@@ -1322,20 +1322,20 @@ msgstr "ID"
 #: authentication/notifications.py:16 authentication/notifications.py:55
 #: notifications/models/notification.py:12
 #: perms/api/user_permission/mixin.py:58 perms/models/asset_permission.py:63
-#: rbac/models/rolebinding.py:50 rbac/serializers/rolebinding.py:17
-#: terminal/backends/command/models.py:16 terminal/models/session/session.py:27
-#: terminal/models/session/sharing.py:34 terminal/notifications.py:168
-#: terminal/notifications.py:235 terminal/reporting.py:118
-#: terminal/serializers/command.py:16
+#: rbac/builtin.py:134 rbac/models/rolebinding.py:50
+#: rbac/serializers/rolebinding.py:17 terminal/backends/command/models.py:16
+#: terminal/models/session/session.py:27 terminal/models/session/sharing.py:34
+#: terminal/notifications.py:168 terminal/notifications.py:235
+#: terminal/reporting.py:118 terminal/serializers/command.py:16
 #: terminal/templates/terminal/_msg_command_warning.html:9
 #: terminal/templates/terminal/_msg_session_sharing.html:6
 #: tickets/models/comment.py:21 tickets/serializers/flow.py:15
-#: users/const.py:14 users/models/user/__init__.py:308
-#: users/models/user/__init__.py:341
+#: users/const.py:14 users/models/user/__init__.py:303
+#: users/models/user/__init__.py:330
 msgid "User"
 msgstr "사용자"
 
-#: accounts/serializers/account/account.py:512 audits/reporting.py:94
+#: accounts/serializers/account/account.py:507 audits/reporting.py:94
 #: audits/reporting.py:216 audits/reporting.py:312 audits/reporting.py:399
 #: audits/reporting.py:487 audits/reporting.py:602
 #: authentication/templates/authentication/_access_key_modal.html:33
@@ -1344,11 +1344,11 @@ msgstr "사용자"
 msgid "Date"
 msgstr "날짜"
 
-#: accounts/serializers/account/base.py:35 terminal/serializers/storage.py:149
+#: accounts/serializers/account/base.py:33 terminal/serializers/storage.py:149
 msgid "Passphrase"
 msgstr "키 비밀번호"
 
-#: accounts/serializers/account/base.py:97
+#: accounts/serializers/account/base.py:91
 msgid ""
 "* If no username is required for authentication, enter null.  For AD "
 "accounts, use the format username@domain."
@@ -1372,13 +1372,13 @@ msgstr "IP 화이트리스트"
 #: terminal/models/session/session.py:44
 #: terminal/models/virtualapp/virtualapp.py:28 tickets/models/comment.py:32
 #: tickets/models/ticket/general.py:298 users/models/user/__init__.py:104
-#: xpack/plugins/cloud/models.py:45 xpack/plugins/cloud/models.py:131
+#: xpack/plugins/cloud/models.py:45 xpack/plugins/cloud/models.py:129
 msgid "Comment"
 msgstr "비고"
 
 #: accounts/serializers/account/service.py:30
 #: accounts/templates/accounts/backup_account_report.html:33
-#: assets/serializers/asset/common.py:154
+#: assets/serializers/asset/common.py:153
 msgid "Accounts amount"
 msgstr "계정 수"
 
@@ -1463,7 +1463,7 @@ msgstr "파일 암호화 비밀번호"
 
 #: accounts/serializers/automations/backup.py:36
 #: accounts/serializers/automations/backup.py:40
-#: accounts/serializers/automations/change_secret.py:63
+#: accounts/serializers/automations/change_secret.py:62
 msgid "Currently only mail sending is supported"
 msgstr "현재 이메일 전송만 지원"
 
@@ -1481,48 +1481,48 @@ msgstr "이름이 이미 존재합니다"
 msgid "Automation snapshot"
 msgstr "자동화 스냅샷"
 
-#: accounts/serializers/automations/change_secret.py:47
+#: accounts/serializers/automations/change_secret.py:46
 msgid "SSH Key strategy"
 msgstr "SSH 키 변경 방법"
 
-#: accounts/serializers/automations/change_secret.py:61
+#: accounts/serializers/automations/change_secret.py:60
 msgid "Please enter your account username"
 msgstr "귀하의 계정 사용자 이름을 입력하십시오"
 
-#: accounts/serializers/automations/change_secret.py:65
+#: accounts/serializers/automations/change_secret.py:64
 msgid "Notification before execution"
 msgstr "실행 전 알림"
 
-#: accounts/serializers/automations/change_secret.py:67
+#: accounts/serializers/automations/change_secret.py:66
 msgid ""
 "Secret parameter settings, currently only effective for assets of the host "
 "type."
 msgstr "매개변수 설정, 현재 AIX LINUX UNIX 유형 자산에만 유효합니다."
 
-#: accounts/serializers/automations/change_secret.py:89
+#: accounts/serializers/automations/change_secret.py:88
 msgid "* Please enter the correct password length"
 msgstr "* 올바른 비밀번호 길이를 입력하세요."
 
-#: accounts/serializers/automations/change_secret.py:93
+#: accounts/serializers/automations/change_secret.py:92
 msgid "* Password length range 8-36 bits"
 msgstr "* 비밀번호 길이 범위: 8-36자리"
 
-#: accounts/serializers/automations/change_secret.py:115
-#: accounts/serializers/automations/change_secret.py:151
+#: accounts/serializers/automations/change_secret.py:114
+#: accounts/serializers/automations/change_secret.py:149
 #: ops/serializers/job.py:93 terminal/serializers/session.py:62
 msgid "Is success"
 msgstr "성공 여부"
 
-#: accounts/serializers/automations/change_secret.py:122
+#: accounts/serializers/automations/change_secret.py:121
 #: assets/models/automations/base.py:165
 msgid "Automation task execution"
 msgstr "자동화 작업 실행 이력"
 
-#: accounts/serializers/automations/change_secret.py:192
+#: accounts/serializers/automations/change_secret.py:190
 msgid "TTL"
 msgstr "TTL"
 
-#: accounts/serializers/automations/change_secret.py:193
+#: accounts/serializers/automations/change_secret.py:191
 #: assets/models/platform.py:97 tickets/models/ticket/general.py:301
 msgid "Meta"
 msgstr "메타데이터"
@@ -1840,12 +1840,7 @@ msgstr ""
 "비밀번호가 `{{`로 시작하고 `}}`로 끝나는 경우, 해당 비밀번호는 허용되지 않습"
 "니다."
 
-#: accounts/utils.py:76
-#, python-format
-msgid "Username contains invalid characters: %(chars)s"
-msgstr "사용자 이름에 유효하지 않은 문자가 포함되어 있습니다: %(chars)s"
-
-#: accounts/utils.py:84
+#: accounts/utils.py:63
 msgid "private key invalid or passphrase error"
 msgstr "키가 불법이거나 키 비밀번호 오류"
 
@@ -1891,12 +1886,12 @@ msgid "Secret rotation"
 msgstr "비밀번호 회전"
 
 #: acls/models/base.py:37 assets/models/cmd_filter.py:76
-#: terminal/models/component/endpoint.py:110 xpack/plugins/cloud/models.py:324
+#: terminal/models/component/endpoint.py:110 xpack/plugins/cloud/models.py:322
 msgid "Priority"
 msgstr "우선순위"
 
 #: acls/models/base.py:38 assets/models/cmd_filter.py:76
-#: terminal/models/component/endpoint.py:111 xpack/plugins/cloud/models.py:325
+#: terminal/models/component/endpoint.py:111 xpack/plugins/cloud/models.py:323
 msgid "1-100, the lower the value will be match first"
 msgstr "우선순위 선택 범위는 1-100 (숫자가 작을수록 더 우선)"
 
@@ -1917,7 +1912,7 @@ msgstr "승인자"
 
 #: acls/models/base.py:81 perms/serializers/permission.py:54
 #: tickets/models/flow.py:23 users/models/preference.py:16
-#: users/serializers/group.py:21 users/serializers/user.py:439
+#: users/serializers/group.py:21 users/serializers/user.py:429
 msgid "Users"
 msgstr "사용자"
 
@@ -1925,7 +1920,7 @@ msgstr "사용자"
 #: assets/models/automations/base.py:25
 #: assets/serializers/automations/base.py:20 assets/serializers/domain.py:33
 #: assets/serializers/platform.py:182 assets/serializers/platform.py:214
-#: authentication/api/connection_token.py:479 ops/models/base.py:17
+#: authentication/api/connection_token.py:474 ops/models/base.py:17
 #: ops/models/job.py:157 ops/serializers/job.py:21
 #: perms/serializers/permission.py:58
 #: terminal/templates/terminal/_msg_command_execute_alert.html:16
@@ -1943,7 +1938,7 @@ msgid "Command"
 msgstr "명령"
 
 #: acls/models/command_acl.py:17 assets/models/cmd_filter.py:59
-#: xpack/plugins/cloud/models.py:372
+#: xpack/plugins/cloud/models.py:370
 msgid "Regex"
 msgstr "정규 표현식"
 
@@ -2154,7 +2149,7 @@ msgstr ""
 #: authentication/templates/authentication/_msg_oauth_bind.html:12
 #: authentication/templates/authentication/_msg_rest_password_success.html:8
 #: authentication/templates/authentication/_msg_rest_public_key_success.html:8
-#: common/drf/renders/base.py:165 xpack/plugins/cloud/models.py:408
+#: common/drf/renders/base.py:165 xpack/plugins/cloud/models.py:406
 msgid "IP"
 msgstr "IP"
 
@@ -2225,6 +2220,8 @@ msgid "The number of assets exceeds the limit of 5000"
 msgstr "자산 수가 5000을 초과했습니다."
 
 #: assets/api/asset/asset.py:181
+#, fuzzy
+#| msgid "The number of assets exceeds the limit of 5000"
 msgid "The number of assets exceeds the license limit"
 msgstr "자산 수가 5000을 초과했습니다."
 
@@ -2306,8 +2303,7 @@ msgid "Unable to connect to port {port} on {address}"
 msgstr "포트 {address}의 {port}에 연결할 수 없습니다"
 
 #: assets/automations/ping_gateway/manager.py:58
-#: authentication/middleware.py:94 terminal/api/component/storage.py:127
-#: xpack/plugins/cloud/providers/fc.py:47
+#: authentication/middleware.py:95 xpack/plugins/cloud/providers/fc.py:47
 #: xpack/plugins/cloud/providers/proxmox.py:29
 msgid "Authentication failed"
 msgstr "인증 실패"
@@ -2322,9 +2318,7 @@ msgid ">>> Start executing the task to test gateway connectivity"
 msgstr ">>> 테스트 게이트웨이 연결 가능성 작업 시작"
 
 #: assets/const/automation.py:6 audits/const.py:6 audits/const.py:48
-#: audits/signal_handlers/activity_log.py:63
-#: authentication/backends/ukey/views.py:149
-#: authentication/backends/ukey/views.py:159 common/utils/ip/geoip/utils.py:42
+#: audits/signal_handlers/activity_log.py:63 common/utils/ip/geoip/utils.py:42
 #: common/utils/ip/geoip/utils.py:48 common/utils/ip/utils.py:104
 msgid "Unknown"
 msgstr "알 수 없음"
@@ -2522,7 +2516,7 @@ msgid "Any"
 msgstr "임의"
 
 #: assets/const/protocol.py:88 rbac/tree.py:65
-#: settings/serializers/security.py:285
+#: settings/serializers/security.py:281
 msgid "Security"
 msgstr "보안"
 
@@ -2687,33 +2681,31 @@ msgstr "클라우드 서비스"
 msgid "Port"
 msgstr "포트"
 
-#: assets/models/asset/common.py:167 assets/serializers/asset/common.py:176
+#: assets/models/asset/common.py:167 assets/serializers/asset/common.py:175
 #: settings/serializers/terminal.py:10 terminal/serializers/endpoint.py:69
 msgid "Address"
 msgstr "주소"
 
 #: assets/models/asset/common.py:169 assets/models/platform.py:155
-#: assets/serializers/asset/common.py:152
-#: assets/serializers/asset/common.py:270
-#: assets/serializers/asset/common.py:273
+#: assets/serializers/asset/common.py:151
 #: authentication/backends/passkey/models.py:12
 #: authentication/serializers/connect_token_secret.py:130
-#: perms/serializers/user_permission.py:26 xpack/plugins/cloud/models.py:402
+#: perms/serializers/user_permission.py:26 xpack/plugins/cloud/models.py:400
 msgid "Platform"
 msgstr "플랫폼"
 
 #: assets/models/asset/common.py:173 assets/models/zone.py:22
-#: perms/serializers/user_permission.py:29 xpack/plugins/cloud/models.py:404
+#: perms/serializers/user_permission.py:29 xpack/plugins/cloud/models.py:402
 msgid "Zone"
 msgstr "도메인"
 
-#: assets/models/asset/common.py:176 assets/serializers/asset/common.py:178
+#: assets/models/asset/common.py:176 assets/serializers/asset/common.py:177
 #: assets/serializers/automations/base.py:21 ops/serializers/job.py:22
 #: perms/serializers/permission.py:59
 msgid "Nodes"
 msgstr "노드"
 
-#: assets/models/asset/common.py:183 assets/serializers/asset/common.py:427
+#: assets/models/asset/common.py:183 assets/serializers/asset/common.py:426
 #: assets/serializers/asset/host.py:11
 msgid "Gathered info"
 msgstr "자산 하드웨어 정보 수집"
@@ -2774,7 +2766,7 @@ msgstr "프록시."
 #: assets/models/automations/base.py:23 assets/models/cmd_filter.py:32
 #: assets/models/node.py:560 ops/models/job.py:158
 #: perms/models/asset_permission.py:72 tickets/models/ticket/apply_asset.py:15
-#: xpack/plugins/cloud/models.py:403
+#: xpack/plugins/cloud/models.py:401
 msgid "Node"
 msgstr "노드."
 
@@ -2798,12 +2790,12 @@ msgstr "자산 자동화 작업"
 #: assets/models/automations/base.py:140 assets/models/cmd_filter.py:41
 #: authentication/serializers/token.py:134 common/db/models.py:34
 #: ops/models/base.py:54 ops/models/job.py:240
-#: users/models/user/__init__.py:344
+#: users/models/user/__init__.py:333
 msgid "Date created"
 msgstr "생성 날짜"
 
 #: assets/models/automations/base.py:155
-#: assets/serializers/automations/base.py:46 xpack/plugins/cloud/models.py:250
+#: assets/serializers/automations/base.py:46 xpack/plugins/cloud/models.py:248
 #: xpack/plugins/cloud/serializers/task.py:260
 msgid "Trigger mode"
 msgstr "트리거 모드"
@@ -2815,7 +2807,7 @@ msgid "Summary"
 msgstr "요약"
 
 #: assets/models/automations/base.py:158 ops/models/base.py:51
-#: ops/models/job.py:237 xpack/plugins/cloud/models.py:233
+#: ops/models/job.py:237 xpack/plugins/cloud/models.py:231
 msgid "Result"
 msgstr "결과"
 
@@ -2841,7 +2833,7 @@ msgid "User group"
 msgstr "사용자 그룹"
 
 #: assets/models/cmd_filter.py:42 authentication/serializers/token.py:133
-#: common/db/models.py:35 users/models/user/__init__.py:159
+#: common/db/models.py:35 users/models/user/__init__.py:155
 msgid "Date updated"
 msgstr "업데이트 날짜"
 
@@ -2901,8 +2893,8 @@ msgstr "값"
 #: assets/serializers/cagegory.py:17 assets/serializers/cagegory.py:23
 #: assets/serializers/platform.py:160
 #: authentication/serializers/connect_token_secret.py:136
-#: common/serializers/common.py:85 labels/serializers.py:56
-#: settings/serializers/msg.py:91 xpack/plugins/cloud/models.py:407
+#: common/serializers/common.py:85 labels/serializers.py:45
+#: settings/serializers/msg.py:91 xpack/plugins/cloud/models.py:405
 msgid "Label"
 msgstr "태그"
 
@@ -3089,15 +3081,15 @@ msgid ""
 msgstr ""
 "자산 중 플랫폼을 일괄 업데이트하며, 플랫폼 유형에 맞지 않는 자산은 건너뜁니다"
 
-#: assets/serializers/asset/common.py:37 assets/serializers/platform.py:154
+#: assets/serializers/asset/common.py:36 assets/serializers/platform.py:154
 msgid "Protocols, format is [\"protocol/port\"]"
 msgstr "프로토콜, 형식은 [\"프로토콜/포트\"]"
 
-#: assets/serializers/asset/common.py:39
+#: assets/serializers/asset/common.py:38
 msgid "Protocol, format is name/port"
 msgstr "프로토콜, 형식은 이름/포트"
 
-#: assets/serializers/asset/common.py:108
+#: assets/serializers/asset/common.py:107
 msgid ""
 "Accounts, format [{\"name\": \"x\", \"username\": \"x\", \"secret\": \"x\", "
 "\"secret_type\": \"password\"}]"
@@ -3105,48 +3097,48 @@ msgstr ""
 "계정, 형식은 [{\"name\": \"x\", \"username\": \"x\", \"secret\": \"x\", "
 "\"secret_type\": \"password\"}]"
 
-#: assets/serializers/asset/common.py:136
+#: assets/serializers/asset/common.py:135
 msgid ""
 "Node path, format [\"/org_name/node_name\"], if node not exist, will create "
 "it"
 msgstr ""
 "노드 경로, 형식은 [\"/조직/노드명\"], 만약 노드가 존재하지 않으면 생성됩니다"
 
-#: assets/serializers/asset/common.py:148 assets/serializers/platform.py:175
+#: assets/serializers/asset/common.py:147 assets/serializers/platform.py:175
 #: authentication/serializers/connect_token_secret.py:30
 #: authentication/serializers/connect_token_secret.py:77
 #: perms/models/asset_permission.py:76 perms/serializers/permission.py:68
-#: perms/serializers/user_permission.py:86 xpack/plugins/cloud/models.py:405
+#: perms/serializers/user_permission.py:86 xpack/plugins/cloud/models.py:403
 #: xpack/plugins/cloud/serializers/task.py:36
 msgid "Protocols"
 msgstr "프로토콜 그룹"
 
-#: assets/serializers/asset/common.py:150
-#: assets/serializers/asset/common.py:177
+#: assets/serializers/asset/common.py:149
+#: assets/serializers/asset/common.py:176
 msgid "Node path"
 msgstr "노드 경로"
 
-#: assets/serializers/asset/common.py:151
-#: assets/serializers/asset/common.py:174
-#: assets/serializers/asset/common.py:428
+#: assets/serializers/asset/common.py:150
+#: assets/serializers/asset/common.py:173
+#: assets/serializers/asset/common.py:427
 msgid "Auto info"
 msgstr "자동화 정보"
 
-#: assets/serializers/asset/common.py:273
+#: assets/serializers/asset/common.py:272
 #: xpack/plugins/cloud/serializers/task.py:119
 msgid "Platform not exist"
 msgstr "플랫폼이 존재하지 않습니다"
 
-#: assets/serializers/asset/common.py:309
+#: assets/serializers/asset/common.py:308
 msgid "port out of range (0-65535)"
 msgstr "포트 범위를 초과했습니다 (0-65535)"
 
-#: assets/serializers/asset/common.py:316
+#: assets/serializers/asset/common.py:315
 #, python-brace-format
 msgid "Protocol is required: {}"
 msgstr "프로토콜은 필수입니다: {}"
 
-#: assets/serializers/asset/common.py:355 labels/api.py:107
+#: assets/serializers/asset/common.py:354 labels/api.py:107
 msgid "Invalid data"
 msgstr "유효하지 않은 데이터"
 
@@ -3591,9 +3583,10 @@ msgstr "내보내기"
 msgid "Connect"
 msgstr "연결"
 
-#: audits/const.py:31 authentication/templates/authentication/login.html:334
+#: audits/const.py:31
+#: authentication/templates/authentication/cert_login.html:232
+#: authentication/templates/authentication/login.html:334
 #: authentication/templates/authentication/login.html:408
-#: authentication/templates/authentication/login_ukey.html:226
 #: templates/_header_bar.html:101
 #: xpack/plugins/interface/templates/login_i18n.html:21
 msgid "Login"
@@ -3688,7 +3681,7 @@ msgid "Resource Type"
 msgstr "자원 유형"
 
 #: audits/models.py:102 audits/models.py:105 audits/models.py:151
-#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:57
+#: audits/reporting.py:419 audits/serializers.py:108 labels/serializers.py:46
 msgid "Resource"
 msgstr "자원"
 
@@ -3736,7 +3729,7 @@ msgstr "MFA"
 
 #: audits/models.py:219 audits/reporting.py:251
 #: terminal/models/session/sharing.py:123 xpack/plugins/cloud/manager.py:196
-#: xpack/plugins/cloud/models.py:239
+#: xpack/plugins/cloud/models.py:237
 msgid "Reason"
 msgstr "원인"
 
@@ -3779,70 +3772,90 @@ msgid "Application ID"
 msgstr "애플리케이션 ID"
 
 #: audits/reporting.py:11
+#, fuzzy
+#| msgid "File transfer log"
 msgid "File Transfer Report"
 msgstr "파일 전송"
 
 #: audits/reporting.py:21 audits/reporting.py:146 audits/reporting.py:264
 #: audits/reporting.py:345 audits/reporting.py:442 audits/reporting.py:529
 #: terminal/reporting.py:23 tickets/reporting.py:16
+#, fuzzy
+#| msgid "Command record"
 msgid "Total records"
 msgstr "명령 기록"
 
 #: audits/reporting.py:22 audits/reporting.py:94
+#, fuzzy
+#| msgid "Success accounts"
 msgid "Successful transfers"
 msgstr "성공한 계정"
 
 #: audits/reporting.py:23 audits/reporting.py:94
+#, fuzzy
+#| msgid "File transfer log"
 msgid "Failed transfers"
 msgstr "파일 전송"
 
 #: audits/reporting.py:24 audits/reporting.py:94 audits/reporting.py:149
 #: audits/reporting.py:216 audits/reporting.py:533 audits/reporting.py:602
 #: terminal/reporting.py:28 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success prompt"
 msgid "Success rate"
 msgstr "성공 메시지"
 
 #: audits/reporting.py:25
+#, fuzzy
+#| msgid "Download"
 msgid "Downloadable files"
 msgstr "다운로드"
 
 #: audits/reporting.py:26 audits/reporting.py:150 audits/reporting.py:265
 #: terminal/reporting.py:31
+#, fuzzy
+#| msgid "Check unused users"
 msgid "Unique users"
 msgstr "사용하지 않는 사용자 확인"
 
 #: audits/reporting.py:27 terminal/reporting.py:32
+#, fuzzy
+#| msgid "Can view user assets"
 msgid "Unique assets"
 msgstr "사용자가 권한 부여한 자산 보기 가능"
 
 #: audits/reporting.py:28
+#, fuzzy
+#| msgid "Failed accounts"
 msgid "Unique accounts"
 msgstr "실패한 계정"
 
 #: audits/reporting.py:29 audits/reporting.py:151 audits/reporting.py:267
 #: audits/reporting.py:349
 msgid "Unique IPs"
-msgstr "고유 IP"
+msgstr ""
 
 #: audits/reporting.py:91 audits/reporting.py:213 audits/reporting.py:309
 #: audits/reporting.py:396 audits/reporting.py:484 audits/reporting.py:599
 #: terminal/reporting.py:100 tickets/reporting.py:62
+#, fuzzy
+#| msgid "Review"
 msgid "Overview"
 msgstr "승인"
 
 #: audits/reporting.py:93 audits/reporting.py:215 audits/reporting.py:311
 #: audits/reporting.py:398 audits/reporting.py:601 terminal/reporting.py:102
 msgid "Daily Trend"
-msgstr "일별 추이"
+msgstr ""
 
 #: audits/reporting.py:94 audits/reporting.py:216 audits/reporting.py:602
 #: terminal/reporting.py:103
 msgid "Total"
-msgstr "합계"
+msgstr ""
 
 #: audits/reporting.py:98
 msgid "Transfer Type Distribution"
-msgstr "전송 유형 분포"
+msgstr ""
 
 #: audits/reporting.py:99 audits/reporting.py:104 audits/reporting.py:109
 #: audits/reporting.py:114 audits/reporting.py:119 audits/reporting.py:124
@@ -3861,154 +3874,208 @@ msgstr "전송 유형 분포"
 #: terminal/reporting.py:133 terminal/reporting.py:138 tickets/reporting.py:65
 #: tickets/reporting.py:70 tickets/reporting.py:75 tickets/reporting.py:80
 #: tickets/reporting.py:85 tickets/reporting.py:90 tickets/reporting.py:95
+#, fuzzy
+#| msgid "CPU count"
 msgid "Count"
 msgstr "CPU 수량"
 
 #: audits/reporting.py:103 audits/reporting.py:316 terminal/reporting.py:117
+#, fuzzy
+#| msgid "User group"
 msgid "User Top 10"
 msgstr "사용자 그룹"
 
 #: audits/reporting.py:108 terminal/reporting.py:122
+#, fuzzy
+#| msgid "Asset type"
 msgid "Asset Top 10"
 msgstr "자산 유형"
 
 #: audits/reporting.py:113
+#, fuzzy
+#| msgid "Account ID"
 msgid "Account Top 10"
 msgstr "계정"
 
 #: audits/reporting.py:118 audits/reporting.py:326 audits/reporting.py:423
 #: terminal/reporting.py:132
 msgid "IP Top 10"
-msgstr "IP 상위 10"
+msgstr ""
 
 #: audits/reporting.py:123
+#, fuzzy
+#| msgid "Filename"
 msgid "Filename Top 10"
 msgstr "파일 이름"
 
 #: audits/reporting.py:128
 msgid "Transfer Time Distribution"
-msgstr "전송 시간 분포"
+msgstr ""
 
 #: audits/reporting.py:129 audits/reporting.py:236 audits/reporting.py:332
 #: audits/reporting.py:429
+#, fuzzy
+#| msgid "Time using"
 msgid "Time range"
 msgstr "소요 시간"
 
 #: audits/reporting.py:136
+#, fuzzy
+#| msgid "User login report"
 msgid "User Login Report"
 msgstr "사용자 로그인 보고서"
 
 #: audits/reporting.py:147 audits/reporting.py:216
+#, fuzzy
+#| msgid "Success accounts"
 msgid "Successful logins"
 msgstr "성공한 계정"
 
 #: audits/reporting.py:148 audits/reporting.py:216
+#, fuzzy
+#| msgid "Failed accounts"
 msgid "Failed logins"
 msgstr "실패한 계정"
 
 #: audits/reporting.py:152
 msgid "Unique cities"
-msgstr "고유 도시"
+msgstr ""
 
 #: audits/reporting.py:153
+#, fuzzy
+#| msgid "Auth backend"
 msgid "Unique auth backends"
 msgstr "인증 토큰"
 
 #: audits/reporting.py:220
+#, fuzzy
+#| msgid "Login redirection"
 msgid "Login Type Distribution"
 msgstr "로그인 리디렉션 알림 활성화"
 
 #: audits/reporting.py:225
+#, fuzzy
+#| msgid "Auth backend display"
 msgid "Auth Backend Distribution"
 msgstr "인증 방식"
 
 #: audits/reporting.py:230
+#, fuzzy
+#| msgid "MFA setting"
 msgid "MFA Distribution"
 msgstr "MFA 다중 인증 설정"
 
 #: audits/reporting.py:235
+#, fuzzy
+#| msgid "Login redirection"
 msgid "Login Time Distribution"
 msgstr "로그인 리디렉션 알림 활성화"
 
 #: audits/reporting.py:240
 msgid "Failed User Top 10"
-msgstr "실패 사용자 상위 10"
+msgstr ""
 
 #: audits/reporting.py:245
 msgid "Failed IP Top 10"
-msgstr "실패 IP 상위 10"
+msgstr ""
 
 #: audits/reporting.py:250
 msgid "Failed Reason Top 10"
-msgstr "실패 원인 상위 10"
+msgstr ""
 
 #: audits/reporting.py:258
+#, fuzzy
+#| msgid "Password change log"
 msgid "Password Change Report"
 msgstr "비밀번호 변경 로그"
 
 #: audits/reporting.py:266 audits/reporting.py:346
 msgid "Unique operators"
-msgstr "고유 작업자"
+msgstr ""
 
 #: audits/reporting.py:321 audits/reporting.py:413
+#, fuzzy
+#| msgid "Operate log"
 msgid "Operator Top 10"
 msgstr "작업 로그"
 
 #: audits/reporting.py:331
+#, fuzzy
+#| msgid "Can change sms setting"
 msgid "Change Time Distribution"
 msgstr "SMS 설정"
 
 #: audits/reporting.py:339
+#, fuzzy
+#| msgid "Operate log"
 msgid "Operate Log Report"
 msgstr "작업 로그"
 
 #: audits/reporting.py:347
+#, fuzzy
+#| msgid "Resource type"
 msgid "Unique resource types"
 msgstr "자원 유형"
 
 #: audits/reporting.py:348
+#, fuzzy
+#| msgid "Tagged resource"
 msgid "Unique resources"
 msgstr "연관된 자원"
 
 #: audits/reporting.py:403
+#, fuzzy
+#| msgid "Action permission"
 msgid "Action Distribution"
 msgstr "작업 권한"
 
 #: audits/reporting.py:408
+#, fuzzy
+#| msgid "Resource Type"
 msgid "Resource Type Distribution"
 msgstr "자원 유형"
 
 #: audits/reporting.py:418
+#, fuzzy
+#| msgid "Resource Type"
 msgid "Resource Top 10"
 msgstr "자원 유형"
 
 #: audits/reporting.py:428
 msgid "Operate Time Distribution"
-msgstr "작업 시간 분포"
+msgstr ""
 
 #: audits/reporting.py:436
+#, fuzzy
+#| msgid "Job audit log"
 msgid "Job Audit Report"
 msgstr "작업 감사 로그"
 
 #: audits/reporting.py:443
+#, fuzzy
+#| msgid "Periodic run"
 msgid "Periodic jobs"
 msgstr "주기 실행"
 
 #: audits/reporting.py:444
 msgid "One-time jobs"
-msgstr "일회성 작업"
+msgstr ""
 
 #: audits/reporting.py:445
+#, fuzzy
+#| msgid "Adhoc"
 msgid "Adhoc jobs"
 msgstr "명령"
 
 #: audits/reporting.py:446
+#, fuzzy
+#| msgid "Playbook"
 msgid "Playbook jobs"
 msgstr "플레이북"
 
 #: audits/reporting.py:447 audits/reporting.py:534
 msgid "Unique creators"
-msgstr "고유 생성자"
+msgstr ""
 
 #: audits/reporting.py:467 ops/const.py:40 ops/models/job.py:154
 #: ops/models/playbook.py:89 ops/models/variable.py:23
@@ -4016,22 +4083,26 @@ msgid "Playbook"
 msgstr "플레이북"
 
 #: audits/reporting.py:486 tickets/reporting.py:64
+#, fuzzy
+#| msgid "Create Type"
 msgid "Created Trend"
 msgstr "생성 유형"
 
 #: audits/reporting.py:491 audits/reporting.py:611
 msgid "Job Type Distribution"
-msgstr "작업 유형 분포"
+msgstr ""
 
 #: audits/reporting.py:496
 msgid "Module Distribution"
-msgstr "모듈 분포"
+msgstr ""
 
 #: audits/reporting.py:497 ops/models/adhoc.py:22 ops/models/job.py:151
 msgid "Module"
 msgstr "모듈"
 
 #: audits/reporting.py:501 audits/reporting.py:616
+#, fuzzy
+#| msgid "Creator"
 msgid "Creator Top 10"
 msgstr "생성자"
 
@@ -4044,6 +4115,8 @@ msgid "Creator"
 msgstr "생성자"
 
 #: audits/reporting.py:506
+#, fuzzy
+#| msgid "Run as policy"
 msgid "Run as Policy Distribution"
 msgstr "사용자 정책"
 
@@ -4052,32 +4125,42 @@ msgid "Run as policy"
 msgstr "사용자 정책"
 
 #: audits/reporting.py:514
+#, fuzzy
+#| msgid "Report"
 msgid "Job Log Report"
 msgstr "보고서"
 
 #: audits/reporting.py:530 audits/reporting.py:602
+#, fuzzy
+#| msgid "Success accounts"
 msgid "Successful jobs"
 msgstr "성공한 계정"
 
 #: audits/reporting.py:531 audits/reporting.py:602
+#, fuzzy
+#| msgid "Finished"
 msgid "Finished jobs"
 msgstr "종료"
 
 #: audits/reporting.py:532 audits/reporting.py:602
+#, fuzzy
+#| msgid "Is finished"
 msgid "Unfinished jobs"
 msgstr "완료 여부"
 
 #: audits/reporting.py:537
 msgid "Unique task ids"
-msgstr "고유 작업 ID"
+msgstr ""
 
 #: audits/reporting.py:538
+#, fuzzy
+#| msgid "Secret rotation"
 msgid "Average duration"
 msgstr "비밀번호 회전"
 
 #: audits/reporting.py:606
 msgid "Status Distribution"
-msgstr "상태 분포"
+msgstr ""
 
 #: audits/reporting.py:612 ops/serializers/job.py:91
 msgid "Job type"
@@ -4085,9 +4168,11 @@ msgstr "작업 유형"
 
 #: audits/reporting.py:621 terminal/reporting.py:137
 msgid "Duration Distribution"
-msgstr "지속 시간 분포"
+msgstr ""
 
 #: audits/reporting.py:622 terminal/reporting.py:138
+#, fuzzy
+#| msgid "Duration"
 msgid "Duration range"
 msgstr "소요 시간"
 
@@ -4105,7 +4190,7 @@ msgstr "인증 방식"
 
 #: audits/serializers.py:139
 msgid "Diff"
-msgstr "차이"
+msgstr ""
 
 #: audits/serializers.py:172
 #, python-format
@@ -4149,6 +4234,8 @@ msgid "SSO"
 msgstr "SSO"
 
 #: audits/signal_handlers/login_log.py:36
+#, fuzzy
+#| msgid "Custom"
 msgid "Custom SSO"
 msgstr "맞춤형"
 
@@ -4243,42 +4330,42 @@ msgid "This action require verify your MFA"
 msgstr ""
 "이 작업은 귀하의 MFA를 확인해야 하므로, 먼저 활성화하고 구성해야 합니다."
 
-#: authentication/api/connection_token.py:315
+#: authentication/api/connection_token.py:314
 msgid "Reusable connection token is not allowed, global setting not enabled"
 msgstr ""
 "재사용 가능한 연결 토큰은 허용되지 않으며, 글로벌 설정이 활성화되지 않았습니"
 "다."
 
-#: authentication/api/connection_token.py:441
+#: authentication/api/connection_token.py:436
 msgid "Anonymous account is not supported for this asset"
 msgstr "익명 계정은 현재 자산을 지원하지 않습니다."
 
-#: authentication/api/connection_token.py:471
+#: authentication/api/connection_token.py:466
 msgid "Permission expired"
 msgstr "권한이 만료되었습니다."
 
-#: authentication/api/connection_token.py:504
+#: authentication/api/connection_token.py:499
 #, python-brace-format
 msgid "ACL action is reject: {}({})"
 msgstr "ACL Action은 거부: {}({})입니다."
 
-#: authentication/api/connection_token.py:508
+#: authentication/api/connection_token.py:503
 msgid "ACL action is review"
 msgstr "ACL Action은 재검토입니다."
 
-#: authentication/api/connection_token.py:518
+#: authentication/api/connection_token.py:513
 msgid "ACL action is face verify"
 msgstr "ACL Action은 얼굴 인식입니다."
 
-#: authentication/api/connection_token.py:523
+#: authentication/api/connection_token.py:518
 msgid "ACL action not supported for this asset"
 msgstr "자산 로그인 규칙은 현재 자산을 지원하지 않습니다."
 
-#: authentication/api/connection_token.py:530
+#: authentication/api/connection_token.py:525
 msgid "ACL action is face online"
 msgstr "ACL Action은 온라인 얼굴 인식입니다."
 
-#: authentication/api/connection_token.py:555
+#: authentication/api/connection_token.py:550
 msgid "No available face feature"
 msgstr "사용 가능한 얼굴 특징이 없습니다."
 
@@ -4331,6 +4418,30 @@ msgstr "인증 관리"
 #: authentication/backends/cas/views.py:19
 msgid "CAS Error"
 msgstr "CAS 오류"
+
+#: authentication/backends/cert/api.py:57
+#, fuzzy
+#| msgid "LDAP authentication is not enabled"
+msgid "Certificate enrollment is not enabled"
+msgstr "LDAP 인증이 활성화되지 않았습니다"
+
+#: authentication/backends/cert/api.py:62
+#, fuzzy
+#| msgid "type is required"
+msgid "CSR is required"
+msgstr "유형: 이 필드는 필수입니다."
+
+#: authentication/backends/cert/api.py:68
+#, fuzzy
+#| msgid "Authentication failed"
+msgid "Certificate signing failed"
+msgstr "인증 실패"
+
+#: authentication/backends/cert/views.py:97
+#, fuzzy
+#| msgid "Invalid data"
+msgid "Invalid credentials"
+msgstr "유효하지 않은 데이터"
 
 #: authentication/backends/drf.py:61
 msgid "Invalid token header. No credentials provided."
@@ -4385,63 +4496,6 @@ msgstr "증명서 ID"
 #: authentication/backends/saml2/views.py:257
 msgid "SAML2 Error"
 msgstr "SAML2 오류"
-
-#: authentication/backends/ukey/api.py:54
-msgid "Certificate enrollment is not enabled"
-msgstr "LDAP 인증이 활성화되지 않았습니다"
-
-#: authentication/backends/ukey/api.py:59
-msgid "CSR is required"
-msgstr "유형: 이 필드는 필수입니다."
-
-#: authentication/backends/ukey/api.py:65
-msgid "Certificate signing failed"
-msgstr "인증 실패"
-
-#: authentication/backends/ukey/exceptions.py:8
-msgid "Certificate authentication failed"
-msgstr "공개 키 인증 사용 가능"
-
-#: authentication/backends/ukey/exceptions.py:16
-msgid "User does not exist"
-msgstr "사용자가 존재하지 않습니다: {}"
-
-#: authentication/backends/ukey/exceptions.py:20
-msgid "UKey SN mismatch"
-msgstr ""
-
-#: authentication/backends/ukey/exceptions.py:24
-msgid "Invalid certificate format"
-msgstr "인증 코드가 올바르지 않습니다"
-
-#: authentication/backends/ukey/exceptions.py:28
-msgid "Certificate chain verification failed"
-msgstr "인증 실패"
-
-#: authentication/backends/ukey/exceptions.py:32
-msgid "Certificate CN does not match the username"
-msgstr "LDAP 인증이 활성화되지 않았습니다"
-
-#: authentication/backends/ukey/exceptions.py:36
-msgid "Certificate signature verification failed"
-msgstr "인증 실패"
-
-#: authentication/backends/ukey/exceptions.py:40
-msgid "Certificate has expired or is not yet valid"
-msgstr "LDAP 인증이 활성화되지 않았습니다"
-
-#: authentication/backends/ukey/exceptions.py:44
-msgid "Unsupported certificate algorithm"
-msgstr "지원되지 않는 파일 내용"
-
-#: authentication/backends/ukey/views.py:93
-msgid ""
-"Authentication challenge expired, please refresh the page and try again."
-msgstr ""
-
-#: authentication/backends/ukey/views.py:108
-msgid "Invalid credentials"
-msgstr "유효하지 않은 데이터"
 
 #: authentication/confirm/password.py:17
 msgid "Authentication failed password incorrect"
@@ -4764,7 +4818,7 @@ msgstr "전화번호 설정으로 활성화"
 msgid "Clear phone number to disable"
 msgstr "전화번호 삭제로 비활성화"
 
-#: authentication/middleware.py:95 settings/utils/ldap.py:714
+#: authentication/middleware.py:96 settings/utils/ldap.py:714
 #, python-brace-format
 msgid "Authentication failed (before login check failed): {}"
 msgstr "인증 실패 (로그인 전 검사 실패): {}"
@@ -4806,7 +4860,7 @@ msgid "Input username"
 msgstr "사용자 이름 사용자 정의"
 
 #: authentication/models/connection_token.py:46
-#: authentication/serializers/connection_token.py:21
+#: authentication/serializers/connection_token.py:20
 msgid "Input secret"
 msgstr "비밀번호 사용자 정의"
 
@@ -4972,28 +5026,28 @@ msgstr "이미지 포트"
 msgid "Image protocol"
 msgstr "이미지 프로토콜"
 
-#: authentication/serializers/connection_token.py:19
+#: authentication/serializers/connection_token.py:18
 msgid "Expired time"
 msgstr "만료 시간"
 
-#: authentication/serializers/connection_token.py:23
+#: authentication/serializers/connection_token.py:22
 msgid "Ticket info"
 msgstr "작업 정보"
 
-#: authentication/serializers/connection_token.py:24
+#: authentication/serializers/connection_token.py:23
 #: perms/models/asset_permission.py:77
 #: tickets/models/ticket/apply_application.py:28
 #: tickets/models/ticket/apply_asset.py:19
 msgid "Actions"
 msgstr "Action"
 
-#: authentication/serializers/connection_token.py:47
+#: authentication/serializers/connection_token.py:46
 #: perms/serializers/permission.py:66 perms/serializers/permission.py:87
-#: users/serializers/user.py:127 users/serializers/user.py:267
+#: users/serializers/user.py:127 users/serializers/user.py:266
 msgid "Is expired"
 msgstr "이미 만료"
 
-#: authentication/serializers/connection_token.py:48
+#: authentication/serializers/connection_token.py:47
 #: orgs/mixins/serializers.py:26 rbac/serializers/rolebinding.py:27
 msgid "Org name"
 msgstr "조직 이름"
@@ -5031,7 +5085,7 @@ msgstr "SSH 키가 유효하지 않습니다"
 
 #: authentication/serializers/token.py:93 perms/serializers/permission.py:65
 #: perms/serializers/permission.py:88 users/serializers/user.py:128
-#: users/serializers/user.py:264
+#: users/serializers/user.py:263
 msgid "Is valid"
 msgstr "유효한가요"
 
@@ -5136,7 +5190,7 @@ msgstr "코드 오류"
 #: authentication/templates/authentication/_msg_oauth_bind.html:3
 #: authentication/templates/authentication/_msg_reset_password.html:3
 #: authentication/templates/authentication/_msg_reset_password_code.html:9
-#: fortserver/conf.py:565
+#: fortserver/conf.py:558
 #: perms/templates/perms/_msg_item_permissions_expire.html:3
 #: tickets/templates/tickets/approve_check_password.html:32
 #: users/templates/users/_msg_account_expire_reminder.html:4
@@ -5246,6 +5300,87 @@ msgstr "취소"
 msgid "Cancel"
 msgstr "재시도"
 
+#: authentication/templates/authentication/cert_login.html:190
+#, fuzzy
+#| msgid "Multi-Factor Authentication"
+msgid "Certificate Authentication"
+msgstr "인증"
+
+#: authentication/templates/authentication/cert_login.html:195
+#: authentication/templates/authentication/cert_login.html:250
+msgid "Loading USB Key driver..."
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:210
+msgid "Insert USB Key to auto-fetch"
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:238
+#, fuzzy
+#| msgid "More login options"
+msgid "Other login methods"
+msgstr "기타 로그인 방법"
+
+#: authentication/templates/authentication/cert_login.html:251
+msgid "Detecting USB Key..."
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:252
+msgid "USB Key connected"
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:253
+#, fuzzy
+#| msgid "Please enter SMS code"
+msgid "Please insert USB Key"
+msgstr "문자 메시지 인증 코드를 입력해 주세요"
+
+#: authentication/templates/authentication/cert_login.html:254
+#, fuzzy
+#| msgid "Account unavailable"
+msgid "Driver unavailable"
+msgstr "계정 무효"
+
+#: authentication/templates/authentication/cert_login.html:255
+msgid "USB Key SDK initialization failed"
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:256
+msgid "Verifying PIN..."
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:257
+#, fuzzy
+#| msgid "Date verified"
+msgid "PIN verified"
+msgstr "검증 날짜"
+
+#: authentication/templates/authentication/cert_login.html:258
+#, fuzzy
+#| msgid "OTP verification code"
+msgid "PIN verification failed"
+msgstr "가상 MFA 인증 코드"
+
+#: authentication/templates/authentication/cert_login.html:259
+msgid "Signing challenge code..."
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:260
+#, fuzzy
+#| msgid "Signing key"
+msgid "Signing failed"
+msgstr "서명 키"
+
+#: authentication/templates/authentication/cert_login.html:261
+msgid "Failed to retrieve certificate"
+msgstr ""
+
+#: authentication/templates/authentication/cert_login.html:262
+#, fuzzy
+#| msgid "Your account has expired, please contact the administrator."
+msgid "No certificate detected, please contact administrator"
+msgstr "귀하의 계정이 만료되었습니다. 관리자에게 문의하시기 바랍니다."
+
 #: authentication/templates/authentication/face_capture.html:14
 msgid "Retry"
 msgstr ""
@@ -5284,72 +5419,6 @@ msgstr "다음 단계"
 msgid "Can't provide security? Please contact the administrator!"
 msgstr "MFA 인증 코드를 제공할 수 없는 경우 관리자를 연락해 주세요!"
 
-#: authentication/templates/authentication/login_ukey.html:194
-msgid "UKey Authentication"
-msgstr ""
-
-#: authentication/templates/authentication/login_ukey.html:199
-#: authentication/templates/authentication/login_ukey.html:244
-msgid "Loading UKey SDK..."
-msgstr ""
-
-#: authentication/templates/authentication/login_ukey.html:214
-msgid "Insert UKey to auto-fetch"
-msgstr ""
-
-#: authentication/templates/authentication/login_ukey.html:232
-#: xpack/plugins/interface/templates/login_i18n.html:22
-msgid "More login methods"
-msgstr "기타 로그인 방법"
-
-#: authentication/templates/authentication/login_ukey.html:245
-msgid "Detecting UKey..."
-msgstr ""
-
-#: authentication/templates/authentication/login_ukey.html:246
-msgid "UKey connected"
-msgstr "UKey가 연결되었습니다"
-
-#: authentication/templates/authentication/login_ukey.html:247
-msgid "Please insert UKey"
-msgstr "UKey를 삽입해 주세요"
-
-#: authentication/templates/authentication/login_ukey.html:248
-msgid "SDK unavailable"
-msgstr "SDK를 사용할 수 없습니다"
-
-#: authentication/templates/authentication/login_ukey.html:249
-msgid "UKey SDK initialization failed"
-msgstr "UKey SDK 초기화에 실패했습니다"
-
-#: authentication/templates/authentication/login_ukey.html:250
-msgid "Verifying PIN..."
-msgstr "PIN 확인 중..."
-
-#: authentication/templates/authentication/login_ukey.html:251
-msgid "PIN verified"
-msgstr "PIN 확인 완료"
-
-#: authentication/templates/authentication/login_ukey.html:252
-msgid "PIN verification failed"
-msgstr "PIN 확인에 실패했습니다"
-
-#: authentication/templates/authentication/login_ukey.html:253
-msgid "Signing challenge code..."
-msgstr "챌린지 코드에 서명하는 중..."
-
-#: authentication/templates/authentication/login_ukey.html:254
-msgid "Signing failed"
-msgstr "서명에 실패했습니다"
-
-#: authentication/templates/authentication/login_ukey.html:255
-msgid "Failed to retrieve UKey cert"
-msgstr "UKey 인증서를 가져오지 못했습니다"
-
-#: authentication/templates/authentication/login_ukey.html:256
-msgid "No UKey cert detected, please contact administrator"
-msgstr "UKey 인증서가 감지되지 않았습니다. 관리자에게 문의해 주세요"
-
 #: authentication/templates/authentication/login_wait_confirm.html:72
 msgid "Refresh"
 msgstr "새로 고침"
@@ -5383,9 +5452,8 @@ msgstr "재시도 하시겠습니까?"
 msgid "LAN"
 msgstr "지역 네트워크"
 
-#: authentication/utils.py:150 settings/serializers/auth/ukey.py:11
-#: settings/serializers/auth/ukey.py:14 users/models/user/_source.py:27
-msgid "UKey"
+#: authentication/utils.py:150
+msgid "CERT"
 msgstr ""
 
 #: authentication/views/base.py:71
@@ -5393,17 +5461,17 @@ msgstr ""
 msgid "If you have any question, please contact the administrator"
 msgstr "질문이나 요구 사항이 있는 경우 시스템 관리자에게 문의해 주세요"
 
-#: authentication/views/base.py:145
+#: authentication/views/base.py:143
 #, python-format
 msgid "%s query user failed"
 msgstr "%s 사용자 조회 실패"
 
-#: authentication/views/base.py:153
+#: authentication/views/base.py:151
 #, python-format
 msgid "The %s is already bound to another user"
 msgstr "%s 다른 사용자에 이미 바인딩되었습니다."
 
-#: authentication/views/base.py:160
+#: authentication/views/base.py:158
 #, python-format
 msgid "Binding %s successfully"
 msgstr "%s 바인딩 성공"
@@ -5508,7 +5576,7 @@ msgstr "로그아웃이 성공적으로 완료되었습니다."
 msgid "Logout success, return login page"
 msgstr "로그아웃이 성공적으로 완료되었습니다. 로그인 페이지로 돌아갑니다."
 
-#: authentication/views/mixins.py:30
+#: authentication/views/mixins.py:28
 msgid ""
 "For your safety, automatic redirection login is not supported on the client. "
 "If you need to open it in the client, please log in again"
@@ -5657,7 +5725,7 @@ msgid "Invalid ids for ids, should be a list"
 msgstr "유효하지 않은 ID, 목록이어야 합니다"
 
 #: common/db/fields.py:589 common/db/fields.py:594
-#: common/serializers/fields.py:153 terminal/serializers/session.py:89
+#: common/serializers/fields.py:146 terminal/serializers/session.py:89
 #: tickets/serializers/ticket/common.py:58
 #: xpack/plugins/cloud/serializers/account_attrs.py:20
 #: xpack/plugins/cloud/serializers/account_attrs.py:71
@@ -5787,7 +5855,10 @@ msgid "Objects, format [\"id\", ...]"
 msgstr "다중 연관 항목, 형식은 [\"id\", ...]"
 
 #: common/drf/renders/base.py:301
-#, python-brace-format
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "{} - The encryption password has not been set - please go to personal "
+#| "information -> file encryption password to set the encryption password"
 msgid ""
 "{} - Encryption password not set - Please go to Personal Settings → "
 "Preferences → File Encryption Password to set it."
@@ -5795,7 +5866,7 @@ msgstr ""
 "{} - 암호화 비밀번호가 설정되지 않았습니다 - 개인 정보 -> 파일 암호화 비밀번"
 "호에서 암호화 비밀번호를 설정해 주세요."
 
-#: common/drf/renders/mixins.py:37 labels/serializers.py:23
+#: common/drf/renders/mixins.py:37 labels/serializers.py:22
 msgid "Resource count"
 msgstr "자원 수량"
 
@@ -5812,6 +5883,8 @@ msgid "Export filtered"
 msgstr "검색 내보내기"
 
 #: common/drf/reporting.py:23
+#, fuzzy
+#| msgid "Database"
 msgid "Data"
 msgstr "데이터베이스"
 
@@ -5821,30 +5894,44 @@ msgid "Report"
 msgstr "보고서"
 
 #: common/drf/reporting.py:37
+#, fuzzy
+#| msgid "Date left"
 msgid "Date from"
 msgstr "종료 날짜"
 
 #: common/drf/reporting.py:38
+#, fuzzy
+#| msgid "Date left"
 msgid "Date to"
 msgstr "종료 날짜"
 
 #: common/drf/reporting.py:116
+#, fuzzy
+#| msgid "All assets"
 msgid "All data"
 msgstr "모든 자산"
 
 #: common/drf/reporting.py:181
+#, fuzzy
+#| msgid "General"
 msgid "Generated at"
 msgstr "일반"
 
 #: common/drf/reporting.py:182
+#, fuzzy
+#| msgid "Export"
 msgid "Exported rows"
 msgstr "내보내기"
 
 #: common/drf/reporting.py:183 reports/models.py:20
+#, fuzzy
+#| msgid "Filter"
 msgid "Filters"
 msgstr "필터"
 
 #: common/drf/reporting.py:210
+#, fuzzy
+#| msgid "Summary"
 msgid "Report Summary"
 msgstr "요약"
 
@@ -5878,21 +5965,15 @@ msgstr "이 작업은 현재 사용자 확인이 필요합니다"
 msgid "Unexpect error occur"
 msgstr "예기치 않은 오류가 발생했습니다"
 
-#: common/plugins/es.py:44
+#: common/plugins/es.py:37
 msgid "Invalid elasticsearch config"
 msgstr "유효하지 않은 Elasticsearch 구성입니다"
 
-#: common/plugins/es.py:49
-#, fuzzy
-#| msgid "Session is finished or the protocol not supported"
-msgid "The server is not Elasticsearch or this product is not supported"
-msgstr "회화가 이미 완료되었거나 프로토콜이 지원되지 않습니다."
-
-#: common/plugins/es.py:54
+#: common/plugins/es.py:42
 msgid "Not Support Elasticsearch8"
 msgstr "Elasticsearch8을 지원하지 않습니다"
 
-#: common/plugins/es.py:60
+#: common/plugins/es.py:48
 msgid ""
 "Connection failed: Self-signed certificate used. Please check server "
 "certificate configuration"
@@ -5987,21 +6068,21 @@ msgstr "노드"
 msgid "Invalid data type"
 msgstr "유효하지 않은 데이터"
 
-#: common/serializers/fields.py:154
+#: common/serializers/fields.py:147
 #, python-brace-format
 msgid "Invalid pk \"{pk_value}\" - object does not exist."
 msgstr "잘못된 pk \"{pk_value}\" - 객체가 존재하지 않음"
 
-#: common/serializers/fields.py:155
+#: common/serializers/fields.py:148
 #, python-brace-format
 msgid "Incorrect type. Expected pk value, received {data_type}."
 msgstr "오류 유형. 기대하는 pk 값, 수신된 값: {data_type}."
 
-#: common/serializers/fields.py:345
+#: common/serializers/fields.py:338
 msgid "Invalid data type, should be list"
 msgstr "잘못된 데이터 유형, 리스트여야 함"
 
-#: common/serializers/fields.py:360
+#: common/serializers/fields.py:353
 #: xpack/plugins/cloud/serializers/account.py:121
 #: xpack/plugins/cloud/serializers/task.py:122
 #, python-brace-format
@@ -6091,16 +6172,16 @@ msgstr "제공된 메시지 코드가 유효하지 않거나 만료되었습니�
 msgid "The message code provided is invalid or has expired"
 msgstr "인증 코드는: {code}"
 
-#: fortserver/conf.py:559
+#: fortserver/conf.py:552
 #, python-brace-format
 msgid "The verification code is: {code}"
 msgstr "인증 코드: {code}"
 
-#: fortserver/conf.py:564
+#: fortserver/conf.py:557
 msgid "Create account successfully"
 msgstr "귀하의 계정이 성공적으로 생성되었습니다"
 
-#: fortserver/conf.py:566
+#: fortserver/conf.py:559
 msgid "Your account has been created successfully"
 msgstr "fortserver 오픈소스 방화벽"
 
@@ -6119,7 +6200,7 @@ msgstr ""
 "div><div>이 페이지를 보았다면, nginx가 수신하고 있는 포트에 접근하고 있지 않"
 "음을 의미합니다. 행운을 기원합니다</div>"
 
-#: fortserver/views/other.py:31
+#: fortserver/views/other.py:30
 msgid ""
 "<div>Luna is a separately deployed program, you need to deploy Luna, koko, "
 "configure nginx for url distribution,</div> </div>If you see this page, "
@@ -6128,14 +6209,14 @@ msgstr ""
 "Websocket 서비스는 포트: {}에서 실행 중입니다, nginx가 프록시가 설정되어 있는"
 "지 확인하십시오"
 
-#: fortserver/views/other.py:79
+#: fortserver/views/other.py:78
 #, python-brace-format
 msgid "Websocket server run on port: {}, you should proxy it on nginx"
 msgstr ""
 "Websocket 서비스가 포트 {}에서 실행 중입니다. nginx의 프록시 설정을 확인하십"
 "시오."
 
-#: fortserver/views/other.py:93
+#: fortserver/views/other.py:92
 msgid ""
 "<div>Koko is a separately deployed program, you need to deploy Koko, "
 "configure nginx for url distribution,</div> </div>If you see this page, "
@@ -6162,11 +6243,11 @@ msgstr "자원 ID"
 msgid "Tagged resource"
 msgstr "연관된 자원"
 
-#: labels/serializers.py:29
+#: labels/serializers.py:28
 msgid "Cannot contain \":,\""
 msgstr "“：,”을 포함할 수 없음"
 
-#: labels/serializers.py:54
+#: labels/serializers.py:43
 msgid "Resource type"
 msgstr "자원 유형"
 
@@ -6212,16 +6293,16 @@ msgstr ""
 "시스템의 일부 경고, 작업 지시서 등 사이트 내 메시지를 발송해야 할 때 해당 작"
 "업을 실행"
 
-#: ops/ansible/inventory.py:150 ops/ansible/inventory.py:220
+#: ops/ansible/inventory.py:136 ops/ansible/inventory.py:206
 #: ops/models/job.py:69
 msgid "No account available"
 msgstr "사용 가능한 계정 없음"
 
-#: ops/ansible/inventory.py:341 ops/ansible/inventory.py:383
+#: ops/ansible/inventory.py:327 ops/ansible/inventory.py:369
 msgid "Ansible disabled"
 msgstr "Ansible이 비활성화되었습니다."
 
-#: ops/ansible/inventory.py:399
+#: ops/ansible/inventory.py:385
 msgid "Skip hosts below:"
 msgstr "다음 호스트를 건너뜁니다:"
 
@@ -6286,23 +6367,23 @@ msgstr "작업을 생성 중입니다. 중단할 수 없으니 잠시 후에 다
 msgid "Currently playbook is being used in a job"
 msgstr "현재 playbook이 작업 중에 사용되고 있습니다"
 
-#: ops/api/playbook.py:125
+#: ops/api/playbook.py:121
 msgid "Unsupported file content"
 msgstr "지원되지 않는 파일 내용"
 
-#: ops/api/playbook.py:127 ops/api/playbook.py:173 ops/api/playbook.py:221
+#: ops/api/playbook.py:123 ops/api/playbook.py:169 ops/api/playbook.py:217
 msgid "Invalid file path"
 msgstr "유효하지 않은 파일 경로"
 
-#: ops/api/playbook.py:199
+#: ops/api/playbook.py:195
 msgid "This file can not be rename"
 msgstr "해당 파일을 이름 변경할 수 없습니다"
 
-#: ops/api/playbook.py:218
+#: ops/api/playbook.py:214
 msgid "File already exists"
 msgstr "파일이 이미 존재합니다"
 
-#: ops/api/playbook.py:236
+#: ops/api/playbook.py:232
 msgid "File key is required"
 msgstr ""
 "파일 키 필드는 필수 항목입니다.  \n"
@@ -6321,7 +6402,7 @@ msgstr ""
 "플레이북  \n"
 "업로드"
 
-#: ops/api/playbook.py:239
+#: ops/api/playbook.py:235
 msgid "This file can not be delete"
 msgstr "이 파일을 삭제할 수 없습니다"
 
@@ -6843,7 +6924,7 @@ msgstr "저장하기 전에 조직을 선택해 주십시오"
 
 #: orgs/mixins/models.py:58 orgs/mixins/serializers.py:25 orgs/models.py:91
 #: rbac/const.py:7 rbac/models/rolebinding.py:57
-#: rbac/serializers/rolebinding.py:44 settings/serializers/auth/base.py:54
+#: rbac/serializers/rolebinding.py:44 settings/serializers/auth/base.py:53
 #: terminal/notifications.py:309
 #: terminal/templates/terminal/_msg_command_warning.html:27
 #: terminal/templates/terminal/_msg_session_sharing.html:14
@@ -7106,10 +7187,6 @@ msgstr "시스템 감사자"
 msgid "SystemComponent"
 msgstr "시스템 구성 요소"
 
-#: rbac/builtin.py:134
-msgid "SystemUser"
-msgstr "시스템 운영자"
-
 #: rbac/builtin.py:137
 msgid "OrgAdmin"
 msgstr "조직 관리자"
@@ -7120,7 +7197,7 @@ msgstr "조직 감사자"
 
 #: rbac/builtin.py:143
 msgid "OrgUser"
-msgstr "조직 운영자"
+msgstr "조직 사용자"
 
 #: rbac/models/menu.py:13
 msgid "Menu permission"
@@ -7166,6 +7243,8 @@ msgstr ""
 "작업대"
 
 #: rbac/models/menu.py:21
+#, fuzzy
+#| msgid "Can view console view"
 msgid "Can view jdmc console"
 msgstr "콘솔을 표시할 수 있습니다."
 
@@ -7178,10 +7257,14 @@ msgid "Can view user login report"
 msgstr "사용자 로그인 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:24
+#, fuzzy
+#| msgid "Can view user login report"
 msgid "Can create user login report"
 msgstr "사용자 로그인 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:25
+#, fuzzy
+#| msgid "Can view user login report"
 msgid "Can delete user login report"
 msgstr "사용자 로그인 보고서를 확인할 수 있습니다"
 
@@ -7190,10 +7273,14 @@ msgid "Can view user change password report"
 msgstr "사용자 비밀번호 변경 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:27
+#, fuzzy
+#| msgid "Can view user change password report"
 msgid "Can create user change password report"
 msgstr "사용자 비밀번호 변경 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:28
+#, fuzzy
+#| msgid "Can view user change password report"
 msgid "Can delete user change password report"
 msgstr "사용자 비밀번호 변경 보고서를 확인할 수 있습니다"
 
@@ -7202,10 +7289,14 @@ msgid "Can view asset statistics report"
 msgstr "자산 통계 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:30
+#, fuzzy
+#| msgid "Can view asset statistics report"
 msgid "Can create asset statistics report"
 msgstr "자산 통계 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:31
+#, fuzzy
+#| msgid "Can view asset statistics report"
 msgid "Can delete asset statistics report"
 msgstr "자산 통계 보고서를 확인할 수 있습니다"
 
@@ -7214,10 +7305,14 @@ msgid "Can view asset activity report"
 msgstr "자산 활동 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:33
+#, fuzzy
+#| msgid "Can view asset activity report"
 msgid "Can create asset activity report"
 msgstr "자산 활동 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:34
+#, fuzzy
+#| msgid "Can view asset activity report"
 msgid "Can delete asset activity report"
 msgstr "자산 활동 보고서를 확인할 수 있습니다"
 
@@ -7226,10 +7321,14 @@ msgid "Can view account statistics report"
 msgstr "계정 통계 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:36
+#, fuzzy
+#| msgid "Can view account statistics report"
 msgid "Can create account statistics report"
 msgstr "계정 통계 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:37
+#, fuzzy
+#| msgid "Can view account statistics report"
 msgid "Can delete account statistics report"
 msgstr "계정 통계 보고서를 확인할 수 있습니다"
 
@@ -7238,10 +7337,14 @@ msgid "Can view account automation report"
 msgstr "계정 자동화 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:39
+#, fuzzy
+#| msgid "Can view account automation report"
 msgid "Can create account automation report"
 msgstr "계정 자동화 보고서를 확인할 수 있습니다"
 
 #: rbac/models/menu.py:40
+#, fuzzy
+#| msgid "Can view account automation report"
 msgid "Can delete account automation report"
 msgstr "계정 자동화 보고서를 확인할 수 있습니다"
 
@@ -7364,6 +7467,8 @@ msgid "Job audit"
 msgstr "작업 감사"
 
 #: rbac/tree.py:137
+#, fuzzy
+#| msgid "Console"
 msgid "JDMC console"
 msgstr "콘솔"
 
@@ -7401,6 +7506,8 @@ msgid "Revoke access token"
 msgstr "접근 토큰 철회"
 
 #: reports/models.py:19
+#, fuzzy
+#| msgid "Change by"
 msgid "Range days"
 msgstr "수정자"
 
@@ -7632,15 +7739,11 @@ msgstr "SSO 토큰 인증"
 msgid "Passkey Auth"
 msgstr "패스키 인증"
 
-#: settings/serializers/auth/base.py:27
-msgid "UKey Auth"
-msgstr "패스키 인증"
-
-#: settings/serializers/auth/base.py:29
+#: settings/serializers/auth/base.py:28
 msgid "Email suffix"
 msgstr "이메일 접미사"
 
-#: settings/serializers/auth/base.py:31
+#: settings/serializers/auth/base.py:30
 msgid ""
 "After third-party user authentication is successful, if the third-party "
 "authentication service platform does not return the user's email "
@@ -7651,19 +7754,19 @@ msgstr ""
 "의 이메일 정보를 반환하지 않을 경우, 시스템은 자동으로 이 이메일 접미사를 사"
 "용하여 사용자를 생성합니다."
 
-#: settings/serializers/auth/base.py:38
+#: settings/serializers/auth/base.py:37
 msgid "Forgot Password URL"
 msgstr "비밀번호를 잊으셨나요? 링크"
 
-#: settings/serializers/auth/base.py:39
+#: settings/serializers/auth/base.py:38
 msgid "The URL for Forgotten Password on the user login page"
 msgstr "사용자 로그인 페이지에서 비밀번호를 잊으셨나요? URL"
 
-#: settings/serializers/auth/base.py:42
+#: settings/serializers/auth/base.py:41
 msgid "Login redirection"
 msgstr "로그인 리디렉션 알림 활성화"
 
-#: settings/serializers/auth/base.py:44
+#: settings/serializers/auth/base.py:43
 msgid ""
 "Should an flash page be displayed before the user is redirected to third-"
 "party authentication when the administrator enables third-party redirect "
@@ -7672,7 +7775,7 @@ msgstr ""
 "관리자가 서드파티 리디렉션 인증을 활성화할 때, 사용자가 서드파티 인증으로 리"
 "디렉션되기 전에 Flash 페이지를 표시할지 여부"
 
-#: settings/serializers/auth/base.py:56
+#: settings/serializers/auth/base.py:55
 msgid ""
 "When you create a user, you associate the user to the organization of your "
 "choice. Users always belong to the Default organization."
@@ -8188,6 +8291,9 @@ msgid "Enable SSO auth"
 msgstr "SSO 토큰 인증 활성화"
 
 #: settings/serializers/auth/sso.py:17
+#, fuzzy
+#| msgid ""
+#| "Other service can using SSO token login to fortserver without password"
 msgid "Other service can using SSO token login to system without password"
 msgstr ""
 "기타 시스템은 SSO 토큰을 통해 fortserver에 연동하여 로그인 과정을 생략할 수 "
@@ -8201,74 +8307,6 @@ msgstr "토큰 유효 기간"
 #: xpack/plugins/cloud/serializers/account_attrs.py:237
 msgid "Unit: second"
 msgstr "단위: 초"
-
-#: settings/serializers/auth/ukey.py:20
-msgid "Challenge TTL (seconds)"
-msgstr "인증 코드 유효 시간 (분)"
-
-#: settings/serializers/auth/ukey.py:21
-msgid "Time-to-live (seconds) for authentication challenge codes"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:25
-msgid "UKey Default User PIN"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:26
-msgid "UKey default user PIN used for administrator reset"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:30
-msgid "Enrollment"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:31
-msgid "Whether to enable user certificate enrollment"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:34
-msgid "Enrollment Validity Days"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:35
-msgid "Validity period (days) for issued certificates"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:38
-msgid "CA Key"
-msgstr "내용"
-
-#: settings/serializers/auth/ukey.py:39
-msgid "PEM content of CA private key used for certificate enrollment"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:42
-msgid "CA Cert"
-msgstr "내용"
-
-#: settings/serializers/auth/ukey.py:43
-msgid ""
-"PEM content of CA certificate used for certificate enrollment and "
-"authentication"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:46
-msgid "CA Key Password"
-msgstr "비밀번호"
-
-#: settings/serializers/auth/ukey.py:47
-msgid ""
-"Password for CA private key used for certificate enrollment (leave blank if "
-"not set)"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:50
-msgid "CA Cert Algorithm"
-msgstr ""
-
-#: settings/serializers/auth/ukey.py:56
-msgid "Auto-Detect After Upload"
-msgstr ""
 
 #: settings/serializers/auth/wecom.py:20
 msgid ""
@@ -8385,6 +8423,8 @@ msgid "Change secret and push record retention days"
 msgstr "계정 비밀번호 변경 푸시 기록 보존 일수"
 
 #: settings/serializers/cleaning.py:56
+#, fuzzy
+#| msgid "Change secret and push record retention days"
 msgid "Audit report send record retention days"
 msgstr "계정 비밀번호 변경 푸시 기록 보존 일수"
 
@@ -8435,7 +8475,7 @@ msgstr "임대인 ID"
 
 #: settings/serializers/feature.py:112 terminal/serializers/storage.py:68
 #: xpack/plugins/cloud/manager.py:128 xpack/plugins/cloud/manager.py:132
-#: xpack/plugins/cloud/manager.py:169 xpack/plugins/cloud/models.py:295
+#: xpack/plugins/cloud/manager.py:169 xpack/plugins/cloud/models.py:293
 msgid "Region"
 msgstr "지역"
 
@@ -8681,10 +8721,18 @@ msgstr ""
 "볼 수 있지만 해당 노드에 권한이 없는 문제를 피합니다"
 
 #: settings/serializers/security.py:19
+#, fuzzy
+#| msgid "User password expiration (day)"
 msgid "Admin password expiration (day)"
 msgstr "사용자 비밀번호 만료 시간 (일)"
 
 #: settings/serializers/security.py:21
+#, fuzzy
+#| msgid ""
+#| "If the user does not update the password during the time, the user "
+#| "password will expire failure;The password expiration reminder mail will "
+#| "be automatic sent to the user by system within 5 days (daily) before the "
+#| "password expires"
 msgid ""
 "If the admin does not update the password during the time, the admin "
 "password will expire failure;The password expiration reminder mail will be "
@@ -9010,14 +9058,10 @@ msgid "Insecure command alert"
 msgstr "위험한 명령 경고"
 
 #: settings/serializers/security.py:271
-msgid "Account username forbidden characters"
-msgstr ""
-
-#: settings/serializers/security.py:275
 msgid "Email recipient"
 msgstr "이메일 수신자"
 
-#: settings/serializers/security.py:276
+#: settings/serializers/security.py:272
 msgid "Multiple user using , split"
 msgstr "여러 사용자, 쉼표로 구분"
 
@@ -9459,23 +9503,19 @@ msgid "Client, currently used to launch the client"
 msgstr ""
 "클라이언트, 현재 특정 클라이언트 프로그램을 호출하여 자산에 연결하고 있습니다"
 
-#: templates/resource_download.html:32
-msgid "More download"
-msgstr "추가 다운로드"
+#: templates/resource_download.html:31
+msgid "Offline video player"
+msgstr "오프라인 비디오 플레이어"
 
-#: templates/resource_download.html:34
-msgid "Tools and applications"
-msgstr "도구 및 애플리케이션"
-
-#: terminal/api/applet/applet.py:55 terminal/api/virtualapp/virtualapp.py:43
+#: terminal/api/applet/applet.py:52 terminal/api/virtualapp/virtualapp.py:43
 msgid "Invalid zip file"
 msgstr "유효하지 않은 zip 파일"
 
-#: terminal/api/applet/applet.py:74
+#: terminal/api/applet/applet.py:71
 msgid "This is enterprise edition applet"
 msgstr "기업용 원격 애플리케이션은 커뮤니티 버전에서 사용할 수 없습니다."
 
-#: terminal/api/applet/applet.py:91
+#: terminal/api/applet/applet.py:88
 #, python-brace-format
 msgid "Applet not found in path: {}"
 msgstr "경로에 원격 애플리케이션을 찾을 수 없습니다: {}"
@@ -9501,33 +9541,16 @@ msgstr "명령 저장소"
 msgid "Invalid"
 msgstr "유효하지 않음"
 
-#: terminal/api/component/storage.py:128
-msgid "Connection refused"
-msgstr "연결이 거부되었습니다"
-
-#: terminal/api/component/storage.py:129
-msgid "Connection timeout"
-msgstr "연결 시간이 초과되었습니다"
-
-#: terminal/api/component/storage.py:130
-msgid "Unable to resolve the address"
-msgstr "주소를 확인할 수 없습니다"
-
-#: terminal/api/component/storage.py:131
-msgid "Unable to connect to the host"
-msgstr "호스트에 연결할 수 없습니다"
-
-#: terminal/api/component/storage.py:139 terminal/api/component/storage.py:140
-#: terminal/tasks.py:208
+#: terminal/api/component/storage.py:132 terminal/tasks.py:208
 #, python-brace-format
 msgid "Test failure: {}"
 msgstr "테스트 실패: {}"
 
-#: terminal/api/component/storage.py:151
+#: terminal/api/component/storage.py:135
 msgid "Test successful"
 msgstr "테스트 성공"
 
-#: terminal/api/component/storage.py:153
+#: terminal/api/component/storage.py:137
 msgid "Test failure: Please check configuration"
 msgstr "테스트 실패: 구성을 확인하십시오."
 
@@ -10056,46 +10079,68 @@ msgid "Invalid storage"
 msgstr "유효하지 않은 저장소"
 
 #: terminal/reporting.py:10
+#, fuzzy
+#| msgid "Session record"
 msgid "Session Report"
 msgstr "세션 기록"
 
 #: terminal/reporting.py:24 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Success accounts"
 msgid "Successful sessions"
 msgstr "성공한 계정"
 
 #: terminal/reporting.py:25 terminal/reporting.py:103
+#, fuzzy
+#| msgid "Kill session"
 msgid "Failed sessions"
 msgstr "세션 종료"
 
 #: terminal/reporting.py:26
+#, fuzzy
+#| msgid "Online sessions"
 msgid "Finished sessions"
 msgstr "온라인 세션"
 
 #: terminal/reporting.py:27 terminal/reporting.py:103
+#, fuzzy
+#| msgid "View session"
 msgid "Active sessions"
 msgstr "대화 보기"
 
 #: terminal/reporting.py:29
+#, fuzzy
+#| msgid "Session replay"
 msgid "Sessions with replay"
 msgstr "세션 녹화"
 
 #: terminal/reporting.py:30
+#, fuzzy
+#| msgid "Session join record"
 msgid "Sessions with commands"
 msgstr "세션 가입 기록"
 
 #: terminal/reporting.py:33
+#, fuzzy
+#| msgid "Can view web terminal"
 msgid "Unique terminals"
 msgstr "웹 터미널"
 
 #: terminal/reporting.py:107
+#, fuzzy
+#| msgid "Protocols is required"
 msgid "Protocol Distribution"
 msgstr "프로토콜은 필수입니다."
 
 #: terminal/reporting.py:112
+#, fuzzy
+#| msgid "Login redirection"
 msgid "Login From Distribution"
 msgstr "로그인 리디렉션 알림 활성화"
 
 #: terminal/reporting.py:127
+#, fuzzy
+#| msgid "Terminal"
 msgid "Terminal Top 10"
 msgstr "터미널"
 
@@ -10940,22 +10985,32 @@ msgid "Ticket has processed - {} ({})"
 msgstr "귀하의 작업 티켓이 처리되었습니다, 처리자 - {} ({})"
 
 #: tickets/reporting.py:10
+#, fuzzy
+#| msgid "Ticket step"
 msgid "Ticket Report"
 msgstr "작업 단계"
 
 #: tickets/reporting.py:17
+#, fuzzy
+#| msgid "Super ticket"
 msgid "Open tickets"
 msgstr "슈퍼 작업 티켓"
 
 #: tickets/reporting.py:18
+#, fuzzy
+#| msgid "From ticket"
 msgid "Closed tickets"
 msgstr "워크오더에서 가져옴"
 
 #: tickets/reporting.py:19
+#, fuzzy
+#| msgid "Pending"
 msgid "Pending tickets"
 msgstr "대기 중"
 
 #: tickets/reporting.py:20
+#, fuzzy
+#| msgid "App Tickets"
 msgid "Approved tickets"
 msgstr "작업 관리"
 
@@ -10964,18 +11019,26 @@ msgid "Rejected tickets"
 msgstr ""
 
 #: tickets/reporting.py:22
+#, fuzzy
+#| msgid "Applicant"
 msgid "Unique applicants"
 msgstr "신청인"
 
 #: tickets/reporting.py:25
+#, fuzzy
+#| msgid "All organizations"
 msgid "Unique organizations"
 msgstr "모든 조직"
 
 #: tickets/reporting.py:69
+#, fuzzy
+#| msgid "Ticket information"
 msgid "Ticket Type Distribution"
 msgstr "작업 정보"
 
 #: tickets/reporting.py:74
+#, fuzzy
+#| msgid "Ticket information"
 msgid "Ticket State Distribution"
 msgstr "작업 정보"
 
@@ -10984,14 +11047,20 @@ msgid "Ticket Status Distribution"
 msgstr ""
 
 #: tickets/reporting.py:84
+#, fuzzy
+#| msgid "Organization role"
 msgid "Organization Top 10"
 msgstr "조직 역할"
 
 #: tickets/reporting.py:89
+#, fuzzy
+#| msgid "Applicant"
 msgid "Applicant Top 10"
 msgstr "신청인"
 
 #: tickets/reporting.py:94
+#, fuzzy
+#| msgid "Approval without login"
 msgid "Approval Step Distribution"
 msgstr "로그인 불필요 승인"
 
@@ -11295,10 +11364,12 @@ msgid "Preference"
 msgstr "사용자 설정"
 
 #: users/models/user/__init__.py:70
+#, fuzzy
+#| msgid "Email account"
 msgid "Email lookup"
 msgstr "이메일 계정"
 
-#: users/models/user/__init__.py:82 users/serializers/user.py:265
+#: users/models/user/__init__.py:82 users/serializers/user.py:264
 msgid "Is service account"
 msgstr "서비스 계정"
 
@@ -11315,7 +11386,7 @@ msgid "OTP secret key"
 msgstr "OTP 키"
 
 #: users/models/user/__init__.py:105 users/serializers/profile.py:86
-#: users/serializers/user.py:262
+#: users/serializers/user.py:261
 msgid "Is first login"
 msgstr "첫 로그인"
 
@@ -11331,37 +11402,39 @@ msgstr "비밀번호 업데이트 필요"
 msgid "Face vector"
 msgstr "얼굴 벡터"
 
-#: users/models/user/__init__.py:154
-msgid "UKey SN"
-msgstr ""
-
-#: users/models/user/__init__.py:157
+#: users/models/user/__init__.py:153
 msgid "Date api key used"
 msgstr "API 키 마지막 사용 날짜"
 
-#: users/models/user/__init__.py:303
+#: users/models/user/__init__.py:298
 msgid "Can not delete admin user"
 msgstr "관리자 사용자 삭제 불가"
 
-#: users/models/user/__init__.py:317
+#: users/models/user/__init__.py:312
 msgid "Can invite user"
 msgstr "사용자 초대 가능"
 
-#: users/models/user/__init__.py:318
+#: users/models/user/__init__.py:313
 msgid "Can remove user"
 msgstr "사용자 제거 가능"
 
-#: users/models/user/__init__.py:319
+#: users/models/user/__init__.py:314
 msgid "Can match user"
 msgstr "사용자 매치 가능"
 
-#: users/models/user/__init__.py:354
+#: users/models/user/__init__.py:343
 msgid "User password history"
 msgstr "사용자 비밀번호 히스토리"
 
 #: users/models/user/_auth.py:34
 msgid "Force enabled"
 msgstr "강제로 활성화"
+
+#: users/models/user/_source.py:27
+#, fuzzy
+#| msgid "Authenticate"
+msgid "Certificate"
+msgstr "신원 인증"
 
 #: users/notifications.py:23 users/notifications.py:68
 msgid "Reset password url"
@@ -11586,7 +11659,7 @@ msgstr "MFA 강제화"
 msgid "Login blocked"
 msgstr "로그인 잠금"
 
-#: users/serializers/user.py:130 users/serializers/user.py:271
+#: users/serializers/user.py:130 users/serializers/user.py:270
 msgid "Is OTP bound"
 msgstr "가상 MFA가 연결되어 있습니까?"
 
@@ -11603,30 +11676,32 @@ msgid "Can public key authentication"
 msgstr "공개 키 인증 사용 가능"
 
 #: users/serializers/user.py:145
-msgid "Can UKey authentication"
+#, fuzzy
+#| msgid "Can public key authentication"
+msgid "Can certificate authentication"
 msgstr "공개 키 인증 사용 가능"
 
 #: users/serializers/user.py:149
 msgid "Is face code set"
 msgstr "얼굴 인식 특성이 존재합니까?"
 
-#: users/serializers/user.py:236
+#: users/serializers/user.py:235
 msgid "Full name"
 msgstr "전체 이름"
 
-#: users/serializers/user.py:239
+#: users/serializers/user.py:238
 msgid "Login username"
 msgstr "로그인 사용자"
 
-#: users/serializers/user.py:242
+#: users/serializers/user.py:241
 msgid "Email address"
 msgstr "이메일 주소"
 
-#: users/serializers/user.py:252
+#: users/serializers/user.py:251
 msgid "User groups to join"
 msgstr "사용자 그룹 수"
 
-#: users/serializers/user.py:256
+#: users/serializers/user.py:255
 msgid ""
 "User source identifies where the user was created, which could be AD or "
 "other sources.There are security settings that can restrict users to log in "
@@ -11636,33 +11711,33 @@ msgstr ""
 "다. 보안 설정에 따라 사용자가 지정된 출처에서만 시스템에 로그인할 수 있습니"
 "다."
 
-#: users/serializers/user.py:266
+#: users/serializers/user.py:265
 msgid "Is org admin"
 msgstr "조직 관리자"
 
-#: users/serializers/user.py:268
+#: users/serializers/user.py:267
 msgid "Avatar url"
 msgstr "프로필 사진 경로"
 
-#: users/serializers/user.py:273
+#: users/serializers/user.py:272
 msgid "MFA level"
 msgstr "MFA"
 
-#: users/serializers/user.py:274
+#: users/serializers/user.py:273
 msgid "Multi-Factor Authentication"
 msgstr "인증"
 
-#: users/serializers/user.py:413
+#: users/serializers/user.py:403
 msgid "Has public keys"
 msgstr "공개 키가 있습니다."
 
-#: users/serializers/user.py:441
+#: users/serializers/user.py:431
 msgid ""
 "* For security, only a partial of users is displayed. You can search for more"
 msgstr ""
 "* 보안을 위해 일부 사용자만 표시됩니다. 더 많은 사용자 검색이 가능합니다."
 
-#: users/serializers/user.py:477
+#: users/serializers/user.py:467
 msgid "name not unique"
 msgstr "이름 중복"
 
@@ -12178,7 +12253,7 @@ msgstr "사설 IP"
 msgid "Public IP"
 msgstr "공용 IP"
 
-#: xpack/plugins/cloud/const.py:50 xpack/plugins/cloud/models.py:376
+#: xpack/plugins/cloud/const.py:50 xpack/plugins/cloud/models.py:374
 msgid "Instance name"
 msgstr "인스턴스 이름"
 
@@ -12260,7 +12335,7 @@ msgstr "동기화 지역"
 msgid "Get instances of region \"%s\" error, error: %s"
 msgstr "영역 \"%s\"의 인스턴스 오류를 가져오는 중, 오류: %s"
 
-#: xpack/plugins/cloud/manager.py:169 xpack/plugins/cloud/models.py:292
+#: xpack/plugins/cloud/manager.py:169 xpack/plugins/cloud/models.py:290
 msgid "Instance"
 msgstr "인스턴스"
 
@@ -12343,148 +12418,148 @@ msgstr "클라우드 계정"
 msgid "Test cloud account"
 msgstr "테스트 클라우드 계정"
 
-#: xpack/plugins/cloud/models.py:111
+#: xpack/plugins/cloud/models.py:109
 #: xpack/plugins/cloud/serializers/account.py:83
 #: xpack/plugins/cloud/serializers/task.py:170
 #: xpack/plugins/cloud/serializers/task.py:171
 msgid "Regions"
 msgstr "지역"
 
-#: xpack/plugins/cloud/models.py:114
+#: xpack/plugins/cloud/models.py:112
 msgid "Hostname strategy"
 msgstr "호스트 이름 정책"
 
-#: xpack/plugins/cloud/models.py:119
+#: xpack/plugins/cloud/models.py:117
 msgid "IP network segment group"
 msgstr "IP 네트워크 세그먼트 그룹"
 
-#: xpack/plugins/cloud/models.py:123
+#: xpack/plugins/cloud/models.py:121
 #: xpack/plugins/cloud/serializers/task.py:174
 msgid "Preferred IP type"
 msgstr "선택한 IP 유형"
 
-#: xpack/plugins/cloud/models.py:126
+#: xpack/plugins/cloud/models.py:124
 msgid "Always update"
 msgstr "항상 업데이트"
 
-#: xpack/plugins/cloud/models.py:128
+#: xpack/plugins/cloud/models.py:126
 msgid "Fully synchronous"
 msgstr "완전 동기화"
 
-#: xpack/plugins/cloud/models.py:129
+#: xpack/plugins/cloud/models.py:127
 msgid "Release assets"
 msgstr "자산 배포"
 
-#: xpack/plugins/cloud/models.py:134
+#: xpack/plugins/cloud/models.py:132
 msgid "Date last sync"
 msgstr "최종 동기화 날짜"
 
-#: xpack/plugins/cloud/models.py:137 xpack/plugins/cloud/models.py:394
-#: xpack/plugins/cloud/models.py:421
+#: xpack/plugins/cloud/models.py:135 xpack/plugins/cloud/models.py:392
+#: xpack/plugins/cloud/models.py:419
 msgid "Strategy"
 msgstr "정책"
 
-#: xpack/plugins/cloud/models.py:142 xpack/plugins/cloud/models.py:231
+#: xpack/plugins/cloud/models.py:140 xpack/plugins/cloud/models.py:229
 msgid "Sync instance task"
 msgstr "동기화 인스턴스 작업"
 
-#: xpack/plugins/cloud/models.py:242 xpack/plugins/cloud/models.py:305
+#: xpack/plugins/cloud/models.py:240 xpack/plugins/cloud/models.py:303
 msgid "Date sync"
 msgstr "동기화 날짜"
 
-#: xpack/plugins/cloud/models.py:246
+#: xpack/plugins/cloud/models.py:244
 msgid "Sync instance snapshot"
 msgstr "동기화 인스턴스 스냅샷"
 
-#: xpack/plugins/cloud/models.py:254
+#: xpack/plugins/cloud/models.py:252
 msgid "Sync instance task execution"
 msgstr "동기화 인스턴스 작업 실행"
 
-#: xpack/plugins/cloud/models.py:285
+#: xpack/plugins/cloud/models.py:283
 msgid "Sync task"
 msgstr "동기화 작업"
 
-#: xpack/plugins/cloud/models.py:289
+#: xpack/plugins/cloud/models.py:287
 msgid "Sync instance task history"
 msgstr "동기화 인스턴스 작업 기록"
 
-#: xpack/plugins/cloud/models.py:309
+#: xpack/plugins/cloud/models.py:307
 msgid "Sync instance detail"
 msgstr "동기화 인스턴스 세부정보"
 
-#: xpack/plugins/cloud/models.py:321 xpack/plugins/cloud/serializers/task.py:79
+#: xpack/plugins/cloud/models.py:319 xpack/plugins/cloud/serializers/task.py:79
 msgid "Rule relation"
 msgstr "조건 관계"
 
-#: xpack/plugins/cloud/models.py:334
+#: xpack/plugins/cloud/models.py:332
 msgid "Task strategy"
 msgstr "작업 전략"
 
-#: xpack/plugins/cloud/models.py:365
+#: xpack/plugins/cloud/models.py:363
 msgid "Equal"
 msgstr "같음"
 
-#: xpack/plugins/cloud/models.py:366
+#: xpack/plugins/cloud/models.py:364
 msgid "Not Equal"
 msgstr "다름"
 
-#: xpack/plugins/cloud/models.py:367
+#: xpack/plugins/cloud/models.py:365
 msgid "In"
 msgstr "...안에서"
 
-#: xpack/plugins/cloud/models.py:368
+#: xpack/plugins/cloud/models.py:366
 msgid "Contains"
 msgstr "포함"
 
-#: xpack/plugins/cloud/models.py:369
+#: xpack/plugins/cloud/models.py:367
 msgid "Exclude"
 msgstr "제외"
 
-#: xpack/plugins/cloud/models.py:370
+#: xpack/plugins/cloud/models.py:368
 msgid "Startswith"
 msgstr "...로 시작"
 
-#: xpack/plugins/cloud/models.py:371
+#: xpack/plugins/cloud/models.py:369
 msgid "Endswith"
 msgstr "...로 끝"
 
-#: xpack/plugins/cloud/models.py:377
+#: xpack/plugins/cloud/models.py:375
 msgid "Instance platform"
 msgstr "인스턴스 플랫폼"
 
-#: xpack/plugins/cloud/models.py:378
+#: xpack/plugins/cloud/models.py:376
 msgid "Instance address"
 msgstr "인스턴스 주소"
 
-#: xpack/plugins/cloud/models.py:385
+#: xpack/plugins/cloud/models.py:383
 msgid "Rule attr"
 msgstr "규칙 속성"
 
-#: xpack/plugins/cloud/models.py:389
+#: xpack/plugins/cloud/models.py:387
 msgid "Rule match"
 msgstr "규칙 매칭"
 
-#: xpack/plugins/cloud/models.py:391
+#: xpack/plugins/cloud/models.py:389
 msgid "Rule value"
 msgstr "규칙 값"
 
-#: xpack/plugins/cloud/models.py:398 xpack/plugins/cloud/serializers/task.py:82
+#: xpack/plugins/cloud/models.py:396 xpack/plugins/cloud/serializers/task.py:82
 msgid "Strategy rule"
 msgstr "조건"
 
-#: xpack/plugins/cloud/models.py:409
+#: xpack/plugins/cloud/models.py:407
 msgid "Name strategy"
 msgstr "호스트 이름 정책"
 
-#: xpack/plugins/cloud/models.py:416
+#: xpack/plugins/cloud/models.py:414
 msgid "Action attr"
 msgstr "액션 속성"
 
-#: xpack/plugins/cloud/models.py:418
+#: xpack/plugins/cloud/models.py:416
 msgid "Action value"
 msgstr "액션 값"
 
-#: xpack/plugins/cloud/models.py:425 xpack/plugins/cloud/serializers/task.py:85
+#: xpack/plugins/cloud/models.py:423 xpack/plugins/cloud/serializers/task.py:85
 msgid "Strategy action"
 msgstr "액션"
 
@@ -12729,6 +12804,8 @@ msgid "Auto node classification"
 msgstr "자동 노드 분류"
 
 #: xpack/plugins/cloud/serializers/account_attrs.py:108
+#, fuzzy
+#| msgid "Domain name"
 msgid "domain_name"
 msgstr "도메인 이름."
 
@@ -12843,7 +12920,7 @@ msgid "Restore default successfully."
 msgstr "기본값으로 복원되었습니다!"
 
 #: xpack/plugins/interface/meta.py:9 xpack/plugins/interface/models.py:49
-#: xpack/plugins/interface/models.py:105
+#: xpack/plugins/interface/models.py:104
 msgid "Interface settings"
 msgstr "인터페이스 설정"
 
@@ -12874,11 +12951,13 @@ msgstr "바닥글 내용"
 #: xpack/plugins/interface/models.py:46
 #: xpack/plugins/interface/serializers/interface.py:73
 msgid "Extend"
-msgstr "확장"
+msgstr ""
 
 #: xpack/plugins/interface/serializers/interface.py:48
+#, fuzzy
+#| msgid "Account name"
 msgid "Product name"
-msgstr "제품명"
+msgstr "계정 이름"
 
 #: xpack/plugins/interface/serializers/interface.py:49
 msgid "Wide logo on top"
@@ -12889,40 +12968,58 @@ msgid "Small logo without text"
 msgstr "사각형 작은 로고"
 
 #: xpack/plugins/interface/templates/login_i18n.html:10
+#, fuzzy
+#| msgid "Support URL"
 msgid "Support"
-msgstr "지원"
+msgstr "지원 링크"
 
 #: xpack/plugins/interface/templates/login_i18n.html:11
+#, fuzzy
+#| msgid "Please enter your account username"
 msgid "Please enter your username"
-msgstr "사용자 이름을 입력해 주세요"
+msgstr "귀하의 계정 사용자 이름을 입력하십시오"
 
 #: xpack/plugins/interface/templates/login_i18n.html:12
+#, fuzzy
+#| msgid "Please change your password"
 msgid "Please enter your password"
-msgstr "비밀번호를 입력해 주세요"
+msgstr "비밀번호를 수정하십시오."
 
 #: xpack/plugins/interface/templates/login_i18n.html:15
 msgid "I have read and agree to the"
-msgstr "다음을 읽고 동의합니다"
+msgstr ""
 
 #: xpack/plugins/interface/templates/login_i18n.html:16
+#, fuzzy
+#| msgid "User agent"
 msgid "User Agreement"
-msgstr "사용자 계약"
+msgstr "사용자 에이전트"
 
 #: xpack/plugins/interface/templates/login_i18n.html:17
 msgid "Privacy Policy"
-msgstr "개인정보 처리방침"
+msgstr ""
+
+#: xpack/plugins/interface/templates/login_i18n.html:22
+#, fuzzy
+#| msgid "More login options"
+msgid "More login methods"
+msgstr "기타 로그인 방법"
 
 #: xpack/plugins/jdmc/i18n.py:4
+#, fuzzy
+#| msgid "Audit view"
 msgid "AuditAdmin"
-msgstr "감사 관리자"
+msgstr "감사 대시보드"
 
 #: xpack/plugins/jdmc/i18n.py:5
+#, fuzzy
+#| msgid "SystemAdmin"
 msgid "SecAdmin"
-msgstr "보안 관리자"
+msgstr "시스템 관리자"
 
 #: xpack/plugins/jdmc/meta.py:9
 msgid "JDMC"
-msgstr "JDMC"
+msgstr ""
 
 #: xpack/plugins/license/api.py:54
 msgid "License import successfully"
@@ -12931,21 +13028,6 @@ msgstr "라이센스 가져오기 성공"
 #: xpack/plugins/license/api.py:55
 msgid "Invalid license"
 msgstr "라이센스가 유효하지 않습니다."
-
-#~ msgid "Offline video player"
-#~ msgstr "오프라인 비디오 플레이어"
-
-#~| msgid "Authenticate"
-#~ msgid "Certificate Auth"
-#~ msgstr "신원 인증"
-
-#~| msgid "Authenticate"
-#~ msgid "Certificate"
-#~ msgstr "신원 인증"
-
-#~| msgid "More login options"
-#~ msgid "Other login methods"
-#~ msgstr "기타 로그인 방법"
 
 #~ msgid "User invalid, disabled or expired"
 #~ msgstr "사용자가 유효하지 않거나 비활성 상태이거나 만료되었습니다"
@@ -12973,6 +13055,7 @@ msgstr "라이센스가 유효하지 않습니다."
 #~ "OpenSSH는 Windows 원격 애플리케이션 게시 서버에서 원격 애플리케이션에 연결"
 #~ "하는 데 사용되는 프로그램입니다."
 
+#, fuzzy
 #~| msgid "Periodic run"
 #~ msgid "Periodic report"
 #~ msgstr "주기 실행"

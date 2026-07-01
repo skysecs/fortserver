@@ -28,7 +28,7 @@ class UserFilter(BaseFilterSet):
     class Meta:
         model = User
         fields = (
-            'id', 'username', 'name', 'ukey_sn',
+            'id', 'username', 'name',
             'groups', 'group_id', 'exclude_group_id',
             'source', 'org_roles', 'system_roles',
             'is_active', 'is_first_login', 'mfa_level'
@@ -71,16 +71,20 @@ class UserFilter(BaseFilterSet):
         return queryset.filter(q)
 
     def filter_long_time(self, queryset, name, value):
-        if not value:
-            return queryset
+        now = timezone.now()
+        interval = 30
+        date_expired = now - timezone.timedelta(days=int(interval))
+        if name == 'is_long_time_no_login':
+            key = 'last_login'
+        else:
+            raise ValueError('Invalid filter name')
 
-        no_login_days = self.request.GET.get('no_login_days', 30)
-        cutoff_time = timezone.now() - timezone.timedelta(days=int(no_login_days))
-
-        return queryset.filter(
-            Q(last_login__lt=cutoff_time) |
-            Q(last_login__isnull=True)
-        )
+        if value:
+            kwargs = {f'{key}__lt': date_expired}
+        else:
+            kwargs = {f'{key}__gt': date_expired}
+        q = Q(**kwargs) | Q(**{f'{key}__isnull': True})
+        return queryset.filter(q)
 
     def filter_is_valid(self, queryset, name, value):
         if value:
