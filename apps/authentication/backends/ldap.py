@@ -92,7 +92,11 @@ class LDAPBaseBackend(LDAPBackend):
         if not match:
             logger.info('Authenticate failed: {}'.format(msg))
             return None
-        ldap_user = LDAPUser(self, username=username.strip(), request=request)
+        try:
+            ldap_user = LDAPUser(self, username=username.strip(), request=request)
+        except Exception as e:
+            logger.error('Authenticate failed: {}'.format(e))
+            return None
         user = self.authenticate_ldap_user(ldap_user, password)
         logger.info('Authenticate user: {}'.format(user))
         return user if self.user_can_authenticate(user) else None

@@ -48,7 +48,7 @@ class LDAPHASettingSerializer(LDAPSerializerMixin, serializers.Serializer):
     AUTH_LDAP_HA_USER_ATTR_MAP = serializers.JSONField(
         required=True, label=_('User attribute'),
         help_text=_(
-            'User attribute mapping, where the `key` is the fortserver user attribute name and the '
+            'User attribute mapping, where the `key` is this system user attribute name and the '
             '`value` is the LDAP service user attribute name'
         )
     )

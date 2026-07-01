@@ -56,7 +56,7 @@ class SecretStrategy(models.TextChoices):
 
 class SSHKeyStrategy(models.TextChoices):
     # add = 'add', _('Append SSH KEY')
-    set_jms = 'set_jms', _('Replace (Replace only keys pushed by fortserver) ')
+    set_jms = 'set_jms', _('Replace (Replace only keys pushed by system) ')
     set = 'set', _('Empty and append SSH KEY')
 
 
