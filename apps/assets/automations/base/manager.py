@@ -26,6 +26,8 @@ from users.utils import activate_user_language
 
 logger = get_logger(__name__)
 
+BULK_SIZE = 80
+
 
 class SSHTunnelManager:
     def __init__(self, *args, **kwargs):
@@ -189,7 +191,7 @@ class BaseManager:
 
 
 class PlaybookPrepareMixin:
-    bulk_size = 100
+    bulk_size = BULK_SIZE
     ansible_account_policy = "privileged_first"
     ansible_account_prefer = "root,Administrator"
 
@@ -377,7 +379,7 @@ class PlaybookPrepareMixin:
 
 
 class BasePlaybookManager(PlaybookPrepareMixin, BaseManager):
-    bulk_size = 100
+    bulk_size = BULK_SIZE
     ansible_account_policy = "privileged_first"
     ansible_account_prefer = ""
 
@@ -515,8 +517,8 @@ class BasePlaybookManager(PlaybookPrepareMixin, BaseManager):
     def _is_nonfatal_runner_timeout(error):
         error_text = str(error)
         return (
-            "pexpect.exceptions.TIMEOUT" in error_text
-            and "exitstatus: 0" in error_text
+                "pexpect.exceptions.TIMEOUT" in error_text
+                and "exitstatus: 0" in error_text
         )
 
     def on_runner_failed(self, runner, e, assets=None, **kwargs):
