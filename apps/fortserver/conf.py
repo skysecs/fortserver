@@ -788,6 +788,11 @@ class Config(dict):
 
         'REMOTE_APP_STORE_URL': 'https://apps.fortserver.com/fortserver',
         'LANGUAGES_SUPPORTED': '',
+
+        # rdp sign cert
+        'RDP_SIGN_ENABLED': False,
+        'RDP_SIGN_CERT': 'signer.crt',
+        'RDP_SIGN_CERT_KEY': 'signer.key',
     }
 
     old_config_map = {
