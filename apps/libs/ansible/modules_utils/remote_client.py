@@ -64,9 +64,9 @@ def raise_timeout(name=''):
                     signal.signal(signal.SIGALRM, handler)
                     signal.alarm(timeout)
                 return func(self, *args, **kwargs)
-            except Exception as error:
-                signal.alarm(0)
-                raise error
+            finally:
+                if timeout > 0:
+                    signal.alarm(0)
 
         return wrapper
 
@@ -77,6 +77,15 @@ def _strip_wrapping_quotes(value):
     if value and len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
         return value[1:-1]
     return value
+
+
+def normalize_gateway_args_for_legacy_parser(gateway_args):
+   
+    return re.sub(
+        r'(-W\s+%h:%p\s+-q)\s+--\s+([^@\s]+@[^\'"\s]+)([\'"]?)',
+        r'\2 \1\3',
+        gateway_args,
+    )
 
 
 class OldSSHTransport(paramiko.transport.Transport):
@@ -113,13 +122,22 @@ class SSHClient:
 
     def get_connect_params(self):
         p = self.module.params
+        connect_timeout = p.get('recv_timeout', 60)
         params = {
             'allow_agent': False,
             'look_for_keys': False,
             'hostname': p['login_host'],
             'port': p['login_port'],
-            'key_filename': p['login_private_key_path'] or None
+            'key_filename': p['login_private_key_path'] or None,
         }
+        if connect_timeout:
+            # Keep Paramiko connect/auth/banner waits bounded by the same
+            # timeout budget as command receive so a bad host returns promptly.
+            params.update(
+                timeout=connect_timeout,
+                auth_timeout=connect_timeout,
+                banner_timeout=connect_timeout,
+            )
 
         if p['become']:
             params['username'] = p['become_user']
@@ -268,6 +286,7 @@ class SSHClient:
 
     def local_gateway_prepare(self):
         gateway_args = self.module.params['gateway_args'] or ''
+        gateway_args = normalize_gateway_args_for_legacy_parser(gateway_args)
         pattern = (
             r"(?:sshpass -p ([^ ]+))?\s*ssh -o Port=(\d+)\s+-o StrictHostKeyChecking=no\s+"
             r"([^@\s]+)@([^\s]+)\s+-W %h:%p -q(?: -i ([^']+))?'"
