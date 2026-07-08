@@ -46,8 +46,5 @@ def on_user_auth_login_success(sender, user, request, **kwargs):
 @receiver(backend_auth_failed)
 def on_user_login_failed(sender, username, request, reason, backend, **kwargs):
     request.session['auth_backend'] = backend
-    post_auth_failed.send(
-        sender, username=username, request=request, reason=reason,
-        reason_code=kwargs.get('reason_code') or '',
-        reason_params=kwargs.get('reason_params') or {},
-    )
+    post_auth_failed.send(sender, username=username, request=request, reason=reason)
+

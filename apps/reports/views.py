@@ -5,11 +5,8 @@ from io import BytesIO
 from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 from django.conf import settings
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import EmailMultiAlternatives
-from django.http import (
-    FileResponse, HttpResponse, HttpResponseBadRequest, JsonResponse,
-)
+from django.http import FileResponse, HttpResponseBadRequest, JsonResponse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
@@ -61,51 +58,30 @@ charts_map = {
 }
 
 
-def get_trusted_site_url():
-    # Playwright navigation and cookie scope must never depend on request Host.
-    site_url = getattr(settings, 'SITE_URL', '')
-    if not isinstance(site_url, str):
-        raise ValueError('Invalid SITE_URL')
-    site_url = site_url.rstrip('/')
-    parsed_site = urlparse(site_url)
-    if (
-        not site_url or parsed_site.scheme not in ('http', 'https') or
-        not parsed_site.hostname or parsed_site.username or
-        parsed_site.password or parsed_site.query or parsed_site.fragment
-    ):
-        raise ValueError('Invalid SITE_URL')
-    return site_url, parsed_site
-
-
-def build_report_url(chart_path):
-    path = urllib.parse.unquote(chart_path)
-    if not path.startswith('/ui/#/reports/'):
-        raise ValueError('Invalid report path')
-    site_url, _ = get_trusted_site_url()
-    return site_url + path
-
-
-def export_chart_to_pdf(chart_name, sessionid, request):
+def export_chart_to_pdf(chart_name, sessionid, request=None):
     chart_info = charts_map.get(chart_name)
     if not chart_info:
         return None, None
 
-    url = build_report_url(chart_info['path'])
-    _, parsed_site = get_trusted_site_url()
+    if request:
+        url = request.build_absolute_uri(urllib.parse.unquote(chart_info['path']))
+    else:
+        url = urllib.parse.unquote(chart_info['path'])
     if settings.DEBUG_DEV:
         url = url.replace(":8080", ":9528")
-    oid = request.COOKIES.get("X-JMS-ORG")
-    request_data = request.POST if request.method == 'POST' else request.GET
-    query = dict(parse_qsl(urlsplit(url).query, keep_blank_values=True))
-    for key, value in request_data.items():
-        if key in {'chart', 'csrfmiddlewaretoken'}:
-            continue
-        query[key] = value
-    query.setdefault('days', 7)
-    query['oid'] = oid
-    parts = list(urlsplit(url))
-    parts[3] = urlencode(query, doseq=True)
-    url = urlunsplit(parts)
+    if request:
+        oid = request.COOKIES.get("X-JMS-ORG")
+        request_data = request.POST if request.method == 'POST' else request.GET
+        query = dict(parse_qsl(urlsplit(url).query, keep_blank_values=True))
+        for key, value in request_data.items():
+            if key in {'chart', 'csrfmiddlewaretoken'}:
+                continue
+            query[key] = value
+        query.setdefault('days', 7)
+        query['oid'] = oid
+        parts = list(urlsplit(url))
+        parts[3] = urlencode(query, doseq=True)
+        url = urlunsplit(parts)
 
     with sync_playwright() as p:
         lang = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
@@ -116,12 +92,12 @@ def export_chart_to_pdf(chart_name, sessionid, request):
             ignore_https_errors=True
         )
         # 设置 sessionid cookie
+        parsed_url = urlparse(url)
         context.add_cookies([
             {
                 'name': settings.SESSION_COOKIE_NAME,
                 'value': sessionid,
-                # hostname is derived from SITE_URL and never includes a port.
-                'domain': parsed_site.hostname,
+                'domain': parsed_url.hostname,
                 'path': '/',
                 'httpOnly': True,
                 'secure': False,  # 如有 https 可改 True
@@ -146,7 +122,7 @@ def export_chart_to_pdf(chart_name, sessionid, request):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class ExportPdfView(LoginRequiredMixin, View):
+class ExportPdfView(View):
     def get(self, request):
         chart_name = request.GET.get('chart')
         return self._handle_export(request, chart_name)
@@ -156,20 +132,13 @@ class ExportPdfView(LoginRequiredMixin, View):
         return self._handle_export(request, chart_name)
 
     def _handle_export(self, request, chart_name):
-        if not request.user.is_authenticated:
-            return HttpResponse(status=401)
         if not chart_name:
             return HttpResponseBadRequest('Missing chart parameter')
         sessionid = request.COOKIES.get(settings.SESSION_COOKIE_NAME)
         if not sessionid:
             return HttpResponseBadRequest('No sessionid found in cookies')
 
-        try:
-            pdf_bytes, title = export_chart_to_pdf(
-                chart_name, sessionid, request=request
-            )
-        except ValueError:
-            return HttpResponseBadRequest('Invalid report configuration')
+        pdf_bytes, title = export_chart_to_pdf(chart_name, sessionid, request=request)
         if not pdf_bytes:
             return HttpResponseBadRequest('Failed to generate PDF')
         filename = f"{title}-{timezone.now().strftime('%Y%m%d%H%M%S')}.pdf"
@@ -178,11 +147,9 @@ class ExportPdfView(LoginRequiredMixin, View):
         return response
 
 
-class SendMailView(LoginRequiredMixin, View):
+class SendMailView(View):
 
     def post(self, request):
-        if not request.user.is_authenticated:
-            return HttpResponse(status=401)
         chart_name = request.GET.get('chart') or request.POST.get('chart')
         if not chart_name:
             return HttpResponseBadRequest('Missing chart parameter')
@@ -194,12 +161,7 @@ class SendMailView(LoginRequiredMixin, View):
             return HttpResponseBadRequest('No sessionid found in cookies')
 
         # 1. 生成 PDF
-        try:
-            pdf_bytes, title = export_chart_to_pdf(
-                chart_name, sessionid, request=request
-            )
-        except ValueError:
-            return HttpResponseBadRequest('Invalid report configuration')
+        pdf_bytes, title = export_chart_to_pdf(chart_name, sessionid, request=request)
         if not pdf_bytes:
             return HttpResponseBadRequest('Failed to generate PDF')
 

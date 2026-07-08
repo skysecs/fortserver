@@ -602,7 +602,6 @@ class Config(dict):
         'SECURITY_MFA_AUTH_ENABLED_FOR_THIRD_PARTY': True,
         'SECURITY_MFA_BY_EMAIL': False,
         'SECURITY_COMMAND_EXECUTION': False,
-        'ANSIBLE_DOCKER_ENABLED': True,
         'SECURITY_COMMAND_BLACKLIST': [
             'reboot', 'shutdown', 'poweroff', 'halt', 'dd', 'half', 'top'
         ],
@@ -798,8 +797,8 @@ class Config(dict):
 
         # rdp sign cert
         'RDP_SIGN_ENABLED': False,
-        'RDP_SIGN_CERT': 'signer.crt',
-        'RDP_SIGN_CERT_KEY': 'signer.key',
+        'RDP_SIGN_CERT': 'rdp_signer.crt',
+        'RDP_SIGN_CERT_KEY': 'rdp_signer.key',
     }
 
     old_config_map = {

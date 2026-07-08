@@ -2,7 +2,6 @@
   gather_facts: no
   vars:
     ansible_connection: local
-    ansible_python_interpreter: "{{ local_python_interpreter }}"
     ansible_become: false
 
   tasks:
