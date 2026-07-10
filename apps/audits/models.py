@@ -6,8 +6,7 @@ from importlib import import_module
 from django.conf import settings
 from django.core.cache import caches
 from django.db import models
-from django.db.models import Q, CharField, F, Value
-from django.db.models.functions import Cast, Coalesce, Concat
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import gettext, gettext_lazy as _
 
@@ -182,16 +181,6 @@ class ActivityLog(OrgModelMixin):
         return super(ActivityLog, self).save(*args, **kwargs)
 
 
-def user_display_expression():
-    return Concat(
-        Coalesce(Cast(F('name'), CharField()), Value('None')),
-        Value('('),
-        Coalesce(Cast(F('username'), CharField()), Value('None')),
-        Value(')'),
-        output_field=CharField(),
-    )
-
-
 class PasswordChangeLog(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     user = models.CharField(max_length=128, verbose_name=_("User"))
@@ -199,7 +188,7 @@ class PasswordChangeLog(models.Model):
     remote_addr = models.CharField(
         max_length=128, verbose_name=_("Remote addr"), blank=True, null=True
     )
-    datetime = models.DateTimeField(auto_now=True, verbose_name=_("Datetime"), db_index=True)
+    datetime = models.DateTimeField(auto_now=True, verbose_name=_("Datetime"))
 
     def __str__(self):
         return "{} change {}'s password".format(self.change_by, self.user)
@@ -210,11 +199,7 @@ class PasswordChangeLog(models.Model):
     @staticmethod
     def filter_queryset_by_org(queryset):
         if not current_org.is_root():
-            users = (
-                current_org.get_members()
-                .annotate(user_display=user_display_expression())
-                .values_list('user_display', flat=True)
-            )
+            users = current_org.get_members()
             queryset = queryset.filter(
                 user__in=[str(user) for user in users]
             )
