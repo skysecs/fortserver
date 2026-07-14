@@ -446,6 +446,7 @@ class Config(dict):
         'AUTH_OAUTH2': False,
         'AUTH_OAUTH2_LOGO_PATH': 'img/login_oauth2_logo.png',
         'AUTH_OAUTH2_PROVIDER': 'OAuth2',
+        'AUTH_OAUTH2_USE_STATE': False,
         'AUTH_OAUTH2_ALWAYS_UPDATE_USER': True,
         'AUTH_OAUTH2_CLIENT_ID': 'client-id',
         'AUTH_OAUTH2_SCOPE': '',
@@ -610,7 +611,7 @@ class Config(dict):
         'SECURITY_ACCOUNT_USERNAME_FORBIDDEN_CHARS': '{[\'"`;|<>',
         'SECURITY_SERVICE_ACCOUNT_REGISTRATION': 'auto',
         'SECURITY_VIEW_AUTH_NEED_MFA': True,
-        'SECURITY_ACCOUNT_SECRET_READ': True,
+        'SECURITY_DISABLE_VIEW_SECRET': False,
         'SECURITY_MAX_IDLE_TIME': 30,
         'SECURITY_MAX_SESSION_TIME': 24,
         'SECURITY_PASSWORD_EXPIRATION_TIME_ADMIN': 9999,
@@ -798,8 +799,8 @@ class Config(dict):
 
         # rdp sign cert
         'RDP_SIGN_ENABLED': False,
-        'RDP_SIGN_CERT': 'signer.crt',
-        'RDP_SIGN_CERT_KEY': 'signer.key',
+        'RDP_SIGN_CERT': 'rdp_signer.crt',
+        'RDP_SIGN_CERT_KEY': 'rdp_signer.key',
     }
 
     old_config_map = {
