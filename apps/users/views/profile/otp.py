@@ -12,7 +12,6 @@ from django.utils.translation import gettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
-from authentication.const import MFAType, OTP_BIND_AFTER_MFA_SESSION_KEY
 from authentication.errors import SessionEmptyError
 from authentication.mfa import MFAOtp, otp_failed_msg
 from authentication.mixins import AuthMixin
@@ -35,72 +34,20 @@ __all__ = [
 logger = get_logger(__name__)
 
 
-class OTPBindMFACheckMixin(AuthMixin):
-    @staticmethod
-    def _is_request_user_authenticated(request):
-        user = getattr(request, 'user', None)
-        return bool(user and user.is_authenticated)
-
-    @staticmethod
-    def _has_active_mfa_except_otp(user):
-        return any(
-            backend.name != MFAType.OTP.value
-            for backend in user.active_mfa_backends
-        )
-
-    def _need_mfa_before_otp_bind(self, user):
-        if self.request.session.get('auth_mfa'):
-            return False
-        if self._is_request_user_authenticated(self.request) and \
-                not self.request.session.get('auth_mfa_required'):
-            return False
-        return self._has_active_mfa_except_otp(user)
-
-    def _get_login_mfa_url(self):
-        url = reverse('authentication:login-mfa')
-        query_string = self.request.GET.urlencode()
-        if query_string:
-            url = f'{url}?{query_string}'
-        return url
-
-    def _pre_check_need_mfa_for_otp_bind(self, user):
-        if not self._need_mfa_before_otp_bind(user):
-            return None
-
-        self.request.session[OTP_BIND_AFTER_MFA_SESSION_KEY] = 1
-        return HttpResponseRedirect(self._get_login_mfa_url())
-
-
-class UserOtpEnableStartView(OTPBindMFACheckMixin, TemplateView):
+class UserOtpEnableStartView(AuthMixin, TemplateView):
     template_name = 'users/user_otp_check_password.html'
 
     def get(self, request, *args, **kwargs):
         try:
-            user = self.get_user_from_session()
+            self.get_user_from_session()
         except SessionEmptyError:
             url = reverse('authentication:login') + '?_=otp_enable_start'
             return redirect(url)
-
-        pre_response = self._pre_check_need_mfa_for_otp_bind(user)
-        if pre_response:
-            return pre_response
         return super().get(request, *args, **kwargs)
 
 
-class UserOtpEnableInstallAppView(OTPBindMFACheckMixin, TemplateView):
+class UserOtpEnableInstallAppView(TemplateView):
     template_name = 'users/user_otp_enable_install_app.html'
-
-    def get(self, request, *args, **kwargs):
-        try:
-            user = self.get_user_from_session()
-        except SessionEmptyError as e:
-            verify_url = reverse('authentication:user-otp-enable-start') + f'?e={e}'
-            return HttpResponseRedirect(verify_url)
-
-        pre_response = self._pre_check_need_mfa_for_otp_bind(user)
-        if pre_response:
-            return pre_response
-        return super().get(request, *args, **kwargs)
 
     @staticmethod
     def replace_authenticator_png(platform):
@@ -126,7 +73,7 @@ class UserOtpEnableInstallAppView(OTPBindMFACheckMixin, TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class UserOtpEnableBindView(OTPBindMFACheckMixin, TemplateView, FormView):
+class UserOtpEnableBindView(AuthMixin, TemplateView, FormView):
     template_name = 'users/user_otp_enable_bind.html'
     form_class = forms.UserCheckOtpCodeForm
 
@@ -151,9 +98,6 @@ class UserOtpEnableBindView(OTPBindMFACheckMixin, TemplateView, FormView):
 
         if user.otp_secret_key:
             return self.has_already_bound_message()
-        pre_response = self._pre_check_need_mfa_for_otp_bind(user)
-        if pre_response:
-            return pre_response
         return None
 
     @staticmethod

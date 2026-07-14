@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-import hmac
 import time
 
 from django.conf import settings
@@ -56,10 +55,7 @@ class WithBootstrapToken(permissions.BasePermission):
             return False
 
         request_bootstrap_token = authorization.split()[-1]
-        return hmac.compare_digest(
-            settings.BOOTSTRAP_TOKEN.encode(),
-            request_bootstrap_token.encode()
-        )
+        return settings.BOOTSTRAP_TOKEN == request_bootstrap_token
 
 
 class ServiceAccountSignaturePermission(permissions.BasePermission):
