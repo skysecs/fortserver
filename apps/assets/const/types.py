@@ -70,10 +70,12 @@ class AllTypes(ChoicesMixin):
     def get_automation_methods(cls):
         from assets.automations import methods as asset
         from accounts.automations import methods as account
+        from terminal.models import Applet
 
         automation_methods = \
             asset.platform_automation_methods + \
-            account.platform_automation_methods
+            account.platform_automation_methods + \
+            Applet.get_automation_methods()
 
         request = get_current_request()
         if request is None:
@@ -85,7 +87,8 @@ class AllTypes(ChoicesMixin):
         else:
             automation_methods = \
                 asset.get_platform_automation_methods(asset.BASE_DIR, language) + \
-                account.get_platform_automation_methods(account.BASE_DIR, language)
+                account.get_platform_automation_methods(account.BASE_DIR, language) + \
+                Applet.get_automation_methods(lang=language)
 
         cls._current_language = language
         cls._automation_methods = automation_methods
@@ -252,10 +255,7 @@ class AllTypes(ChoicesMixin):
         return dict(id='ROOT', name=_('All types'), title=_('All types'), open=True, isParent=True)
 
     @classmethod
-    def get_tree_nodes(
-            cls, resource_platforms, include_asset=False, get_root=True,
-            with_resource_amount=True
-    ):
+    def get_tree_nodes(cls, resource_platforms, include_asset=False, get_root=True):
         from ..models import Platform
         platform_count = defaultdict(int)
         for platform_id in resource_platforms:
@@ -276,8 +276,7 @@ class AllTypes(ChoicesMixin):
             meta = {'type': 'category', 'category': category.value, '_type': category.value}
             category_node = cls.choice_to_node(category, 'ROOT', meta=meta)
             category_count = category_type_mapper.get(category, 0)
-            if with_resource_amount:
-                category_node['name'] += f' ({category_count})'
+            category_node['name'] += f' ({category_count})'
             nodes.append(category_node)
 
             # Type 格式化
@@ -286,8 +285,7 @@ class AllTypes(ChoicesMixin):
                 meta = {'type': 'type', 'category': category.value, '_type': tp.value}
                 tp_node = cls.choice_to_node(tp, category_node['id'], opened=False, meta=meta)
                 tp_count = category_type_mapper.get(category + '_' + tp, 0)
-                if with_resource_amount:
-                    tp_node['name'] += f' ({tp_count})'
+                tp_node['name'] += f' ({tp_count})'
                 platforms = tp_platforms.get(category + '_' + tp, [])
                 if not platforms:
                     tp_node['isParent'] = False
@@ -296,8 +294,7 @@ class AllTypes(ChoicesMixin):
                 # Platform 格式化
                 for p in platforms:
                     platform_node = cls.platform_to_node(p, tp_node['id'], include_asset)
-                    if with_resource_amount:
-                        platform_node['name'] += f' ({platform_count.get(p.id, 0)})'
+                    platform_node['name'] += f' ({platform_count.get(p.id, 0)})'
                     nodes.append(platform_node)
         return nodes
 
@@ -305,19 +302,11 @@ class AllTypes(ChoicesMixin):
     def to_tree_nodes(cls, include_asset, count_resource='asset'):
         from accounts.models import Account
         from ..models import Asset
-        if count_resource == 'none':
-            resource_platforms = ()
-            with_resource_amount = False
-        elif count_resource == 'account':
+        if count_resource == 'account':
             resource_platforms = Account.objects.all().values_list('asset__platform_id', flat=True)
-            with_resource_amount = True
         else:
             resource_platforms = Asset.objects.all().values_list('platform_id', flat=True)
-            with_resource_amount = True
-        return cls.get_tree_nodes(
-            resource_platforms, include_asset,
-            with_resource_amount=with_resource_amount
-        )
+        return cls.get_tree_nodes(resource_platforms, include_asset)
 
     @classmethod
     def get_type_default_platform(cls, category, tp):
