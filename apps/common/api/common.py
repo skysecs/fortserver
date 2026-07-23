@@ -10,11 +10,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from common.const import (
-    COUNTRY_CALLING_CODES,
-    KEY_CACHE_RESOURCE_IDS,
-    RESOURCE_IDS_CACHE_TIMEOUT,
-)
+from common.const import KEY_CACHE_RESOURCE_IDS, COUNTRY_CALLING_CODES
 from common.permissions import IsValidUser
 from common.utils import get_logger
 from common.views.http import HttpResponseTemporaryRedirect
@@ -96,7 +92,7 @@ class ResourcesIDCacheApi(APIView):
         resources = request.data.get('resources')
         if resources is not None:
             cache_key = KEY_CACHE_RESOURCE_IDS.format(spm)
-            cache.set(cache_key, resources, RESOURCE_IDS_CACHE_TIMEOUT)
+            cache.set(cache_key, resources, 300)
         return Response({'spm': spm})
 
 
