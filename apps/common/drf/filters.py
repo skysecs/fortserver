@@ -43,7 +43,7 @@ __all__ = [
 class LookupFilterBackend(drf_filters.DjangoFilterBackend):
     """
     Preserve django-filter's default behavior while allowing explicit
-    text, exact and ``__in`` lookups without per-view wiring.
+    text lookups like ``field__icontains=value`` without per-view wiring.
     """
     dynamic_text_lookups = {"icontains", "startswith"}
     dynamic_value_lookups = {"in"}
@@ -52,7 +52,7 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
 
     def get_filterset_kwargs(self, request, queryset, view):
         kwargs = super().get_filterset_kwargs(request, queryset, view)
-        implicit_in_lookups = self.get_implicit_in_lookups(request, queryset, view)
+        implicit_in_lookups = self.get_implicit_in_lookups(request, queryset)
         if not implicit_in_lookups:
             return kwargs
 
@@ -65,13 +65,12 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
 
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
-        queryset = self.filter_implicit_in_lookups(request, queryset, view)
-        queryset = self.filter_dynamic_text_lookups(request, queryset, view)
-        queryset = self.filter_dynamic_value_lookups(request, queryset, view)
-        return self.filter_dynamic_negated_lookups(request, queryset, view)
+        queryset = self.filter_implicit_in_lookups(request, queryset)
+        queryset = self.filter_dynamic_text_lookups(request, queryset)
+        queryset = self.filter_dynamic_value_lookups(request, queryset)
+        return self.filter_dynamic_negated_lookups(request, queryset)
 
-    def get_implicit_in_lookups(self, request, queryset, view):
-        """Collect repeated exact params that should behave like ``field__in``."""
+    def get_implicit_in_lookups(self, request, queryset):
         model = getattr(queryset, "model", None)
         if model is None:
             return {}
@@ -81,22 +80,18 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
             field_name, lookup = self.split_lookup_param(param)
             if lookup != "exact" or not self.is_value_lookup_field(model, field_name):
                 continue
-            if not self.is_allowed_filterset_field(view, field_name):
-                continue
 
             cleaned_values = self.split_csv_values(values)
             if len(cleaned_values) > 1:
                 lookups[field_name] = cleaned_values
         return lookups
 
-    def filter_implicit_in_lookups(self, request, queryset, view):
-        """Apply implicit ``field=a,b`` style value filters as ``field__in``."""
-        for field_name, values in self.get_implicit_in_lookups(request, queryset, view).items():
+    def filter_implicit_in_lookups(self, request, queryset):
+        for field_name, values in self.get_implicit_in_lookups(request, queryset).items():
             queryset = queryset.filter(**{f"{field_name}__in": values})
         return queryset
 
-    def filter_dynamic_text_lookups(self, request, queryset, view):
-        """Handle explicit text lookups like ``name__icontains=foo`` from filterset fields."""
+    def filter_dynamic_text_lookups(self, request, queryset):
         model = getattr(queryset, "model", None)
         if model is None:
             return queryset
@@ -110,8 +105,6 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
                 continue
             if not self.is_text_lookup_field(model, field_name):
                 continue
-            if not self.is_allowed_filterset_field(view, field_name):
-                continue
 
             for value in values:
                 if value == "":
@@ -123,8 +116,7 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
         field = self.resolve_model_field(model, field_path)
         return isinstance(field, (models.CharField, models.TextField))
 
-    def filter_dynamic_value_lookups(self, request, queryset, view):
-        """Handle explicit value-set lookups like ``id__in=1,2,3``."""
+    def filter_dynamic_value_lookups(self, request, queryset):
         model = getattr(queryset, "model", None)
         if model is None:
             return queryset
@@ -137,8 +129,6 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
             if lookup not in self.dynamic_value_lookups:
                 continue
             if not self.is_value_lookup_field(model, field_name):
-                continue
-            if not self.is_allowed_filterset_field(view, field_name):
                 continue
 
             cleaned_values = []
@@ -159,8 +149,7 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
             return False
         return not getattr(field, "is_relation", False)
 
-    def filter_dynamic_negated_lookups(self, request, queryset, view):
-        """Handle negated lookups such as ``name__icontains!=foo`` or ``id__in!=1,2``."""
+    def filter_dynamic_negated_lookups(self, request, queryset):
         model = getattr(queryset, "model", None)
         if model is None:
             return queryset
@@ -174,8 +163,6 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
             if lookup in self.negated_text_lookups:
                 if not self.is_text_lookup_field(model, field_name):
                     continue
-                if not self.is_allowed_filterset_field(view, field_name):
-                    continue
                 for value in values:
                     if value == "":
                         continue
@@ -184,8 +171,6 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
 
             if lookup in self.negated_value_lookups:
                 if not self.is_value_lookup_field(model, field_name):
-                    continue
-                if not self.is_allowed_filterset_field(view, field_name):
                     continue
                 if lookup == "in":
                     cleaned_values = self.split_csv_values(values)
@@ -235,28 +220,6 @@ class LookupFilterBackend(drf_filters.DjangoFilterBackend):
 
         return field
 
-    def get_allowed_filterset_fields(self, view):
-        filterset_fields = getattr(view, "filterset_fields", None) or ()
-        if isinstance(filterset_fields, dict):
-            fields = filterset_fields.keys()
-        else:
-            fields = filterset_fields
-        return {
-            self.normalize_search_field(field)
-            for field in fields
-            if self.normalize_search_field(field)
-        }
-
-    def is_allowed_filterset_field(self, view, field_path):
-        return field_path in self.get_allowed_filterset_fields(view)
-
-    @staticmethod
-    def normalize_search_field(field_name):
-        if not field_name:
-            return None
-        if field_name[0] in ("^", "=", "@", "$"):
-            field_name = field_name[1:]
-        return field_name
 
 class SearchFilter(SearchFilterBase):
     @staticmethod
