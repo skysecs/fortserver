@@ -4,6 +4,17 @@ FROM fortserver/gmssl:3.1.1-trixie AS gmssl-builder
 FROM registry.fortserver.com/fortserver/xpack:${VERSION} AS build-xpack
 FROM fortserver/core:${VERSION}-ce
 
+ARG INSIGHTFACE_MODEL_ROOT=/root/.insightface/models
+ENV INSIGHTFACE_MODEL_ROOT=${INSIGHTFACE_MODEL_ROOT}
+
+RUN set -ex \
+    && python /opt/fortserver/requirements/download_face_models.py \
+        --model-root "${INSIGHTFACE_MODEL_ROOT}" \
+    && python /opt/fortserver/requirements/download_face_models.py \
+        --model-root "${INSIGHTFACE_MODEL_ROOT}" \
+        --check \
+    && rm -f "${INSIGHTFACE_MODEL_ROOT}/buffalo_l.zip"
+
 COPY --from=build-xpack /opt/xpack /opt/fortserver/apps/xpack
 
 ARG TOOLS="                           \
