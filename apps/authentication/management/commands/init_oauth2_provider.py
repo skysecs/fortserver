@@ -6,7 +6,7 @@ from django.conf import settings
 
 
 class Command(BaseCommand):
-    help = 'Initialize OAuth2 Provider - Create default fortserver Client application'
+    help = 'Initialize OAuth2 Provider - Create or update default fortserver Client callback URIs'
 
     def add_arguments(self, parser):
         parser.add_argument(
