@@ -1,6 +1,5 @@
 import argparse
 import asyncio
-import errno
 import socket
 import time
 
@@ -45,8 +44,8 @@ def _service_name(port: int, proto: str = 'tcp') -> str:
         return _KNOWN_SERVICES.get(port, 'unknown')
 
 
-async def _scan_tcp_port(ip: str, port: int, timeout: float) -> tuple[str, bool]:
-    """Return the port state and whether the response proves the host is up."""
+async def _scan_tcp_port(ip: str, port: int, timeout: float) -> str:
+    """Return 'open' or 'closed' for a single TCP port."""
     try:
         _, writer = await asyncio.wait_for(
             asyncio.open_connection(ip, port), timeout=timeout
@@ -56,21 +55,13 @@ async def _scan_tcp_port(ip: str, port: int, timeout: float) -> tuple[str, bool]
             await writer.wait_closed()
         except Exception:
             pass
-        return 'open', True
-    except ConnectionRefusedError:
-        return 'closed', True
-    except asyncio.TimeoutError:
-        return 'filtered', False
-    except OSError as err:
-        if err.errno == errno.ECONNREFUSED:
-            return 'closed', True
-        if err.errno == errno.ETIMEDOUT:
-            return 'filtered', False
-        return 'unreachable', False
+        return 'open'
+    except (asyncio.TimeoutError, ConnectionRefusedError, OSError):
+        return 'closed'
 
 
-async def get_nmap_result(ip: str, ports_str, timeout) -> tuple[list[str], bool]:
-    """Scan *ip* and return formatted result lines plus host reachability."""
+async def get_nmap_result(ip: str, ports_str, timeout) -> list[str]:
+    """Scan *ip* and return formatted result lines (PORT / STATE / SERVICE)."""
     timeout = float(timeout) if timeout else 1.0
     ports = _parse_ports(ports_str)
 
@@ -79,18 +70,19 @@ async def get_nmap_result(ip: str, ports_str, timeout) -> tuple[list[str], bool]
     )
 
     lines = ['PORT\tSTATE\tSERVICE']
-    for port, (state, _) in zip(ports, states):
-        lines.append(f'{port}/tcp\t{state}\t{_service_name(port)}')
-    is_host_up = any(is_reachable for _, is_reachable in states)
-    return lines, is_host_up
+    for port, state in zip(ports, states):
+        if state == 'open':
+            lines.append(f'{port}/tcp\t{state}\t{_service_name(port)}')
+    return lines
 
 
 async def once_nmap(ip: str, ports_str, timeout, display) -> bool:
     await display(f'Starting Nmap at {local_now_display()} for {ip}')
     try:
-        results, is_ok = await get_nmap_result(ip, ports_str, timeout)
+        results = await get_nmap_result(ip, ports_str, timeout)
         for line in results:
             await display(line)
+        is_ok = len(results) > 1  # at least one open port found
     except Exception as err:
         is_ok = False
         await display(f'Error: {err}')
