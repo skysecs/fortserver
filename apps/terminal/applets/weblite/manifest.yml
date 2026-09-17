@@ -1,6 +1,6 @@
 name: weblite
 display_name: fortserver WebLite
-version: 5.0.0-beta18
+version: 5.0.0
 comment: Managed browser with shared autofill and interactive verification
 author: fortserver Team
 exec_type: exe
