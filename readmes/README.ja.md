@@ -2,216 +2,108 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
-## オープンソースの特権アクセス管理（PAM）プラットフォーム（踏み台サーバー）
-
-[![][license-shield]][license-link]
-[![][docs-shield]][docs-link]
-[![][deepwiki-shield]][deepwiki-link]
-[![][discord-shield]][discord-link]
-[![][docker-shield]][docker-link]
-[![][github-release-shield]][github-release-link]
-[![][github-stars-shield]][github-stars-link]
-
-[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md) · [Español](/readmes/README.es.md) · [Русский](/readmes/README.ru.md) · [한국어](/readmes/README.ko.md) · [Tiếng Việt](/readmes/README.vi.md)
+## オープンソースの PAM プラットフォーム (バスティオン ホスト)
 
 </div>
-
 <br/>
 
 ## fortserver とは？
 
-fortserver は AI 機能を備えたオープンソースの特権アクセス管理（PAM）プラットフォームです。DevOps チームと IT チームが、SSH、RDP、Kubernetes、データベース、Web サイト、RemoteApp、VirtualApp などに安全にアクセスできる統合ワークスペースを提供します。
+fortserver は、AI 機能を備えたオープンソースの特権アクセス管理 (PAM) プラットフォームです。DevOps および IT チームに統一されたワークスペースを提供し、SSH、RDP、Kubernetes、データベース、Web サイト、RemoteApp、VirtualApp などへの安全なアクセスを実現します。
 
-<img alt="fortserver の構成図" src="assets/fortserver-architecture.png" />
+<img alt="fortserver アーキテクチャ図" src="https://github.com/user-attachments/assets/2bbf0979-4e1e-43ea-8dac-5d3e3bfbf1d1" />
 
 ## クイックスタート
 
-CPU 4 コア以上、メモリ 8 GB 以上のクリーンな 64 ビット Linux サーバーを用意してください。
+クリーンな Linux サーバーを準備します (64 ビット, >= 4c8g)
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-ブラウザーで fortserver にアクセスします： `http://your-fortserver-ip/`
-
+ブラウザで fortserver にアクセスします: `http://your-fortserver-ip/`
 - ユーザー名: `admin`
 - パスワード: `ChangeMe`
 
+
 ## スクリーンショット
-
-<p align="center">
-  <img src="assets/screenshot-01.png" alt="fortserver の PAM ダッシュボード" width="49%" />
-  <img src="assets/screenshot-02.png" alt="fortserver の資産管理" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-03.png" alt="fortserver の SSH 接続ダイアログ" width="49%" />
-  <img src="assets/screenshot-04.png" alt="fortserver のターミナル AI への質問" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-05.png" alt="fortserver の AI アシスタント" width="49%" />
-  <img src="assets/screenshot-06.png" alt="fortserver のリモートデスクトップセッション" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-07.png" alt="fortserver のライトテーマのターミナル資産パネル" width="49%" />
-  <img src="assets/screenshot-08.png" alt="fortserver のライトテーマの SSH セッション" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-09.png" alt="fortserver のダークテーマのターミナル資産パネル" width="49%" />
-  <img src="assets/screenshot-10.png" alt="fortserver のダークテーマの SSH セッション" width="49%" />
-</p>
+<table style="border-collapse: collapse; border: 1px solid black;">
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/6164c92a-0b19-405a-b79c-73e28a9a1610" alt="fortserver Console"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/12d1206d-b511-4f29-8b00-fd13333f3a21" alt="fortserver PAM"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/6d12d3c9-5f31-4294-b6e7-7c5b5836f688" alt="fortserver Audits"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/ba784bc8-e889-4fd6-aaae-0b8b14153da2" alt="fortserver Workbench"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/d4b10b15-bccb-4a0d-a6e6-74a6439614e0" alt="fortserver RBAC"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/ccbeb96e-9747-4182-bd03-031fb3af8bb2" alt="fortserver Settings"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/9049888e-16fe-4fbe-b0f2-16bf140379c8" alt="fortserver RBAC"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/133c4af6-90a9-457d-b372-bb53c29260dc" alt="fortserver Settings"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/ea48738f-b5f8-4a43-a487-ca09b11176e7" alt="fortserver RBAC"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/3407539f-1235-4dcc-adf2-26d7b60dbc67" alt="fortserver Settings"   /></td>
+  </tr>
+</table>
 
 ## コンポーネント
 
-fortserver のコンポーネントは役割ごとに分類されています。コアプロジェクトはプラットフォーム、Web UI、ターミナル、プロトコル接続、AI 機能を提供します。エンタープライズコンポーネントはアプリケーションとプロトコルへのアクセスを拡張します。補助サービスはセッション録画とホスト運用を担い、導入ツールはインストールと Web 配信を簡素化します。
+fortserver は、複数の主要コンポーネントで構成されており、これらが集まって fortserver の機能的なフレームワークを形成し、ユーザーに対して運用管理およびセキュリティ制御の包括的な機能を提供します。
+
+## プロジェクト
 
 ### コアプロジェクト
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">プロジェクト</th>
-      <th width="135" align="center"><div align="center">バージョン</div></th>
-      <th width="550" align="center"><div align="center">説明</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/fortserver">fortserver</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/fortserver/tags"><img src="https://img.shields.io/github/v/tag/fortserver/fortserver?sort=semver&amp;filter=v5.*&amp;label=tag" alt="fortserver バージョン" /></a></div></td>
-      <td width="550" align="left">オープンソースの特権アクセス管理プラットフォーム</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/lina">Lina</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/lina/tags"><img src="https://img.shields.io/github/v/tag/fortserver/lina?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Lina バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver の Web UI</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/luna">Luna</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/luna/tags"><img src="https://img.shields.io/github/v/tag/fortserver/luna?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Luna バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver の Web ターミナルとネイティブクライアント</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/koko">KoKo</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/koko/tags"><img src="https://img.shields.io/github/v/tag/fortserver/koko?sort=semver&amp;filter=v5.*&amp;label=tag" alt="KoKo バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver の汎用プロトコルコネクターとプロキシ</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/chen">Chen</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/chen/tags"><img src="https://img.shields.io/github/v/tag/fortserver/chen?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Chen バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver の Web データベースコネクター</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/kael">Kael</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/kael/tags"><img src="https://img.shields.io/github/v/tag/fortserver/kael?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Kael バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver の AI コンポーネント</td>
-    </tr>
-  </tbody>
-</table>
+| プロジェクト | バージョン | 説明 |
+| --- | --- | --- |
+| [fortserver](https://github.com/fortserver/fortserver) | [![tag](https://img.shields.io/github/v/tag/fortserver/fortserver?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/fortserver/tags) | オープンソースの特権アクセス管理プラットフォーム |
+| [Lina](https://github.com/fortserver/lina) | [![tag](https://img.shields.io/github/v/tag/fortserver/lina?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/lina/tags) | fortserver Web UI |
+| [Luna](https://github.com/fortserver/luna) | [![tag](https://img.shields.io/github/v/tag/fortserver/luna?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/luna/tags) | fortserver Web ターミナルおよびネイティブクライアント |
+| [KoKo](https://github.com/fortserver/koko) | [![tag](https://img.shields.io/github/v/tag/fortserver/koko?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/koko/tags) | fortserver 汎用プロトコルコネクターおよびプロキシ |
+| [Chen](https://github.com/fortserver/chen) | [![tag](https://img.shields.io/github/v/tag/fortserver/chen?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/chen/tags) | fortserver Web データベースコネクター |
+| [Kael](https://github.com/fortserver/kael) | [![tag](https://img.shields.io/github/v/tag/fortserver/kael?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/kael/tags) | fortserver AI コンポーネント |
 
-### エンタープライズコンポーネント
+### エンタープライズ版コンポーネント
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">プロジェクト</th>
-      <th width="135" align="center"><div align="center">バージョン</div></th>
-      <th width="550" align="center"><div align="center">説明</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/tinker">Tinker</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver の Windows アプリケーションコネクター（コミュニティ版では無料）</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/Panda">Panda</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver エンタープライズ版の Linux アプリケーションコネクター</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/razor">Razor</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver エンタープライズ版の RDP プロトコルプロキシ</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/magnus">Magnus</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver エンタープライズ版のデータベースプロトコルプロキシ</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/nec">Nec</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver エンタープライズ版の VNC プロトコルプロキシ</td>
-    </tr>
-  </tbody>
-</table>
+| プロジェクト | バージョン | 説明 |
+| --- | --- | --- |
+| [Tinker](https://github.com/fortserver/tinker) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver Windows アプリケーションコネクター（コミュニティ版で無料利用可能） |
+| [Panda](https://github.com/fortserver/Panda) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver エンタープライズ版 Linux アプリケーションコネクター |
+| [Razor](https://github.com/fortserver/razor) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver エンタープライズ版 RDP プロトコルプロキシ |
+| [Magnus](https://github.com/fortserver/magnus) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver エンタープライズ版データベースプロトコルプロキシ |
+| [Nec](https://github.com/fortserver/nec) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver エンタープライズ版 VNC プロトコルプロキシ |
 
-### 補助サービス
+### サポートサービス
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">プロジェクト</th>
-      <th width="135" align="center"><div align="center">バージョン</div></th>
-      <th width="550" align="center"><div align="center">説明</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/video-worker">Video&nbsp;Worker</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver エンタープライズ版のセッション録画トランスコードサービス</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/jdmc">JDMC</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="非公開バージョン" /></div></td>
-      <td width="550" align="left">fortserver エンタープライズ版のホスト運用・管理サービス</td>
-    </tr>
-  </tbody>
-</table>
+| プロジェクト | バージョン | 説明 |
+| --- | --- | --- |
+| [Video Worker](https://github.com/fortserver/video-worker) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver エンタープライズ版セッション録画トランスコードワーカー |
+| [JDMC](https://github.com/fortserver/jdmc) | ![tag](https://img.shields.io/badge/tag-private-red) | fortserver エンタープライズ版ホスト運用管理サービス |
 
-### 導入とツール
+### デプロイとツール
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">プロジェクト</th>
-      <th width="135" align="center"><div align="center">バージョン</div></th>
-      <th width="550" align="center"><div align="center">説明</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/installer">Installer</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/installer/tags"><img src="https://img.shields.io/github/v/tag/fortserver/installer?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Installer バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver のインストール・管理ツール</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/docker-web">Docker&nbsp;Web</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/docker-web/tags"><img src="https://img.shields.io/github/v/tag/fortserver/docker-web?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Docker Web バージョン" /></a></div></td>
-      <td width="550" align="left">fortserver の Web ゲートウェイと静的アセット</td>
-    </tr>
-  </tbody>
-</table>
+| プロジェクト | バージョン | 説明 |
+| --- | --- | --- |
+| [Installer](https://github.com/fortserver/installer) | [![tag](https://img.shields.io/github/v/tag/fortserver/installer?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/installer/tags) | fortserver インストールおよび管理ツール |
+| [Docker Web](https://github.com/fortserver/docker-web) | [![tag](https://img.shields.io/github/v/tag/fortserver/docker-web?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/docker-web/tags) | fortserver Web ゲートウェイおよび静的アセット |
 
-## コントリビューション
+## 貢献
 
-コントリビューションを歓迎します。手順については [CONTRIBUTING.md][contributing-link] を参照してください。
+PR を提出して貢献していただけると幸いです。ガイドラインについては [CONTRIBUTING.md][contributing-link] を参照してください。
 
 ## ライセンス
 
-Copyright (c) 2014-2026 fortserver. All rights reserved.
+Copyright (c) 2014-2025 fortserver, All rights reserved.
 
-本プロジェクトは GNU General Public License バージョン 3（GPLv3、以下「ライセンス」）に基づいて提供されます。本ファイルはライセンスに従う場合にのみ使用できます。ライセンスの写しは次の URL で入手できます。
+Licensed under The GNU General Public License version 3 (GPLv3) (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
 https://www.gnu.org/licenses/gpl-3.0.html
 
-適用法令で義務付けられる場合、または書面で別途合意した場合を除き、ライセンスに基づいて配布されるソフトウェアは「現状有姿」で提供され、明示または黙示を問わず、いかなる保証や条件も伴いません。権利と制限の詳細はライセンスを参照してください。
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an " AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 <!-- fortserver official link -->
 [docs-link]: https://fortserver.com/docs

@@ -2,216 +2,108 @@
   <a name="readme-top"></a>
   <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
-## Платформа PAM с открытым исходным кодом (бастионный хост)
-
-[![][license-shield]][license-link]
-[![][docs-shield]][docs-link]
-[![][deepwiki-shield]][deepwiki-link]
-[![][discord-shield]][discord-link]
-[![][docker-shield]][docker-link]
-[![][github-release-shield]][github-release-link]
-[![][github-stars-shield]][github-stars-link]
-
-[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md) · [Español](/readmes/README.es.md) · [Русский](/readmes/README.ru.md) · [한국어](/readmes/README.ko.md) · [Tiếng Việt](/readmes/README.vi.md)
+## Открытая платформа PAM (хост-бастион)
 
 </div>
-
 <br/>
 
 ## Что такое fortserver?
 
-fortserver — платформа управления привилегированным доступом (PAM) с открытым исходным кодом и возможностями ИИ. Она предоставляет командам DevOps и ИТ единое рабочее пространство для безопасного доступа к SSH, RDP, Kubernetes, базам данных, веб-сайтам, RemoteApp, VirtualApp и другим ресурсам.
+fortserver — это платформа управления привилегированным доступом (PAM) с открытым исходным кодом и возможностями ИИ, предоставляющая командам DevOps и ИТ единое рабочее пространство для безопасного доступа к SSH, RDP, Kubernetes, базам данных, веб-сайтам, RemoteApp, VirtualApp и другим ресурсам.
 
-<img alt="Схема архитектуры fortserver" src="assets/fortserver-architecture.png" />
+<img alt="Схема архитектуры fortserver" src="https://github.com/user-attachments/assets/2bbf0979-4e1e-43ea-8dac-5d3e3bfbf1d1" />
 
 ## Быстрый старт
 
-Подготовьте чистый 64-разрядный сервер Linux как минимум с 4 ядрами ЦП и 8 ГБ оперативной памяти.
+Подготовьте чистый сервер Linux (64 бит, >= 4c8g)
 
 ```sh
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Откройте fortserver в браузере по адресу `http://your-fortserver-ip/`
-
+Доступ к fortserver в вашем браузере по адресу `http://your-fortserver-ip/`
 - Имя пользователя: `admin`
 - Пароль: `ChangeMe`
 
-## Снимки экрана
 
-<p align="center">
-  <img src="assets/screenshot-01.png" alt="Панель PAM fortserver" width="49%" />
-  <img src="assets/screenshot-02.png" alt="Управление активами fortserver" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-03.png" alt="Диалог подключения по SSH в fortserver" width="49%" />
-  <img src="assets/screenshot-04.png" alt="Запрос к ИИ из терминала fortserver" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-05.png" alt="ИИ-ассистент fortserver" width="49%" />
-  <img src="assets/screenshot-06.png" alt="Сеанс удалённого рабочего стола fortserver" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-07.png" alt="Панель активов терминала fortserver в светлой теме" width="49%" />
-  <img src="assets/screenshot-08.png" alt="Сеанс SSH fortserver в светлой теме" width="49%" />
-</p>
-
-<p align="center">
-  <img src="assets/screenshot-09.png" alt="Панель активов терминала fortserver в тёмной теме" width="49%" />
-  <img src="assets/screenshot-10.png" alt="Сеанс SSH fortserver в тёмной теме" width="49%" />
-</p>
+## Скриншоты
+<table style="border-collapse: collapse; border: 1px solid black;">
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/6164c92a-0b19-405a-b79c-73e28a9a1610" alt="fortserver Console"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/12d1206d-b511-4f29-8b00-fd13333f3a21" alt="fortserver PAM"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/6d12d3c9-5f31-4294-b6e7-7c5b5836f688" alt="fortserver Audits"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/ba784bc8-e889-4fd6-aaae-0b8b14153da2" alt="fortserver Workbench"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/d4b10b15-bccb-4a0d-a6e6-74a6439614e0" alt="fortserver RBAC"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/ccbeb96e-9747-4182-bd03-031fb3af8bb2" alt="fortserver Settings"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/9049888e-16fe-4fbe-b0f2-16bf140379c8" alt="fortserver RBAC"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/133c4af6-90a9-457d-b372-bb53c29260dc" alt="fortserver Settings"   /></td>
+  </tr>
+  <tr>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/ea48738f-b5f8-4a43-a487-ca09b11176e7" alt="fortserver RBAC"   /></td>
+    <td style="padding: 5px;background-color:#fff;"><img src= "https://github.com/user-attachments/assets/3407539f-1235-4dcc-adf2-26d7b60dbc67" alt="fortserver Settings"   /></td>
+  </tr>
+</table>
 
 ## Компоненты
 
-Компоненты fortserver сгруппированы по назначению. Основные проекты обеспечивают работу платформы, веб-интерфейса, терминала, протокольных подключений и функций ИИ. Корпоративные компоненты расширяют доступ к приложениям и протоколам. Вспомогательные службы обрабатывают записи сеансов и операции с хостами, а инструменты развёртывания упрощают установку и доставку веб-ресурсов.
+fortserver состоит из нескольких ключевых компонентов, которые вместе образуют функциональную основу fortserver, предоставляя пользователям комплексные возможности для управления операциями и контроля безопасности.
+
+## Проекты
 
 ### Основные проекты
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">Проект</th>
-      <th width="135" align="center"><div align="center">Версия</div></th>
-      <th width="550" align="center"><div align="center">Описание</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/fortserver">fortserver</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/fortserver/tags"><img src="https://img.shields.io/github/v/tag/fortserver/fortserver?sort=semver&amp;filter=v5.*&amp;label=tag" alt="fortserver версия" /></a></div></td>
-      <td width="550" align="left">Платформа управления привилегированным доступом с открытым исходным кодом</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/lina">Lina</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/lina/tags"><img src="https://img.shields.io/github/v/tag/fortserver/lina?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Lina версия" /></a></div></td>
-      <td width="550" align="left">Веб-интерфейс fortserver</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/luna">Luna</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/luna/tags"><img src="https://img.shields.io/github/v/tag/fortserver/luna?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Luna версия" /></a></div></td>
-      <td width="550" align="left">Веб-терминал и нативный клиент fortserver</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/koko">KoKo</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/koko/tags"><img src="https://img.shields.io/github/v/tag/fortserver/koko?sort=semver&amp;filter=v5.*&amp;label=tag" alt="KoKo версия" /></a></div></td>
-      <td width="550" align="left">Универсальный протокольный коннектор и прокси fortserver</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/chen">Chen</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/chen/tags"><img src="https://img.shields.io/github/v/tag/fortserver/chen?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Chen версия" /></a></div></td>
-      <td width="550" align="left">Веб-коннектор баз данных fortserver</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/kael">Kael</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/kael/tags"><img src="https://img.shields.io/github/v/tag/fortserver/kael?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Kael версия" /></a></div></td>
-      <td width="550" align="left">Компонент ИИ fortserver</td>
-    </tr>
-  </tbody>
-</table>
+| Проект | Версия | Описание |
+| --- | --- | --- |
+| [fortserver](https://github.com/fortserver/fortserver) | [![tag](https://img.shields.io/github/v/tag/fortserver/fortserver?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/fortserver/tags) | Платформа управления привилегированным доступом с открытым исходным кодом |
+| [Lina](https://github.com/fortserver/lina) | [![tag](https://img.shields.io/github/v/tag/fortserver/lina?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/lina/tags) | Веб-интерфейс fortserver |
+| [Luna](https://github.com/fortserver/luna) | [![tag](https://img.shields.io/github/v/tag/fortserver/luna?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/luna/tags) | Веб-терминал и нативный клиент fortserver |
+| [KoKo](https://github.com/fortserver/koko) | [![tag](https://img.shields.io/github/v/tag/fortserver/koko?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/koko/tags) | Универсальный коннектор и прокси протоколов fortserver |
+| [Chen](https://github.com/fortserver/chen) | [![tag](https://img.shields.io/github/v/tag/fortserver/chen?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/chen/tags) | Веб-коннектор баз данных fortserver |
+| [Kael](https://github.com/fortserver/kael) | [![tag](https://img.shields.io/github/v/tag/fortserver/kael?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/kael/tags) | Компонент ИИ fortserver |
 
-### Корпоративные компоненты
+### Компоненты корпоративной редакции
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">Проект</th>
-      <th width="135" align="center"><div align="center">Версия</div></th>
-      <th width="550" align="center"><div align="center">Описание</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/tinker">Tinker</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Коннектор приложений Windows для fortserver (бесплатно для редакции Community)</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/Panda">Panda</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Коннектор приложений Linux для fortserver Enterprise Edition</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/razor">Razor</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Прокси протокола RDP для fortserver Enterprise Edition</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/magnus">Magnus</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Прокси протоколов баз данных для fortserver Enterprise Edition</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/nec">Nec</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Прокси протокола VNC для fortserver Enterprise Edition</td>
-    </tr>
-  </tbody>
-</table>
+| Проект | Версия | Описание |
+| --- | --- | --- |
+| [Tinker](https://github.com/fortserver/tinker) | ![tag](https://img.shields.io/badge/tag-private-red) | Коннектор приложений Windows для fortserver (бесплатно для редакции Community) |
+| [Panda](https://github.com/fortserver/Panda) | ![tag](https://img.shields.io/badge/tag-private-red) | Коннектор приложений Linux корпоративной редакции fortserver |
+| [Razor](https://github.com/fortserver/razor) | ![tag](https://img.shields.io/badge/tag-private-red) | Прокси протокола RDP корпоративной редакции fortserver |
+| [Magnus](https://github.com/fortserver/magnus) | ![tag](https://img.shields.io/badge/tag-private-red) | Прокси протоколов баз данных корпоративной редакции fortserver |
+| [Nec](https://github.com/fortserver/nec) | ![tag](https://img.shields.io/badge/tag-private-red) | Прокси протокола VNC корпоративной редакции fortserver |
 
-### Вспомогательные службы
+### Вспомогательные сервисы
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">Проект</th>
-      <th width="135" align="center"><div align="center">Версия</div></th>
-      <th width="550" align="center"><div align="center">Описание</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/video-worker">Video&nbsp;Worker</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Служба перекодирования записей сеансов fortserver Enterprise Edition</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/jdmc">JDMC</a></td>
-      <td width="135" align="center"><div align="center"><img src="https://img.shields.io/badge/tag-private-red" alt="Закрытая версия" /></div></td>
-      <td width="550" align="left">Служба эксплуатации и управления хостами fortserver Enterprise Edition</td>
-    </tr>
-  </tbody>
-</table>
+| Проект | Версия | Описание |
+| --- | --- | --- |
+| [Video Worker](https://github.com/fortserver/video-worker) | ![tag](https://img.shields.io/badge/tag-private-red) | Сервис перекодирования записей сеансов корпоративной редакции fortserver |
+| [JDMC](https://github.com/fortserver/jdmc) | ![tag](https://img.shields.io/badge/tag-private-red) | Сервис эксплуатации и управления хостами корпоративной редакции fortserver |
 
 ### Развёртывание и инструменты
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th width="160" align="left">Проект</th>
-      <th width="135" align="center"><div align="center">Версия</div></th>
-      <th width="550" align="center"><div align="center">Описание</div></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/installer">Installer</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/installer/tags"><img src="https://img.shields.io/github/v/tag/fortserver/installer?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Installer версия" /></a></div></td>
-      <td width="550" align="left">Инструмент установки и управления fortserver</td>
-    </tr>
-    <tr>
-      <td width="160" align="left" nowrap><a href="https://github.com/fortserver/docker-web">Docker&nbsp;Web</a></td>
-      <td width="135" align="center"><div align="center"><a href="https://github.com/fortserver/docker-web/tags"><img src="https://img.shields.io/github/v/tag/fortserver/docker-web?sort=semver&amp;filter=v5.*&amp;label=tag" alt="Docker Web версия" /></a></div></td>
-      <td width="550" align="left">Веб-шлюз и статические ресурсы fortserver</td>
-    </tr>
-  </tbody>
-</table>
+| Проект | Версия | Описание |
+| --- | --- | --- |
+| [Installer](https://github.com/fortserver/installer) | [![tag](https://img.shields.io/github/v/tag/fortserver/installer?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/installer/tags) | Инструмент установки и управления fortserver |
+| [Docker Web](https://github.com/fortserver/docker-web) | [![tag](https://img.shields.io/github/v/tag/fortserver/docker-web?sort=semver&filter=v5.*&label=tag)](https://github.com/fortserver/docker-web/tags) | Веб-шлюз и статические ресурсы fortserver |
 
-## Участие в разработке
+## Участие
 
-Мы приветствуем ваш вклад. Правила участия описаны в [CONTRIBUTING.md][contributing-link].
+Добро пожаловать, чтобы подать PR для участия. Пожалуйста, обратитесь к [CONTRIBUTING.md][contributing-link] за руководством.
 
-## Лицензия
+## License
 
-Copyright (c) 2014-2026 fortserver. Все права защищены.
+Copyright (c) 2014-2025 fortserver, All rights reserved.
 
-Проект распространяется на условиях GNU General Public License версии 3 (GPLv3, далее «Лицензия»). Использовать этот файл можно только в соответствии с Лицензией. Её текст доступен по адресу
+Licensed under The GNU General Public License version 3 (GPLv3) (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
 https://www.gnu.org/licenses/gpl-3.0.html
 
-Если иное не требуется применимым законодательством или не согласовано в письменной форме, программное обеспечение, распространяемое на условиях Лицензии, предоставляется «КАК ЕСТЬ» БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ ИЛИ УСЛОВИЙ, явных или подразумеваемых. Конкретные права и ограничения изложены в Лицензии.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an " AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 <!-- fortserver official link -->
 [docs-link]: https://fortserver.com/docs
