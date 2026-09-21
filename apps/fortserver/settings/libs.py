@@ -84,6 +84,7 @@ SPECTACULAR_SETTINGS = {
     # 添加自定义字段扩展
     'SERIALIZER_EXTENSIONS': [
         'fortserver.views.schema.ObjectRelatedFieldExtension',
+        'fortserver.views.schema.JSONManyToManyFieldExtension',
         'fortserver.views.schema.LabeledChoiceFieldExtension',
         'fortserver.views.schema.BitChoicesFieldExtension',
         'fortserver.views.schema.LabelRelatedFieldExtension',
