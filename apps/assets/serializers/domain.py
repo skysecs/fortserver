@@ -6,9 +6,10 @@ from rest_framework import serializers
 from common.serializers import ResourceLabelsMixin
 from common.serializers.fields import ObjectRelatedField
 from orgs.mixins.serializers import BulkOrgResourceModelSerializer
+from .gateway import GatewayWithAccountSecretSerializer
 from ..models import Zone, Gateway
 
-__all__ = ['ZoneSerializer', 'ZoneListSerializer']
+__all__ = ['ZoneSerializer', 'ZoneWithGatewaySerializer', 'ZoneListSerializer']
 
 
 class ZoneSerializer(ResourceLabelsMixin, BulkOrgResourceModelSerializer):
@@ -63,3 +64,11 @@ class ZoneSerializer(ResourceLabelsMixin, BulkOrgResourceModelSerializer):
 class ZoneListSerializer(ZoneSerializer):
     class Meta(ZoneSerializer.Meta):
         fields = list(set(ZoneSerializer.Meta.fields + ZoneSerializer.Meta.amount_fields) - {'assets'})
+
+
+class ZoneWithGatewaySerializer(serializers.ModelSerializer):
+    gateways = GatewayWithAccountSecretSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Zone
+        fields = '__all__'

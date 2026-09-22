@@ -54,10 +54,7 @@ def _get_jwks_keys(shared_key):
     logger.debug(log_prompt.format('Start'))
     jwks_keys = KEYS()
     logger.debug(log_prompt.format('Load from provider jwks endpoint'))
-    jwks_keys.load_from_url(
-        settings.AUTH_OPENID_PROVIDER_JWKS_ENDPOINT,
-        verify=not settings.AUTH_OPENID_IGNORE_SSL_VERIFICATION,
-    )
+    jwks_keys.load_from_url(settings.AUTH_OPENID_PROVIDER_JWKS_ENDPOINT)
     # Adds the shared key (which can correspond to the client_secret) as an oct key so it can be
     # used for HMAC signatures.
     logger.debug(log_prompt.format('Add key'))

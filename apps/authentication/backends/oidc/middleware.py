@@ -7,6 +7,7 @@ from django.contrib import auth
 from django.core.exceptions import MiddlewareNotUsed
 
 from common.utils import get_logger
+from .decorator import ssl_verification
 from .utils import validate_and_return_id_token
 
 logger = get_logger(__file__)
@@ -33,6 +34,7 @@ class OIDCRefreshIDTokenMiddleware:
     def is_ajax(request):
         return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
+    @ssl_verification
     def refresh_token(self, request):
         """ Refreshes the token of the current user. """
 
@@ -72,10 +74,7 @@ class OIDCRefreshIDTokenMiddleware:
 
         # Calls the token endpoint.
         logger.debug(log_prompt.format('Calls the token endpoint'))
-        token_response = requests.post(
-            settings.AUTH_OPENID_PROVIDER_TOKEN_ENDPOINT, data=token_payload,
-            verify=not settings.AUTH_OPENID_IGNORE_SSL_VERIFICATION,
-        )
+        token_response = requests.post(settings.AUTH_OPENID_PROVIDER_TOKEN_ENDPOINT, data=token_payload)
         try:
             token_response.raise_for_status()
         except requests.exceptions.HTTPError as e:

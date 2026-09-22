@@ -19,6 +19,7 @@ from django.urls import reverse
 from authentication.utils import build_absolute_uri_for_oidc
 from common.utils import get_logger
 from users.utils import construct_user_email
+from .decorator import ssl_verification
 from .signals import (
     openid_create_or_update_user
 )
@@ -84,6 +85,7 @@ class OIDCAuthCodeBackend(OIDCBaseBackendMixin, RedirectAuthBackend, ModelBacken
 
     backend = settings.AUTH_BACKEND_OIDC_CODE
 
+    @ssl_verification
     def authenticate(self, request, nonce=None, code_verifier=None):
         """ Authenticates users in case of the OpenID Connect Authorization code flow. """
         log_prompt = "Process authenticate [OIDCAuthCodeBackend]: {}"
@@ -152,8 +154,7 @@ class OIDCAuthCodeBackend(OIDCBaseBackendMixin, RedirectAuthBackend, ModelBacken
         # Calls the token endpoint.
         logger.debug(log_prompt.format('Call the token endpoint'))
         token_response = requests.post(
-            settings.AUTH_OPENID_PROVIDER_TOKEN_ENDPOINT, data=token_payload, headers=headers,
-            verify=not settings.AUTH_OPENID_IGNORE_SSL_VERIFICATION,
+            settings.AUTH_OPENID_PROVIDER_TOKEN_ENDPOINT, data=token_payload, headers=headers
         )
         try:
             token_response.raise_for_status()
@@ -194,8 +195,7 @@ class OIDCAuthCodeBackend(OIDCBaseBackendMixin, RedirectAuthBackend, ModelBacken
             logger.debug(log_prompt.format('Fetches the claims from the userinfo endpoint'))
             claims_response = requests.get(
                 settings.AUTH_OPENID_PROVIDER_USERINFO_ENDPOINT,
-                headers={'Authorization': 'Bearer {0}'.format(access_token)},
-                verify=not settings.AUTH_OPENID_IGNORE_SSL_VERIFICATION,
+                headers={'Authorization': 'Bearer {0}'.format(access_token)}
             )
             try:
                 claims_response.raise_for_status()
@@ -223,6 +223,7 @@ class OIDCAuthCodeBackend(OIDCBaseBackendMixin, RedirectAuthBackend, ModelBacken
 
 class OIDCAuthPasswordBackend(OIDCBaseBackendMixin, JMSBaseAuthBackend, ModelBackend):
 
+    @ssl_verification
     def authenticate(self, request, username=None, password=None):
         try:
             return self._authenticate(request, username, password)
@@ -257,10 +258,8 @@ class OIDCAuthPasswordBackend(OIDCBaseBackendMixin, JMSBaseAuthBackend, ModelBac
 
         # Calls the token endpoint.
         logger.debug(log_prompt.format('Call the token endpoint'))
-        token_response = requests.post(
-            settings.AUTH_OPENID_PROVIDER_TOKEN_ENDPOINT, data=token_payload,
-            timeout=request_timeout, verify=not settings.AUTH_OPENID_IGNORE_SSL_VERIFICATION,
-        )
+        token_response = requests.post(settings.AUTH_OPENID_PROVIDER_TOKEN_ENDPOINT, data=token_payload,
+                                       timeout=request_timeout)
         try:
             token_response.raise_for_status()
             token_response_data = token_response.json()
@@ -278,7 +277,7 @@ class OIDCAuthPasswordBackend(OIDCBaseBackendMixin, JMSBaseAuthBackend, ModelBac
         claims_response = requests.get(
             settings.AUTH_OPENID_PROVIDER_USERINFO_ENDPOINT,
             headers={'Authorization': 'Bearer {0}'.format(access_token)},
-            timeout=request_timeout, verify=not settings.AUTH_OPENID_IGNORE_SSL_VERIFICATION,
+            timeout=request_timeout
         )
         try:
             claims_response.raise_for_status()
