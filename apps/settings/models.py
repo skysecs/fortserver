@@ -164,7 +164,6 @@ class Setting(models.Model):
         verbose_name = _("System setting")
         permissions = [
             ('change_basic', _('Can change basic setting')),
-            ('change_systemtools', _('Can change system tools setting')),
             ('change_email', _('Can change email setting')),
             ('change_auth', _('Can change auth setting')),
             ('change_ops', _('Can change auth ops')),

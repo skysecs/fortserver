@@ -8187,10 +8187,6 @@ msgstr "审计台"
 msgid "System setting"
 msgstr "系统设置"
 
-#: rbac/tree.py
-msgid "System tools"
-msgstr "系统工具"
-
 #: rbac/tree.py:38
 msgid "Session audits"
 msgstr "会话审计"
@@ -8441,10 +8437,6 @@ msgstr "加密的"
 #: settings/models.py:168
 msgid "Can change basic setting"
 msgstr "基本设置"
-
-#: settings/models.py
-msgid "Can change system tools setting"
-msgstr "可以修改系统工具设置"
 
 #: settings/models.py:169
 msgid "Can change email setting"
@@ -9609,6 +9601,10 @@ msgstr "SMTP"
 msgid "Microsoft Exchange Server"
 msgstr "Microsoft Exchange 服务器"
 
+#: settings/serializers/tls.py:9
+msgid "Use default trust store (compatible)"
+msgstr "使用默认信任库（兼容模式）"
+
 #: settings/serializers/msg.py:31
 msgid "Use system trust store"
 msgstr "使用系统信任库"
@@ -9677,6 +9673,10 @@ msgstr "证书校验"
 #: settings/serializers/msg.py:71
 msgid "Controls verification of the SMTP TLS certificate"
 msgstr "控制是否校验 SMTP TLS 证书"
+
+#: settings/serializers/auth/oauth2.py
+msgid "Controls verification of OAuth2 server TLS certificates"
+msgstr "控制是否校验 OAuth2 服务器的 TLS 证书"
 
 #: settings/serializers/msg.py:77
 msgid "PEM certificate used in addition to the system trust store"

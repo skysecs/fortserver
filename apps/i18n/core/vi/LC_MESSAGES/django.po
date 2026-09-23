@@ -9890,6 +9890,10 @@ msgstr "SMTP"
 msgid "Microsoft Exchange Server"
 msgstr "Máy chủ Microsoft Exchange"
 
+#: settings/serializers/tls.py:9
+msgid "Use default trust store (compatible)"
+msgstr "Sử dụng kho tin cậy mặc định (tương thích)"
+
 #: settings/serializers/msg.py:31
 msgid "Use system trust store"
 msgstr "Sử dụng kho tin cậy hệ thống"
@@ -9961,6 +9965,10 @@ msgstr "Xác minh chứng chỉ"
 #: settings/serializers/msg.py:71
 msgid "Controls verification of the SMTP TLS certificate"
 msgstr "Kiểm soát việc xác minh chứng chỉ TLS SMTP"
+
+#: settings/serializers/auth/oauth2.py
+msgid "Controls verification of OAuth2 server TLS certificates"
+msgstr "Kiểm soát việc xác minh chứng chỉ TLS của máy chủ OAuth2"
 
 #: settings/serializers/msg.py:77
 msgid "PEM certificate used in addition to the system trust store"

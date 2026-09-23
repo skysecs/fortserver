@@ -1,5 +1,7 @@
 from typing import Callable
 
+from django.shortcuts import get_object_or_404
+from django.conf import settings
 from rest_framework.request import Request
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -8,6 +10,7 @@ from common.api import JMSModelViewSet
 from common.permissions import IsServiceAccount
 from common.utils import is_uuid
 from orgs.utils import tmp_to_builtin_org
+from rbac.permissions import RBACPermission
 from terminal.models import AppletHost
 from accounts.models import Account
 from terminal.models import AppletPublication
@@ -22,26 +25,34 @@ class HostMixin:
     request: Request
     permission_denied: Callable
     kwargs: dict
+    rbac_perms = (
+        ('list', 'terminal.view_applethost'),
+        ('retrieve', 'terminal.view_applethost'),
+    )
     page_no_limit = True
-    permission_classes = [IsServiceAccount]
 
-    def check_permissions(self, request):
-        super().check_permissions(request)
-        # Validate the binding for every action, including create and reports.
-        host = self.host
-        host_id = self.kwargs.get('host')
-        if host_id and str(host.id) != str(host_id):
-            self.permission_denied(self.request, 'User cannot access this applet host')
+    def get_permissions(self):
+        if self.kwargs.get('host') and settings.DEBUG:
+            return [RBACPermission()]
+        else:
+            return [IsServiceAccount()]
 
     def self_host(self):
         try:
             return self.request.user.terminal.applet_host
         except AttributeError:
-            self.permission_denied(self.request, 'User has no applet host')
+            raise self.permission_denied(self.request, 'User has no applet host')
+
+    def pk_host(self):
+        return get_object_or_404(AppletHost, id=self.kwargs.get('host'))
 
     @property
     def host(self):
-        return self.self_host()
+        if self.kwargs.get('host'):
+            host = self.pk_host()
+        else:
+            host = self.self_host()
+        return host
 
 
 class AppletHostAccountsViewSet(HostMixin, JMSModelViewSet):
@@ -52,10 +63,6 @@ class AppletHostAccountsViewSet(HostMixin, JMSModelViewSet):
         with tmp_to_builtin_org(system=1):
             queryset = self.host.accounts.all()
         return queryset
-
-    def perform_create(self, serializer):
-        with tmp_to_builtin_org(system=1):
-            serializer.save(asset=self.host)
 
 
 class AppletHostAppletViewSet(HostMixin, JMSModelViewSet):
@@ -73,12 +80,6 @@ class AppletHostAppletViewSet(HostMixin, JMSModelViewSet):
     def get_queryset(self):
         queryset = self.host.publications.all()
         return queryset
-
-    def perform_create(self, serializer):
-        serializer.save(host=self.host)
-
-    def perform_update(self, serializer):
-        serializer.save(host=self.host)
 
     @action(methods=['post'], detail=False)
     def reports(self, request, *args, **kwargs):

@@ -81,7 +81,7 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
 
     rbac_category_permissions = {
         'basic': 'settings.change_basic',
-        'tool': 'settings.change_systemtools',
+        'tool': 'rbac.view_systemtools',
         'terminal': 'settings.change_terminal',
         'luna': 'settings.change_terminal',
         'ops': 'settings.change_ops',
@@ -134,11 +134,11 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         return Setting.objects.all()
 
     def check_permissions(self, request):
+        ok = RoleBinding.is_org_admin(request.user)
         category = request.query_params.get('category', 'basic')
         perm_required = self.rbac_category_permissions.get(category)
 
-        if perm_required == 'settings.view_setting' and \
-                RoleBinding.is_org_admin(request.user):
+        if ok and perm_required == 'settings.view_setting':
             return True
 
         has = request.user.has_perm(perm_required)
@@ -157,9 +157,11 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         return fields
 
     def get_object(self):
-        items = self.get_fields().keys()
+        fields = self.get_fields()
         obj = {}
-        for item in items:
+        for item, field in fields.items():
+            if field.source == '*':
+                continue
             if hasattr(settings, item):
                 obj[item] = getattr(settings, item)
             else:
@@ -171,9 +173,13 @@ class SettingsApi(generics.RetrieveUpdateAPIView):
         fields = self.get_fields()
         encrypted_items = [name for name, field in fields.items() if field.write_only]
         category = self.request.query_params.get('category', '')
+        clearable_secrets = {
+            'AUTH_OAUTH2_CACERT_CONTENT',
+        }
         for name, value in serializer.validated_data.items():
             encrypted = name in encrypted_items
-            if encrypted and value in ['', None]:
+            allow_explicit_empty = name in clearable_secrets
+            if encrypted and value in ['', None] and not allow_explicit_empty:
                 continue
             data.append({
                 'name': name, 'value': value,

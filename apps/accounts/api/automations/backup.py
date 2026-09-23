@@ -15,8 +15,6 @@ __all__ = [
 
 
 class BackupAccountViewSet(OrgBulkModelViewSet):
-    # Plan metadata omits the write-only ZIP encryption password.
-    chat_ai_safe_sensitive_actions = ('list', 'retrieve')
     model = BackupAccountAutomation
     filterset_class = BackupAccountFilterSet
     search_fields = ('name',)
@@ -24,7 +22,6 @@ class BackupAccountViewSet(OrgBulkModelViewSet):
 
 
 class BackupAccountExecutionViewSet(AutomationExecutionViewSet):
-    chat_ai_safe_sensitive_actions = ('list', 'retrieve')
     rbac_perms = (
         ("list", "accounts.view_backupaccountexecution"),
         ("retrieve", "accounts.view_backupaccountexecution"),

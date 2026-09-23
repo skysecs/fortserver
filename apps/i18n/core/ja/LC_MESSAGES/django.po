@@ -9854,6 +9854,10 @@ msgstr "SMTPホスト"
 msgid "Microsoft Exchange Server"
 msgstr "マイクロソフトエクスチェンジ サーバー"
 
+#: settings/serializers/tls.py:9
+msgid "Use default trust store (compatible)"
+msgstr "デフォルトの信頼ストアを使用（互換）"
+
 #: settings/serializers/msg.py:31
 msgid "Use system trust store"
 msgstr "システム信頼ストアを使用"
@@ -9925,6 +9929,10 @@ msgstr "証明書検証"
 #: settings/serializers/msg.py:71
 msgid "Controls verification of the SMTP TLS certificate"
 msgstr "SMTP TLS証明書を検証するかどうかを制御"
+
+#: settings/serializers/auth/oauth2.py
+msgid "Controls verification of OAuth2 server TLS certificates"
+msgstr "OAuth2サーバーのTLS証明書を検証するかどうかを制御"
 
 #: settings/serializers/msg.py:77
 msgid "PEM certificate used in addition to the system trust store"

@@ -9867,6 +9867,10 @@ msgstr "SMTP"
 msgid "Microsoft Exchange Server"
 msgstr "Microsoft Exchange Server"
 
+#: settings/serializers/tls.py:9
+msgid "Use default trust store (compatible)"
+msgstr "Utiliser le magasin de confiance par défaut (compatible)"
+
 #: settings/serializers/msg.py:31
 msgid "Use system trust store"
 msgstr "Utiliser le magasin de confiance système"
@@ -9939,6 +9943,10 @@ msgstr "Vérification du certificat"
 #: settings/serializers/msg.py:71
 msgid "Controls verification of the SMTP TLS certificate"
 msgstr "Contrôle la vérification du certificat TLS SMTP"
+
+#: settings/serializers/auth/oauth2.py
+msgid "Controls verification of OAuth2 server TLS certificates"
+msgstr "Contrôle la vérification des certificats TLS du serveur OAuth2"
 
 #: settings/serializers/msg.py:77
 msgid "PEM certificate used in addition to the system trust store"

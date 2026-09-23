@@ -23,7 +23,7 @@ class PushAccountManager(BaseChangeSecretPushManager):
 
     def get_secret(self, account):
         secret = account.secret
-        if not secret and not account.follows_template:
+        if not secret:
             secret = super().get_secret(account)
         return secret
 
