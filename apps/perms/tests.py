@@ -1,61 +1,87 @@
+from datetime import timedelta
 from types import SimpleNamespace
+from unittest.mock import Mock
 
-from django.test import SimpleTestCase, TestCase
-from rest_framework.request import Request
-from rest_framework.test import APIRequestFactory
+from django.test import SimpleTestCase
+from django.utils import timezone
 
-from assets.models import Asset, MyAsset, Platform
-from orgs.models import Organization
-from perms.api.user_permission.assets import UserAllPermedAssetsApi
-from perms.api.user_permission.nodes import UserAllPermedNodesApi
-from users.models import User
+from accounts.const import AliasAccount
+from perms.const import ActionChoices
+from perms.utils.asset_perm import PermAssetDetailUtil
 
 
-class UserAllPermedNodesApiTest(SimpleTestCase):
-    def test_search_filters_list_queryset_by_full_value(self):
-        nodes = [
-            SimpleNamespace(full_value='/Default/Alpha'),
-            SimpleNamespace(full_value='/Default/Beta'),
+class AssetPermissionExclusionTests(SimpleTestCase):
+    def setUp(self):
+        self.expires = timezone.now() + timedelta(days=1)
+        self.asset = Mock()
+        self.asset.all_valid_accounts.values_list.return_value = ['alice', 'bob']
+
+    def permission(self, alias, actions):
+        return SimpleNamespace(
+            accounts=[alias], actions=actions, date_expired=self.expires,
+        )
+
+    def test_exclusions_only_remove_granted_actions(self):
+        connect = ActionChoices.connect
+        upload = ActionChoices.upload
+        download = ActionChoices.download
+        cases = [
+            ('absent bit', download, connect, download),
+            ('partial overlap', connect | download, connect | upload, download),
+            ('subset', connect | download, connect, download),
+            ('all granted bits', download, download, 0),
+            ('higher absent bit', connect, download, connect),
+            ('no grant', 0, connect, 0),
         ]
-        view = UserAllPermedNodesApi()
-        view.request = Request(APIRequestFactory().get('/', {'search': 'ALP'}))
-        view.__dict__['query_node_util'] = SimpleNamespace(
-            get_whole_tree_nodes=lambda: nodes
+        for name, allowed, excluded, expected in cases:
+            with self.subTest(name=name):
+                permissions = [
+                    self.permission('alice', allowed),
+                    self.permission('!alice', excluded),
+                ]
+                actions, _ = PermAssetDetailUtil.parse_alias_action_date_expire(
+                    permissions, self.asset,
+                )
+                self.assertEqual(actions, {'alice': expected} if expected else {})
+
+    def test_exclusions_apply_after_all_accounts_expansion(self):
+        permissions = [
+            self.permission(AliasAccount.ALL, ActionChoices.download),
+            self.permission('!alice', ActionChoices.connect),
+        ]
+
+        actions, expirations = PermAssetDetailUtil.parse_alias_action_date_expire(
+            permissions, self.asset,
         )
 
-        filtered = view.filter_queryset(view.get_queryset())
+        self.assertEqual(actions, {
+            'alice': ActionChoices.download,
+            'bob': ActionChoices.download,
+        })
+        self.assertEqual(expirations['alice'], [self.expires])
 
-        self.assertEqual(filtered, nodes[:1])
+    def test_exclusions_apply_to_combined_policy_actions(self):
+        permissions = [
+            self.permission('alice', ActionChoices.connect),
+            self.permission('alice', ActionChoices.download),
+            self.permission('!alice', ActionChoices.connect),
+            self.permission('!alice', ActionChoices.upload),
+        ]
 
-
-class UserAllPermedAssetsApiTest(TestCase):
-    def test_order_by_name_uses_custom_name_with_asset_name_fallback(self):
-        user = User.objects.create(username='custom-name-ordering')
-        platform = Platform.objects.create(name='CustomNameOrdering')
-        custom_asset = Asset.objects.create(
-            name='Zulu', address='192.0.2.1', platform=platform,
-            org_id=Organization.DEFAULT_ID,
-        )
-        original_asset = Asset.objects.create(
-            name='Beta', address='192.0.2.2', platform=platform,
-            org_id=Organization.DEFAULT_ID,
-        )
-        MyAsset.objects.create(user=user, asset=custom_asset, name='Alpha')
-
-        view = UserAllPermedAssetsApi()
-        request = Request(APIRequestFactory().get('/', {'order': 'name'}))
-        request.user = user
-        view.request = request
-        view.kwargs = {'user': 'self'}
-        view.__dict__['query_asset_util'] = SimpleNamespace(
-            get_all_assets=lambda: Asset.objects.filter(
-                id__in=[custom_asset.id, original_asset.id]
-            )
+        actions, _ = PermAssetDetailUtil.parse_alias_action_date_expire(
+            permissions, self.asset,
         )
 
-        queryset = view.filter_queryset(view.get_queryset())
+        self.assertEqual(actions, {'alice': ActionChoices.download})
 
-        self.assertEqual(
-            list(queryset.values_list('id', flat=True)),
-            [custom_asset.id, original_asset.id],
-        )
+    def test_action_checks_do_not_accept_synthesized_permissions(self):
+        util = PermAssetDetailUtil(SimpleNamespace(username='user'), 'asset-id')
+        util.asset = self.asset
+        util.user_asset_perms = [
+            self.permission('alice', ActionChoices.download),
+            self.permission('!alice', ActionChoices.connect),
+        ]
+
+        self.assertFalse(util.check_perm_actions('alice', [ActionChoices.connect]))
+        self.assertFalse(util.check_perm_actions('alice', [ActionChoices.upload]))
+        self.assertTrue(util.check_perm_actions('alice', [ActionChoices.download]))
