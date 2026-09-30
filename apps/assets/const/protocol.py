@@ -144,11 +144,6 @@ class Protocol(ChoicesMixin, models.TextChoices):
                         'default': False,
                         'label': _('Use SSL')
                     },
-                    'allow_invalid_cert': {
-                        'type': 'bool',
-                        'default': False,
-                        'label': _('Allow invalid certificate'),
-                    },
                 }
             },
         }
