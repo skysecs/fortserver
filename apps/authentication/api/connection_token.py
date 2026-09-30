@@ -989,12 +989,18 @@ class ConnectionTokenViewSet(AuthFaceMixin, ExtraActionApiMixin, RootOrgViewMixi
             msg = _('ACL action is reject: {}({})'.format(acl.name, acl.id))
             raise JMSException(code='acl_reject', detail=msg)
         if acl.is_action(acl.ActionChoices.review):
+            account_username = (
+                self.input_username if account.username == AliasAccount.INPUT else account.username
+            )
+            if acl.is_review_exempt(user, asset, account_username):
+                self._record_operate_log(acl, asset)
+                return
             if not self.request.query_params.get('create_ticket'):
                 msg = _('ACL action is review')
                 raise JMSException(code='acl_review', detail=msg)
             self._record_operate_log(acl, asset)
-            ticket = LoginAssetACL.create_login_asset_review_ticket(
-                user=user, asset=asset, account_username=self.input_username,
+            ticket = acl.create_login_asset_review_ticket(
+                user=user, asset=asset, account_username=account_username,
                 assignees=acl.reviewers.all(), org_id=asset.org_id
             )
             return ticket
@@ -1193,7 +1199,9 @@ class SuperConnectionTokenViewSet(ConnectionTokenViewSet):
             "expired": instance.is_expired
         }
         try:
-            instance.is_valid()
+            # Components check established sessions after the one-time token
+            # has been consumed. Revalidate access without reviving that token.
+            instance.is_valid(check_expiration=False)
             if not instance.personal_credential_id:
                 self._validate_perm(
                     instance.user,
