@@ -22,7 +22,7 @@
 
 fortserver est une plateforme open source de gestion des accès à privilèges (PAM) dotée de fonctionnalités d’intelligence artificielle. Elle offre aux équipes DevOps et informatiques un espace de travail unifié pour accéder en toute sécurité à SSH, RDP, Kubernetes, des bases de données, des sites web, RemoteApp, VirtualApp et bien plus encore.
 
-<img alt="Schéma d’architecture de fortserver" src="assets/fortserver-architecture.png" />
+<img alt="Schéma d’architecture de fortserver" src="assets/fortserver-architecture.gif" />
 
 ## Démarrage rapide
 

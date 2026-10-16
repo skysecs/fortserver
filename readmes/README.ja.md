@@ -22,7 +22,7 @@
 
 fortserver は AI 機能を備えたオープンソースの特権アクセス管理（PAM）プラットフォームです。DevOps チームと IT チームが、SSH、RDP、Kubernetes、データベース、Web サイト、RemoteApp、VirtualApp などに安全にアクセスできる統合ワークスペースを提供します。
 
-<img alt="fortserver の構成図" src="assets/fortserver-architecture.png" />
+<img alt="fortserver の構成図" src="assets/fortserver-architecture.gif" />
 
 ## クイックスタート
 
