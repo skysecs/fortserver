@@ -32,7 +32,7 @@ fortserver 是具备 AI 能力的开源特权访问管理（PAM）平台，为 D
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-在浏览器中访问 fortserver： `http://your-fortserver-ip/`
+在浏览器中打开 `https://<fortserver-host>/`，将 `<fortserver-host>` 替换为运行 fortserver 的主机 IP 地址或域名。
 
 - 用户名: `admin`
 - 密码: `ChangeMe`

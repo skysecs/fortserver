@@ -32,7 +32,7 @@ fortserver — платформа управления привилегиров�
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Откройте fortserver в браузере по адресу `http://your-fortserver-ip/`
+Откройте `https://<fortserver-host>/` в браузере, заменив `<fortserver-host>` на IP-адрес или доменное имя хоста, на котором работает fortserver.
 
 - Имя пользователя: `admin`
 - Пароль: `ChangeMe`

@@ -32,7 +32,7 @@ Prepare um servidor Linux de 64 bits limpo, com pelo menos 4 núcleos de CPU e 8
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Abra o fortserver no navegador em `http://your-fortserver-ip/`
+Abra `https://<fortserver-host>/` no navegador e substitua `<fortserver-host>` pelo endereço IP ou nome de domínio do host em que o fortserver está em execução.
 
 - Usuário: `admin`
 - Senha: `ChangeMe`

@@ -32,7 +32,7 @@ fortserver 是具備 AI 能力的開源特權存取管理（PAM）平台，為 D
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-在瀏覽器中開啟 fortserver： `http://your-fortserver-ip/`
+在瀏覽器中開啟 `https://<fortserver-host>/`，將 `<fortserver-host>` 替換為執行 fortserver 的主機 IP 位址或網域名稱。
 
 - 使用者名稱: `admin`
 - 密碼: `ChangeMe`

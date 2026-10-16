@@ -32,7 +32,7 @@ CPU 4 コア以上、メモリ 8 GB 以上のクリーンな 64 ビット Linux 
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-ブラウザーで fortserver にアクセスします： `http://your-fortserver-ip/`
+ブラウザーで `https://<fortserver-host>/` を開き、`<fortserver-host>` を fortserver が稼働しているホストの IP アドレスまたはドメイン名に置き換えてください。
 
 - ユーザー名: `admin`
 - パスワード: `ChangeMe`

@@ -32,7 +32,7 @@ Chuẩn bị một máy chủ Linux 64 bit mới, có ít nhất 4 nhân CPU và
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Mở fortserver trong trình duyệt tại `http://your-fortserver-ip/`
+Mở `https://<fortserver-host>/` trong trình duyệt và thay `<fortserver-host>` bằng địa chỉ IP hoặc tên miền của máy chủ đang chạy fortserver.
 
 - Tên đăng nhập: `admin`
 - Mật khẩu: `ChangeMe`

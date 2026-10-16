@@ -32,7 +32,7 @@ Préparez un serveur Linux 64 bits vierge disposant d’au moins 4 cœurs de pro
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Ouvrez fortserver dans votre navigateur à l’adresse `http://your-fortserver-ip/`
+Ouvrez `https://<fortserver-host>/` dans votre navigateur et remplacez `<fortserver-host>` par l’adresse IP ou le nom de domaine de l’hôte exécutant fortserver.
 
 - Nom d’utilisateur : `admin`
 - Mot de passe : `ChangeMe`
