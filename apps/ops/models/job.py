@@ -21,14 +21,14 @@ __all__ = ["Job", "JobExecution", "JMSPermedInventory"]
 from simple_history.models import HistoricalRecords
 
 from accounts.models import Account
-from acls.models import CommandFilterACL, DataMaskingRule
+from acls.models import CommandFilterACL, DataMaskingRule, LoginAssetACL
 from assets.const import Protocol
 from assets.models import Asset
 from assets.automations.base.manager import SSHTunnelManager
 from common.db.encoder import ModelJSONFieldEncoder
 from ops.ansible import (
     JMSInventory, AdHocRunner, PlaybookRunner, TaskLogCallback, UploadFileRunner,
-    escape_jinja2_syntax, neutralize_jinja2_syntax,
+    escape_jinja2_syntax, neutralize_jinja2_syntax, quote_ansible_module_arg,
 )
 
 """stop all ssh child processes of the given ansible process pid."""
@@ -69,6 +69,19 @@ def check_upload_permission(host, *, user, asset, account, **kwargs):
             'Asset ({asset}) authorization lacks upload permissions'
         ).format(asset=asset.name)
     return host
+
+
+def match_rejected_login_asset_acl(user, assets, account, ip=None):
+    for asset in assets:
+        acls = LoginAssetACL.filter_queryset(
+            user=user, asset=asset, account_username=account
+        )
+        acl = LoginAssetACL.get_match_rule_acls(user, ip, acls)
+        if not acl:
+            continue
+        if not acl.is_action(acl.ActionChoices.accept):
+            return asset, acl
+    return None, None
 
 
 def get_parent_keys(key, include_self=True):
@@ -382,7 +395,11 @@ class JobExecution(JMSOrgBaseModel):
             if module == 'mssql_script':
                 login_args += "encryption={{jms_asset.encryption | default(None) }} " \
                               "tds_version={{jms_asset.tds_version | default(None) }} "
-            shell = "{} {}=\"{}\" ".format(login_args, query_token, args)
+            # Keep user SQL inside query/script, then set login_* so injected
+            # connection keys cannot override inventory.
+            shell = '{}="{}" {}'.format(
+                query_token, quote_ansible_module_arg(args), login_args
+            )
             return module, shell
 
         if module == 'win_shell':
@@ -402,7 +419,7 @@ class JobExecution(JMSOrgBaseModel):
 
         if module == JobModules.huawei.value:
             module = 'ce_command'
-            shell = "commands=\"{}\" ".format(args)
+            shell = 'commands="{}" '.format(quote_ansible_module_arg(args))
 
         return module, shell
 
@@ -637,6 +654,22 @@ class JobExecution(JMSOrgBaseModel):
             self.check_danger_keywords()
         if self.current_job.type == 'adhoc':
             self.check_command_acl()
+
+    def check_login_asset_acls(self, ip=None):
+        asset, acl = match_rejected_login_asset_acl(
+            self.creator, self.inventory.assets, self.current_job.runas, ip
+        )
+        if not asset:
+            return
+        print(
+            "\033[31mLogin to asset {}({}) is rejected by login asset ACL ({})\033[0m"
+            .format(asset.name, asset.address, acl)
+        )
+        raise Exception(
+            "Login to asset {}({}) is rejected by login asset ACL ({})".format(
+                asset.name, asset.address, acl
+            )
+        )
 
     def before_start(self):
         self.check_assets_perms()

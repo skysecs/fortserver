@@ -1,6 +1,6 @@
 <div align="center">
   <a name="readme-top"></a>
-  <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
+  <a href="https://fortserver.com" target="_blank"><img src="assets/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
 ## An open-source PAM platform (Bastion Host)
 
@@ -12,7 +12,7 @@
 [![][github-release-shield]][github-release-link]
 [![][github-stars-shield]][github-stars-link]
 
-[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md) · [Español](/readmes/README.es.md) · [Русский](/readmes/README.ru.md) · [한국어](/readmes/README.ko.md) · [Tiếng Việt](/readmes/README.vi.md)
+[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md) · [Español](/readmes/README.es.md) · [Français](/readmes/README.fr.md) · [Русский](/readmes/README.ru.md) · [한국어](/readmes/README.ko.md) · [Tiếng Việt](/readmes/README.vi.md)
 
 </div>
 
@@ -22,7 +22,7 @@
 
 fortserver is an open-source Privileged Access Management (PAM) platform with AI-powered capabilities. It gives DevOps and IT teams a unified workspace for secure access to SSH, RDP, Kubernetes, databases, websites, RemoteApp, VirtualApp, and more.
 
-<img alt="fortserver architecture diagram" src="assets/fortserver-architecture.png" />
+<img alt="fortserver architecture diagram" src="assets/fortserver-architecture.gif" />
 
 ## Quickstart
 
@@ -32,7 +32,7 @@ Prepare a clean 64-bit Linux server with at least 4 CPU cores and 8 GB of RAM.
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Open fortserver in your browser at `http://your-fortserver-ip/`
+Open `https://<fortserver-host>/` in your browser, replacing `<fortserver-host>` with the IP address or domain name of the host running fortserver.
 
 - Username: `admin`
 - Password: `ChangeMe`
@@ -40,28 +40,28 @@ Open fortserver in your browser at `http://your-fortserver-ip/`
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshot-01.png" alt="fortserver PAM dashboard" width="49%" />
-  <img src="assets/screenshot-02.png" alt="fortserver asset management" width="49%" />
+  <img src="assets/screenshot-01.png" alt="fortserver PAM dashboard" title="fortserver PAM dashboard" width="49%" />
+  <img src="assets/screenshot-02.png" alt="fortserver asset management" title="fortserver asset management" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-03.png" alt="fortserver SSH connection dialog" width="49%" />
-  <img src="assets/screenshot-04.png" alt="fortserver terminal AI prompt" width="49%" />
+  <img src="assets/screenshot-03.png" alt="fortserver SSH connection dialog" title="fortserver SSH connection dialog" width="49%" />
+  <img src="assets/screenshot-04.png" alt="fortserver terminal AI prompt" title="fortserver terminal AI prompt" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-05.png" alt="fortserver AI assistant" width="49%" />
-  <img src="assets/screenshot-06.png" alt="fortserver remote desktop session" width="49%" />
+  <img src="assets/screenshot-05.png" alt="fortserver AI assistant" title="fortserver AI assistant" width="49%" />
+  <img src="assets/screenshot-06.png" alt="fortserver remote desktop session" title="fortserver remote desktop session" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-07.png" alt="fortserver terminal asset panel in light theme" width="49%" />
-  <img src="assets/screenshot-08.png" alt="fortserver SSH session in light theme" width="49%" />
+  <img src="assets/screenshot-07.png" alt="KoKo TUI asset browser with searchable authorized assets" title="KoKo TUI asset browser with searchable authorized assets" width="49%" />
+  <img src="assets/screenshot-08.png" alt="KoKo TUI multi-session manager for switching between active SSH sessions" title="KoKo TUI multi-session manager for switching between active SSH sessions" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-09.png" alt="fortserver terminal asset panel in dark theme" width="49%" />
-  <img src="assets/screenshot-10.png" alt="fortserver SSH session in dark theme" width="49%" />
+  <img src="assets/screenshot-09.png" alt="KoKo classic text-mode home screen with connection shortcuts" title="KoKo classic text-mode home screen with connection shortcuts" width="49%" />
+  <img src="assets/screenshot-10.png" alt="KoKo classic text-mode asset list with authorized SSH targets" title="KoKo classic text-mode asset list with authorized SSH targets" width="49%" />
 </p>
 
 ## Components

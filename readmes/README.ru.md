@@ -1,6 +1,6 @@
 <div align="center">
   <a name="readme-top"></a>
-  <a href="https://fortserver.com" target="_blank"><img src="https://download.fortserver.org/images/fortserver-logo.svg" alt="fortserver" width="300" /></a>
+  <a href="https://fortserver.com" target="_blank"><img src="assets/fortserver-logo.svg" alt="fortserver" width="300" /></a>
   
 ## Платформа PAM с открытым исходным кодом (бастионный хост)
 
@@ -12,7 +12,7 @@
 [![][github-release-shield]][github-release-link]
 [![][github-stars-shield]][github-stars-link]
 
-[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md) · [Español](/readmes/README.es.md) · [Русский](/readmes/README.ru.md) · [한국어](/readmes/README.ko.md) · [Tiếng Việt](/readmes/README.vi.md)
+[English](/README.md) · [中文(简体)](/readmes/README.zh-hans.md) · [中文(繁體)](/readmes/README.zh-hant.md) · [日本語](/readmes/README.ja.md) · [Português (Brasil)](/readmes/README.pt-br.md) · [Español](/readmes/README.es.md) · [Français](/readmes/README.fr.md) · [Русский](/readmes/README.ru.md) · [한국어](/readmes/README.ko.md) · [Tiếng Việt](/readmes/README.vi.md)
 
 </div>
 
@@ -22,7 +22,7 @@
 
 fortserver — платформа управления привилегированным доступом (PAM) с открытым исходным кодом и возможностями ИИ. Она предоставляет командам DevOps и ИТ единое рабочее пространство для безопасного доступа к SSH, RDP, Kubernetes, базам данных, веб-сайтам, RemoteApp, VirtualApp и другим ресурсам.
 
-<img alt="Схема архитектуры fortserver" src="assets/fortserver-architecture.png" />
+<img alt="Схема архитектуры fortserver" src="assets/fortserver-architecture.gif" />
 
 ## Быстрый старт
 
@@ -32,7 +32,7 @@ fortserver — платформа управления привилегиров�
 curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quick_start.sh | bash
 ```
 
-Откройте fortserver в браузере по адресу `http://your-fortserver-ip/`
+Откройте `https://<fortserver-host>/` в браузере, заменив `<fortserver-host>` на IP-адрес или доменное имя хоста, на котором работает fortserver.
 
 - Имя пользователя: `admin`
 - Пароль: `ChangeMe`
@@ -40,28 +40,28 @@ curl -sSL https://github.com/fortserver/fortserver/releases/latest/download/quic
 ## Снимки экрана
 
 <p align="center">
-  <img src="assets/screenshot-01.png" alt="Панель PAM fortserver" width="49%" />
-  <img src="assets/screenshot-02.png" alt="Управление активами fortserver" width="49%" />
+  <img src="assets/screenshot-01.png" alt="Панель PAM fortserver" title="Панель PAM fortserver" width="49%" />
+  <img src="assets/screenshot-02.png" alt="Управление активами fortserver" title="Управление активами fortserver" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-03.png" alt="Диалог подключения по SSH в fortserver" width="49%" />
-  <img src="assets/screenshot-04.png" alt="Запрос к ИИ из терминала fortserver" width="49%" />
+  <img src="assets/screenshot-03.png" alt="Диалог подключения по SSH в fortserver" title="Диалог подключения по SSH в fortserver" width="49%" />
+  <img src="assets/screenshot-04.png" alt="Запрос к ИИ из терминала fortserver" title="Запрос к ИИ из терминала fortserver" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-05.png" alt="ИИ-ассистент fortserver" width="49%" />
-  <img src="assets/screenshot-06.png" alt="Сеанс удалённого рабочего стола fortserver" width="49%" />
+  <img src="assets/screenshot-05.png" alt="ИИ-ассистент fortserver" title="ИИ-ассистент fortserver" width="49%" />
+  <img src="assets/screenshot-06.png" alt="Сеанс удалённого рабочего стола fortserver" title="Сеанс удалённого рабочего стола fortserver" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-07.png" alt="Панель активов терминала fortserver в светлой теме" width="49%" />
-  <img src="assets/screenshot-08.png" alt="Сеанс SSH fortserver в светлой теме" width="49%" />
+  <img src="assets/screenshot-07.png" alt="KoKo TUI asset browser with searchable authorized assets" title="KoKo TUI asset browser with searchable authorized assets" width="49%" />
+  <img src="assets/screenshot-08.png" alt="KoKo TUI multi-session manager for switching between active SSH sessions" title="KoKo TUI multi-session manager for switching between active SSH sessions" width="49%" />
 </p>
 
 <p align="center">
-  <img src="assets/screenshot-09.png" alt="Панель активов терминала fortserver в тёмной теме" width="49%" />
-  <img src="assets/screenshot-10.png" alt="Сеанс SSH fortserver в тёмной теме" width="49%" />
+  <img src="assets/screenshot-09.png" alt="KoKo classic text-mode home screen with connection shortcuts" title="KoKo classic text-mode home screen with connection shortcuts" width="49%" />
+  <img src="assets/screenshot-10.png" alt="KoKo classic text-mode asset list with authorized SSH targets" title="KoKo classic text-mode asset list with authorized SSH targets" width="49%" />
 </p>
 
 ## Компоненты
