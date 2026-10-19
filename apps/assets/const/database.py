@@ -11,7 +11,6 @@ class DatabaseTypes(BaseType):
     SQLSERVER = 'sqlserver', 'SQLServer'
     DB2 = 'db2', 'DB2'
     DAMENG = 'dameng', 'Dameng'
-    OCEANBASE = 'oceanbase', 'OceanBase'
     CLICKHOUSE = 'clickhouse', 'ClickHouse'
     MONGODB = 'mongodb', 'MongoDB'
     REDIS = 'redis', 'Redis'
@@ -69,16 +68,6 @@ class DatabaseTypes(BaseType):
                 'change_secret_enabled': False,
                 'push_account_enabled': False,
             },
-            cls.OCEANBASE: {
-                'ansible_enabled': False,
-                'ping_enabled': False,
-                'gather_facts_enabled': False,
-                'gather_accounts_enabled': False,
-                'verify_account_enabled': False,
-                'change_secret_enabled': False,
-                'push_account_enabled': False,
-                'remove_account_enabled': False,
-            },
             cls.CLICKHOUSE: {
                 'ansible_enabled': False,
                 'ping_enabled': False,
@@ -96,9 +85,7 @@ class DatabaseTypes(BaseType):
         return {
             '*': {
                 'choices': '__self__',
-            },
-            # OceanBase tenants use MySQL-family wire framing in both modes.
-            cls.OCEANBASE: {'choices': ['mysql']},
+            }
         }
 
     @classmethod
@@ -111,10 +98,6 @@ class DatabaseTypes(BaseType):
             cls.SQLSERVER: [{'name': 'SQLServer'}],
             cls.DB2: [{'name': 'DB2'}],
             cls.DAMENG: [{'name': 'Dameng'}],
-            cls.OCEANBASE: [
-                {'name': 'OceanBase-MySQL', 'protocols_setting': {'mysql': {'tenant_mode': 'mysql'}}},
-                {'name': 'OceanBase-Oracle', 'protocols_setting': {'mysql': {'tenant_mode': 'oracle'}}},
-            ],
             cls.CLICKHOUSE: [{'name': 'ClickHouse'}],
             cls.MONGODB: [{'name': 'MongoDB'}],
             cls.REDIS: [

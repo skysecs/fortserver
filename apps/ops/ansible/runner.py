@@ -25,15 +25,8 @@ from .utils import escape_jinja2_syntax, neutralize_jinja2_syntax
 
 __all__ = [
     'AdHocRunner', 'PlaybookRunner', 'SuperPlaybookRunner', 'UploadFileRunner',
-    'escape_jinja2_syntax', 'neutralize_jinja2_syntax', 'quote_ansible_module_arg',
+    'escape_jinja2_syntax', 'neutralize_jinja2_syntax',
 ]
-
-
-def quote_ansible_module_arg(value):
-    """Keep user text inside one double-quoted Ansible module arg."""
-    if not isinstance(value, str):
-        return value
-    return value.replace('\\', '\\\\').replace('"', '\\"')
 
 
 class AdHocRunner:
