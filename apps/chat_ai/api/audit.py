@@ -1,6 +1,6 @@
-from django.db.models import Count, Max, Prefetch, Q
+from django.db.models import Count, Max, Q
 from django.utils import translation
-from rest_framework import mixins
+from rest_framework import mixins, serializers
 from rest_framework.response import Response
 
 from audits.const import ActionChoices
@@ -9,83 +9,79 @@ from common.api import JMSGenericViewSet
 from common.permissions import OnlySuperUser
 from orgs.utils import current_org
 
-from chat_ai.models import Conversation, Message
-from chat_ai.permissions import ChatAIServicePermission
-
-from .filters import ConversationAuditFilterSet
-from .serializers import (
-    ConversationAuditDetailSerializer, ConversationAuditListSerializer,
-)
+from chat_ai.filters import ConversationAuditFilterSet
+from chat_ai.models import AuditConversation, AuditMessage
 
 
-class ConversationAuditViewSet(
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
-    JMSGenericViewSet,
-):
-    permission_classes = (ChatAIServicePermission, OnlySuperUser)
+class AuditMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuditMessage
+        fields = (
+            'id', 'role', 'content', 'status', 'error',
+            'input_tokens', 'output_tokens', 'date_created',
+        )
+
+
+class AuditConversationSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+    message_count = serializers.IntegerField(read_only=True)
+    question_count = serializers.IntegerField(read_only=True)
+    last_question_at = serializers.DateTimeField(read_only=True)
+
+    class Meta:
+        model = AuditConversation
+        fields = (
+            'id', 'title', 'assistant', 'profile', 'status', 'user', 'message_count',
+            'question_count', 'last_question_at', 'date_created', 'date_updated',
+        )
+
+    @staticmethod
+    def get_user(obj):
+        return {'id': str(obj.subject_id), 'name': obj.subject_name, 'username': obj.subject_username}
+
+
+class AuditConversationDetailSerializer(AuditConversationSerializer):
+    messages = AuditMessageSerializer(many=True, read_only=True)
+
+    class Meta(AuditConversationSerializer.Meta):
+        fields = AuditConversationSerializer.Meta.fields + ('messages',)
+
+
+class ConversationAuditViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, JMSGenericViewSet):
+    permission_classes = (OnlySuperUser,)
     http_method_names = ('get', 'head', 'options')
     filterset_class = ConversationAuditFilterSet
-    search_fields = ('title', 'user__username')
-    ordering_fields = (
-        'date_created', 'date_updated', 'title', 'message_count',
-        'question_count', 'last_question_at',
-    )
-    ordering = ('-date_updated',)
+    search_fields = ('title', 'subject_name', 'subject_username')
+    ordering_fields = ('date_created', 'date_updated', 'title')
+    ordering = ('-date_updated', '-id')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
-            return ConversationAuditDetailSerializer
-        return ConversationAuditListSerializer
-
-    @staticmethod
-    def annotate_statistics(queryset):
-        return queryset.select_related('user').annotate(
-            message_count=Count('messages'),
-            question_count=Count(
-                'messages',
-                filter=Q(messages__role=Message.Role.USER),
-            ),
-            last_question_at=Max(
-                'messages__date_created',
-                filter=Q(messages__role=Message.Role.USER),
-            ),
-        )
+            return AuditConversationDetailSerializer
+        return AuditConversationSerializer
 
     def get_queryset(self):
         if getattr(self, 'swagger_fake_view', False):
-            return Conversation.objects.none()
-
-        queryset = Conversation.objects.filter(
-            org_id=str(current_org.id),
-        )
-        queryset = self.annotate_statistics(queryset)
+            return AuditConversation.objects.none()
+        queryset = AuditConversation.objects.filter(org_id=str(current_org.id)).annotate(
+            message_count=Count('messages'),
+            question_count=Count('messages', filter=Q(messages__role='user')),
+            last_question_at=Max('messages__date_created', filter=Q(messages__role='user')),
+        ).filter(question_count__gt=0)
         if self.action == 'retrieve':
-            audit_messages = Message.objects.filter(
-                role__in=(Message.Role.USER, Message.Role.ASSISTANT),
-            ).prefetch_related('images', 'files')
-            queryset = queryset.prefetch_related(
-                Prefetch('messages', queryset=audit_messages, to_attr='audit_messages')
-            )
+            queryset = queryset.prefetch_related('messages')
         return queryset
-
-    def setup_eager_loading(self, queryset, is_paginated=False):
-        queryset = super().setup_eager_loading(queryset, is_paginated)
-        return self.annotate_statistics(queryset)
 
     def retrieve(self, request, *args, **kwargs):
         conversation = self.get_object()
-        response = Response(self.get_serializer(conversation).data)
         with translation.override('en'):
             create_or_update_operate_log(
-                ActionChoices.view,
-                'Chat AI conversation audit',
-                resource=conversation,
+                ActionChoices.view, 'Chat AI conversation audit', resource=conversation,
                 resource_display=(conversation.title or str(conversation.id))[:128],
                 force=True,
                 after={
-                    'Conversation owner': str(conversation.user),
+                    'Conversation owner': str(conversation.subject_id),
                     'Conversation ID': str(conversation.id),
                 },
             )
-        return response
+        return Response(self.get_serializer(conversation).data)
