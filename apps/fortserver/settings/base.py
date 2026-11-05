@@ -192,6 +192,7 @@ MIDDLEWARE = [
     'fortserver.middleware.RefererCheckMiddleware',
     'fortserver.middleware.SQLCountMiddleware',
     'orgs.middleware.OrgMiddleware',
+    'accounts.middleware.ApplicationAuditMiddleware',
     'authentication.backends.oidc.middleware.OIDCRefreshIDTokenMiddleware',
     'authentication.backends.cas.middleware.CASMiddleware',
     'authentication.middleware.MFAMiddleware',

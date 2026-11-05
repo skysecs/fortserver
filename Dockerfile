@@ -6,6 +6,9 @@ WORKDIR /opt/fortserver
 
 ADD . .
 
+RUN test -f apps/accounts/clients/go/go.mod \
+    || (echo "Initialize PAM clients: git submodule update --init --recursive apps/accounts/clients" >&2; exit 1)
+
 RUN echo > /opt/fortserver/config.yml \
     && \
     if [ -n "${VERSION}" ]; then \
