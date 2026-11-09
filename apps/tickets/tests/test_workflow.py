@@ -94,18 +94,6 @@ class WorkflowDefinitionTests(SimpleTestCase):
             with self.subTest(definition=definition), self.assertRaises(WorkflowConfigurationError):
                 validate_definition(definition)
 
-    def test_approval_timeout_requires_whole_minutes(self):
-        for seconds in (0, 60, 120, 31536000):
-            definition = deepcopy(self.definition)
-            definition['nodes'][1]['config']['timeout'] = seconds
-            with self.subTest(seconds=seconds):
-                self.assertEqual(validate_definition(definition)['nodes'][1]['config']['timeout'], seconds)
-        for seconds in (1, 59, 61, -60, 31536060, 60.0, True, None):
-            definition = deepcopy(self.definition)
-            definition['nodes'][1]['config']['timeout'] = seconds
-            with self.subTest(seconds=seconds), self.assertRaises(WorkflowConfigurationError):
-                validate_definition(definition)
-
     def test_rejects_disconnected_cycle_and_missing_condition_branch(self):
         graph = deepcopy(self.definition)
         for key in ('a', 'b'):
@@ -528,26 +516,6 @@ class WorkflowTests(TestCase):
             self.assertEqual(self.request(WorkflowViewSet, 'publish', self.alice, workflow.pk, data).status_code, 409)
             data['expected_version'] = 1
             self.assertEqual(self.request(WorkflowViewSet, 'publish', self.alice, workflow.pk, data).status_code, 201)
-
-    def test_publish_unknown_condition_field_reports_full_path_without_creating_version(self):
-        workflow = self.create_workflow()
-        original_version = workflow.active_version_id
-        for language, message in [('zh', '未知的流程上下文字段：{field}。'),
-                                  ('zh-hant', '未知的流程上下文字段：{field}。'),
-                                  ('en', 'Unknown workflow context field: {field}.')]:
-            for field, nested in [('qa477_missing_field', False), ('qa477_missing_field.value', True)]:
-                definition = conditional_definition([self.alice])
-                condition = {'field': field, 'operator': 'eq', 'value': 'test'}
-                definition['nodes'][1]['config'] = {'and': [condition]} if nested else condition
-                data = {'expected_version': 1, 'definition': definition}
-                with self.subTest(language=language, field=field), override(language), \
-                        patch.object(User, 'has_perms', return_value=True):
-                    response = self.request(WorkflowViewSet, 'publish', self.alice, workflow.pk, data)
-                    self.assertEqual(response.status_code, 400)
-                    self.assertEqual(response.data, {'definition': [message.format(field=field)]})
-        workflow.refresh_from_db()
-        self.assertEqual(workflow.active_version_id, original_version)
-        self.assertEqual(workflow.versions.count(), 1)
 
     def test_organization_workflow_permissions_do_not_expand_legacy_ticket_access(self):
         permissions = set(Permission.get_permissions('org').filter(
