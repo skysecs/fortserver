@@ -12,7 +12,7 @@ RUN --mount=type=cache,target=/root/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     python distribution.py --output /out
 
-FROM fortserver/core-base:20261110_074518 AS stage-build
+FROM fortserver/core-base:20261116_103036 AS stage-build
 
 ARG VERSION
 
