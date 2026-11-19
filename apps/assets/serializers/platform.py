@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
+from assets.clickhouse import CLICKHOUSE_HTTP_PROTOCOL
 from assets.models import Asset
 from common.serializers import (
     WritableNestedModelSerializer, type_field_map, MethodSerializer,
@@ -92,15 +93,14 @@ class PlatformProtocolSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         attrs = super().validate(attrs)
         name = attrs.get('name', getattr(self.instance, 'name', None))
-        setting = attrs.get('setting', {})
-        # Nested platform forms have no ?name= query parameter, so their
-        # MethodSerializer may use the generic dict rather than typed fields.
-        if name == 'clickhouse' and 'http_port' in setting:
-            try:
-                field = serializers.IntegerField(min_value=1, max_value=65535)
-                setting['http_port'] = field.run_validation(setting['http_port'])
-            except serializers.ValidationError as exc:
-                raise serializers.ValidationError({'setting': {'http_port': exc.detail}})
+        if name == CLICKHOUSE_HTTP_PROTOCOL:
+            raise serializers.ValidationError({'name': _('Configure the ClickHouse HTTP port on the asset.')})
+        if name == Protocol.clickhouse and 'setting' in attrs:
+            # Ignore obsolete input from older clients/imports; ports now belong to assets.
+            attrs['setting'] = {key: value for key, value in attrs['setting'].items() if key != 'http_port'}
+        if name == Protocol.mysql and 'tenant_mode' in attrs.get('setting', {}):
+            if attrs['setting']['tenant_mode'] not in ('mysql', 'oracle'):
+                raise serializers.ValidationError({'setting': {'tenant_mode': _('Invalid choice.')}})
         return attrs
 
     class Meta:
@@ -146,6 +146,14 @@ class PlatformProtocolSerializer(serializers.ModelSerializer):
 
         protocol_settings = Protocol.settings()
         setting_fields = protocol_settings.get(protocol, {}).get('setting')
+        if protocol == Protocol.mysql and request.query_params.get('asset_type') == 'oceanbase':
+            setting_fields = {
+                **(setting_fields or {}),
+                'tenant_mode': {
+                    'type': 'choice', 'default': 'mysql', 'label': _('OceanBase tenant mode'),
+                    'choices': [('mysql', 'MySQL'), ('oracle', 'Oracle')],
+                },
+            }
         if not setting_fields:
             return default_field
 
@@ -283,6 +291,12 @@ class PlatformSerializer(ResourceLabelsMixin, CommonSerializerMixin, WritableNes
         # objects have been validated and converted to their scalar values.
         category = attrs.get('category', getattr(self.instance, 'category', None))
         tp = attrs.get('type', getattr(self.instance, 'type', None))
+        if tp == 'oceanbase' and self.instance is None:
+            # Creating without opening the protocol dialog must agree with its
+            # MySQL default. Do not rewrite an existing platform on PATCH.
+            for protocol in attrs.get('protocols', []):
+                if protocol.get('name') == Protocol.mysql:
+                    protocol.setdefault('setting', {}).setdefault('tenant_mode', 'mysql')
         constraints = AllTypes.get_constraints(category, tp)
         for name in ('su_enabled', 'gateway_enabled'):
             if name in attrs:
