@@ -36,27 +36,14 @@ def chain_definitions(definitions):
 
 
 @transaction.atomic
-def compose_workflows(workflows, org_id, ticket_type, *, acl_reviewers=None):
-    entries, seen = [], set()
-    for index, workflow in enumerate(workflows):
-        if workflow.pk in seen and not workflow.requires_acl_reviewers:
-            continue
-        seen.add(workflow.pk)
-        entries.append((workflow, (acl_reviewers or {}).get(index, [])))
-    workflows = [workflow for workflow, _ in entries]
+def compose_workflows(workflows, org_id, ticket_type):
+    workflows = list({str(workflow.pk): workflow for workflow in workflows}.values())
     if not workflows:
         raise WorkflowConfigurationError(gettext('Configure reviewers or select a workflow on the ACL.'))
     if len(workflows) == 1:
-        workflow, reviewers = entries[0]
-        return workflow, {key: reviewers for key in workflow.active_version.acl_reviewer_keys}
+        return workflows[0]
     versions = [workflow.active_version for workflow in workflows]
     definition = chain_definitions(version.as_definition() for version in versions)
-    bindings = {
-        f'p{index}_{offset}': reviewers
-        for index, (source, reviewers) in enumerate(entries)
-        for offset, node in enumerate(source.active_version.nodes.order_by('key'))
-        if node.type == 'approval' and node.config['approvers']['type'] == 'acl_reviewers'
-    }
     digest = sha256(','.join(str(version.pk) for version in versions).encode()).hexdigest()[:24]
     with tmp_to_org(org_id):
         workflow, _ = Workflow.objects.get_or_create(
@@ -71,4 +58,4 @@ def compose_workflows(workflows, org_id, ticket_type, *, acl_reviewers=None):
             publish_workflow(workflow, definition)
             Workflow.objects.filter(pk=workflow.pk).update(enabled=True)
             workflow.refresh_from_db()
-    return workflow, bindings
+    return workflow

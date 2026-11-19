@@ -15,9 +15,7 @@ class LoginACLFilter(ACLUserFilterMixin):
 
 
 class LoginACLViewSet(JMSBulkModelViewSet):
-    queryset = LoginACL.objects.select_related(
-        'workflow__active_version',
-    ).prefetch_related('workflow__active_version__nodes')
+    queryset = LoginACL.objects.all()
     filterset_class = LoginACLFilter
     search_fields = ('name',)
     serializer_class = serializers.LoginACLSerializer

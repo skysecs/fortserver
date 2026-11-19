@@ -138,9 +138,9 @@ class StatusMixin:
         from tickets.workflow.business import submit_ticket
         return submit_ticket(self)
 
-    def open_by_system(self, assignees, workflow=None, *, acl_reviewers=None):
+    def open_by_system(self, assignees, workflow=None):
         from tickets.workflow.business import submit_system_ticket
-        return submit_system_ticket(self, assignees, workflow, acl_reviewers=acl_reviewers)
+        return submit_system_ticket(self, assignees, workflow)
 
     @property
     def approval_tasks(self):

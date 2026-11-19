@@ -87,26 +87,21 @@ class UniqueBulkListSerializer(AdaptedBulkListSerializer):
         for item in validated_data:
             yield item.get(self.unique_field)
 
-    @staticmethod
-    def validate_unique_keys(field, keys):
+    def to_internal_value(self, data):
+        validated_data = super().to_internal_value(data)
         seen = {}
-        errors = []
-        for index, key in enumerate(keys):
-            errors.append({})
+        errors = [{} for _ in validated_data]
+        for index, key in enumerate(self.get_unique_keys(validated_data)):
             if key is None:
                 continue
             if key in seen:
-                error = {field: [_('This field must be unique.')]}
+                error = {self.unique_field: [_('This field must be unique.')]}
                 errors[seen[key]] = error
                 errors[index] = error
             else:
                 seen[key] = index
         if any(errors):
             raise serializers.ValidationError(errors, code='unique')
-
-    def to_internal_value(self, data):
-        validated_data = super().to_internal_value(data)
-        self.validate_unique_keys(self.unique_field, self.get_unique_keys(validated_data))
         return validated_data
 
     @transaction.atomic

@@ -71,7 +71,7 @@ class UserViewSet(CommonApiMixin, UserQuerysetMixin, SuggestionMixin, BulkModelV
             raise PermissionDenied(_("Cannot delete the admin user. Please disable it instead."))
         super().perform_destroy(instance)
 
-    @action(methods=['get'], detail=False, url_path='suggestions', extra_filter_backends=[])
+    @action(methods=['get'], detail=False, url_path='suggestions')
     def match(self, request, *args, **kwargs):
         with tmp_to_root_org():
             return super().match(request, *args, **kwargs)

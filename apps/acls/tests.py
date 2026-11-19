@@ -49,7 +49,6 @@ class ACLWorkflowDisplayTests(SimpleTestCase):
             with self.subTest(serializer=serializer_class.__name__), override('zh'):
                 self.assertEqual(self.serialize_workflow(serializer_class, workflow), {
                     'workflow': str(workflow.pk), 'workflow_name': 'Operations approval',
-                    'workflow_requires_reviewers': False,
                 })
 
     def test_default_workflow_name_uses_request_language(self):
@@ -64,7 +63,7 @@ class ACLWorkflowDisplayTests(SimpleTestCase):
         for serializer_class in self.serializers:
             with self.subTest(serializer=serializer_class.__name__):
                 self.assertEqual(self.serialize_workflow(serializer_class, None), {
-                    'workflow': None, 'workflow_name': '', 'workflow_requires_reviewers': False,
+                    'workflow': None, 'workflow_name': '',
                 })
 
 
@@ -191,9 +190,7 @@ class AssetReviewExemptionTests(SimpleTestCase):
                 }],
             })
             self.assertEqual(create.call_args.kwargs['request_data']['apply_login_account'], 'root')
-        ticket.open_by_system.assert_called_once_with(
-            reviewers, workflow=workflow, acl_reviewers=None,
-        )
+            ticket.open_by_system.assert_called_once_with(reviewers, workflow=workflow)
 
     def test_duration_validation_and_private_ticket_metadata(self):
         field = LoginAssetACLSerializer().fields['review_duration']

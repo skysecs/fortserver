@@ -72,11 +72,9 @@ class MessageContentSerializer(SenderMixin, ModelSerializer):
 
     @staticmethod
     def get_message(site_msg) -> str:
-        message = site_msg.message or ''
-        # The popup also renders native Markdown. Only HTML needs conversion.
-        if '<' not in message:
-            return message
-        return convert_html_to_markdown(_normalize_legacy_ticket_html(message))
+        message = _normalize_legacy_ticket_html(site_msg.message)
+        markdown = convert_html_to_markdown(message)
+        return markdown
 
 
 class SiteMessageSerializer(SenderMixin, ModelSerializer):
