@@ -89,9 +89,47 @@ class PublishStatus(TextChoices):
 class SessionType(TextChoices):
     normal = 'normal', _('Normal')
     web_proxy = 'web_proxy', _('Built-in browser')
+    db_workbench = 'db_workbench', _('Database workbench')
     tunnel = 'tunnel', _('Tunnel')
     command = 'command', _('Command')
     sftp = 'sftp', _('SFTP')
+
+
+class AgentSessionStatus(TextChoices):
+    awaiting_approval = 'awaiting_approval', 'awaiting_approval'
+    ready = 'ready', 'ready'
+    rejected = 'rejected', 'rejected'
+    closed = 'closed', 'closed'
+
+
+class AgentActionStatus(TextChoices):
+    accepted = 'accepted', 'accepted'
+    awaiting_approval = 'awaiting_approval', 'awaiting_approval'
+    awaiting_input = 'awaiting_input', 'awaiting_input'
+    cancelled = 'cancelled', 'cancelled'
+    dispatching = 'dispatching', 'dispatching'
+    expired = 'expired', 'expired'
+    failed = 'failed', 'failed'
+    queued = 'queued', 'queued'
+    rejected = 'rejected', 'rejected'
+    running = 'running', 'running'
+    succeeded = 'succeeded', 'succeeded'
+    unknown = 'unknown', 'unknown'
+
+
+class AgentActionKind(TextChoices):
+    connect_asset = 'connect_asset', 'connect_asset'
+    execute_command = 'execute_command', 'execute_command'
+    file_download = 'file_download', 'file_download'
+    file_list = 'file_list', 'file_list'
+    file_mkdir = 'file_mkdir', 'file_mkdir'
+    file_read = 'file_read', 'file_read'
+    file_remove = 'file_remove', 'file_remove'
+    file_rename = 'file_rename', 'file_rename'
+    file_stat = 'file_stat', 'file_stat'
+    file_upload = 'file_upload', 'file_upload'
+    file_write = 'file_write', 'file_write'
+    open_terminal = 'open_terminal', 'open_terminal'
 
 
 class ActionPermission(TextChoices):
@@ -119,6 +157,8 @@ class LoginFrom(TextChoices):
     WT = 'WT', 'Web Terminal'
     DT = 'DT', 'DB Terminal'
     VT = 'VT', 'VNC Terminal'
+    AG = 'AG', 'Agent'
+    AH = 'AH', _('Agent initiated')
 
     @classmethod
     def as_dict(cls):
