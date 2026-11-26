@@ -2,7 +2,6 @@
 #
 from django.utils.translation import gettext
 from django.db import transaction
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets
@@ -128,17 +127,7 @@ class TicketViewSet(ReportExportMixin, CommonApiMixin, viewsets.ModelViewSet):
 
     def get_queryset(self):
         can_audit = self.action in ('retrieve', 'attachment') and self.request.user.has_perm('audits.view_ticketaudit')
-        audit_org_id = None if current_org.is_root() else str(current_org.id)
-        with tmp_to_root_org():
-            queryset = self.model.get_user_related_tickets(self.request.user)
-            if can_audit:
-                if audit_org_id is None:
-                    return self.model.objects.all()
-                # Auditing one organization must not hide the user's own tickets elsewhere.
-                return self.model.objects.filter(
-                    Q(org_id=audit_org_id) | Q(pk__in=queryset.values('pk')),
-                )
-        return queryset
+        return self.model.get_viewable_tickets(self.request.user, can_audit)
 
     def perform_create(self, serializer):
         from tickets.attachments import save_attachment
@@ -163,13 +152,17 @@ class TicketViewSet(ReportExportMixin, CommonApiMixin, viewsets.ModelViewSet):
             raise
 
     @action(detail=True, methods=['get'], url_path=r'attachments/(?P<attachment_id>[^/.]+)',
-            permission_classes=[RBACPermission], throttle_classes=[FileTransferThrottle])
+            permission_classes=[RBACPermission])
     def attachment(self, request, *args, **kwargs):
         from rest_framework.serializers import UUIDField
         from tickets.attachments import attachment_response
         ticket = self.get_object()
         file_id = UUIDField().run_validation(kwargs['attachment_id'])
         with tmp_to_org(ticket.org_id):
+            if ticket.applicant_id == request.user.pk or not ticket.has_current_assignee(request.user):
+                throttle = FileTransferThrottle()
+                if not throttle.allow_request(request, self):
+                    self.throttled(request, throttle.wait())
             record = get_object_or_404(ticket.attachments, pk=file_id, org_id=ticket.org_id)
         return attachment_response(record)
 
