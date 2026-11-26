@@ -24,7 +24,7 @@ class BaseRunner(WorkPostRunCleaner):
 
     @classmethod
     def kill_precess(cls, pid):
-        raise NotImplementedError
+        return NotImplementedError
 
     @property
     def clean_dir(self):

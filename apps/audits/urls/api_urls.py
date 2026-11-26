@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.urls.conf import path
 from rest_framework.routers import DefaultRouter
 
-from .. import api, user_credentials
+from .. import api
 
 app_name = "audits"
 
@@ -22,11 +22,6 @@ router.register(r'user-sessions', api.UserSessionViewSet, 'user-session')
 router.register(r'service-access-logs', api.ServiceAccessLogViewSet, 'service-access-log')
 
 urlpatterns = [
-    path('user-credentials/', user_credentials.UserCredentialOverviewApi.as_view(), name='user-credentials'),
-    path(
-        'user-credentials/<uuid:user_id>/<str:credential_type>/',
-        user_credentials.UserCredentialDetailApi.as_view(), name='user-credential-details',
-    ),
     path('activities/', api.ResourceActivityAPIView.as_view(), name='resource-activities'),
 ]
 

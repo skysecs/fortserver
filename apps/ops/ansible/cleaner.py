@@ -10,7 +10,7 @@ __all__ = ["WorkPostRunCleaner", "cleanup_post_run"]
 class WorkPostRunCleaner:
     @property
     def clean_dir(self):
-        raise NotImplementedError
+        raise NotImplemented
 
     def clean_post_run(self):
         if settings.DEBUG_DEV:
